@@ -67,7 +67,7 @@ and dose-response relationships.
 You can install the latest version of causalbkmr via:
 
 ``` r
-install.packages("causalbkmr")
+devtools::install_github("zc2326/causalbkmr")
 ```
 
 Load `causalbkmr`:

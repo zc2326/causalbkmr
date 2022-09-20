@@ -56,7 +56,7 @@ A command that is used for valid estimation of environmental mixture effects and
 You can install the latest version of causalbkmr via: 
 
 ``` r
-install.packages("causalbkmr")
+devtools::install_github("zc2326/causalbkmr")
 ```
 
 Load `causalbkmr`:
