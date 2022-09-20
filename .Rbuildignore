@@ -7,3 +7,4 @@
 ^pkgdown$
 ^data-raw$
 ^\.travis\.yml$
+^\.github$
