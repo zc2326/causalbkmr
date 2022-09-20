@@ -24,3 +24,4 @@ navbar:
       href: reference/index.html
     - icon: fa-github fa-lg
       text: "Github"
+      href: https://github.com/zilanchai/causalbkmr
