@@ -14,7 +14,7 @@ navbar:
   left:
     - icon: fa-home
       href: index.html
-    - text: "Quickstart"
+    - text: "BKMR-CMA"
       href: articles/Intro.html
     - text: "MI BKMR"
       href: articles/MI_BKMR.html
