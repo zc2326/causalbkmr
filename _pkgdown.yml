@@ -1,23 +1,28 @@
+url: https://zc2326.github.io/causalbkmr/
 authors:
   Zilan Chai: ~
   Katrina Devick: ~
   Linda Valeri:
     href: https://www.lindavaleri.com/
 title: causalbkmr
-url: https://zc2326.github.io/causalbkmr/
 template:
   params:
     bootswatch: cosmo
-
 navbar:
   type: default
   left:
   - icon: fa-home
     href: index.html
   - text: BKMR-CMA
-    href: articles/Intro.html
+    menu:
+    - text: Overview of Methodology
+    - text: Examples
+      href: articles/Intro.html
   - text: MI BKMR
-    href: articles/MI_BKMR.html
+    menu:
+    - text: Overview of Methodology
+    - text: Examples
+      href: articles/MI_BKMR.html
   right:
   - icon: fa-file-code-o
     text: Functions
