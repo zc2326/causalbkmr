@@ -1,0 +1,157 @@
+---
+title: "MI BKMR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MI_BKMR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+options(rmarkdown.html_vignette.check_title = FALSE)
+```
+
+```{r setup, results='hide', warning=FALSE, message=FALSE}
+library(bkmr)
+library(causalbkmr)
+library(ggplot2) 
+library(magrittr)
+data("BKMRfits10")
+```
+
+## Overall Risk
+
+If the models were fit for 10,000 iterations this would be:
+
+```{r}
+sel.MI <- seq(5001,10000, by = 5) 
+```
+
+Fit new `OverallRiskSummaries` function with our MI BKMR fits using approx method:
+
+
+```{r cache=TRUE, message=FALSE, warning=FALSE, results='hide'}
+overallrisks.MI <- OverallRiskSummaries.MI(BKMRfits = BKMRfits10, qs = seq(0.1, 0.9, by = 0.05), 
+                                           q.fixed = 0.5, sel = sel.MI, method = "approx") 
+```
+
+Rerun the `OverallRiskSummaries` function but now FIXING the quantile for z2 to 0.25 (for all comparisons)
+
+
+NOTE: you can fix one or more elements of the mixture, but the quantile you are fixing them to needs to be the same (q.alwaysfixed)
+
+```{r  cache=TRUE, message=FALSE, warning=FALSE, results='hide'}
+overallrisks.MI.fixed <- OverallRiskSummaries.MI(BKMRfits = BKMRfits10, qs = seq(0.1, 0.9, by = 0.05), 
+                             q.fixed = 0.75, q.alwaysfixed = 0.25, 
+                             index.alwaysfixed = 2, sel = sel.MI, method="approx") 
+```
+
+
+You can now plot this data frame as you normally would for a BKMR fit:
+
+```{r  fig.fullwidth=TRUE}
+ggplot(overallrisks.MI, aes(quantile, est, ymin = est - 1.96 * sd, ymax = est + 1.96 * sd)) +  
+  geom_hline(yintercept = 00, linetype = "dashed", colo = "gray") + 
+  geom_pointrange()+ ggtitle("") + scale_y_continuous(name="estimate")
+```
+
+Plot for the case where you fixed the quantile of 1 (or more) mixture elements.
+
+If you are making multiple of these plots for different quantiles, you will most likely want to fix the y limits so that the plots are directly comparable.
+
+```{r  fig.fullwidth=TRUE}
+ggplot(overallrisks.MI.fixed, aes(quantile, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd)) +
+  geom_hline(yintercept=00, linetype="dashed", color="gray") + 
+  geom_pointrange()+ ggtitle("")+ scale_y_continuous(name="estimate")
+```
+
+##   Single Variable Risk Generation and Plot 
+ 
+Fit new `SingVarRiskSummaries` function with our MI BKMR fits:
+
+```{r cache=TRUE, message=FALSE, warning=FALSE}  
+singvarrisk.MI <- SingVarRiskSummaries.MI(BKMRfits=BKMRfits10, qs.diff = c(0.25, 0.75),
+                         q.fixed = c(0.25, 0.50, 0.75), sel=sel.MI, method = "approx")
+```
+
+Rerun the `SingVarRiskSummaries.MI` function but now *fixing* the quantile for `z2` to 0.25 (for all comparisons)
+
+NOTE: you can fix one or more elements of the mixture, but the quantile you are fixing them to needs to be the same (`q.alwaysfixed`).
+
+Also, you need to specify which.z to NOT include the fixed elements (it will still run if you dont do this, but your plot will look funny).
+
+```{r cache=TRUE, message=FALSE, warning=FALSE, fig.fullwidth=TRUE}  
+singvarrisk.MI.fixed <- SingVarRiskSummaries.MI(BKMRfits = BKMRfits10, which.z=c(1,3,4), 
+                               qs.diff = c(0.25, 0.75),  q.fixed = c(0.25, 0.50, 0.75), 
+                               q.alwaysfixed = 0.25, index.alwaysfixed = 2, 
+                               sel=sel.MI, method = "approx")
+ 
+## plot the single variable dataframe for the MI fits
+ggplot(singvarrisk.MI, aes(variable, est, ymin = est - 1.96*sd,  
+                           ymax = est + 1.96*sd, col = q.fixed)) +  
+  geom_hline(aes(yintercept=0), linetype="dashed", color="gray") + 
+  geom_pointrange(position = position_dodge(width = 0.75)) +  
+  coord_flip() + ggtitle("")+ 
+  scale_x_discrete(name="Variable")+ scale_y_continuous(name="estimate")
+```
+
+Plot for the case where you fixed the quantile of 1 (or more) mixture elements 
+
+NOTE: if you do not change `which.z` to NOT include the fixed element, then the graph will have undesired points.
+
+```{r r, fig.fullwidth=TRUE}
+ggplot(singvarrisk.MI.fixed, aes(variable, est, ymin = est - 1.96*sd,  
+                                 ymax = est + 1.96*sd, col = q.fixed)) +  
+  geom_hline(aes(yintercept=0), linetype="dashed", color="gray") + 
+  geom_pointrange(position = position_dodge(width = 0.75)) +  coord_flip() + ggtitle("")+ 
+  scale_x_discrete(name="Variable")+ scale_y_continuous(name="estimate")
+```
+
+## Univariate Risk Generation and Plot 
+
+Fit new `PredictorResponseUnivar` function for our MI fits.
+
+This part can easily be run in parallel by only selecting one `z` at a time (`which.z=1`) and then rbinding the dataframes.
+
+```{r cache=TRUE, message=FALSE, warning=FALSE} 
+univar.MI <- PredictorResponseUnivar.MI(BKMRfits10, ngrid = 50, q.fixed = 0.5, 
+                                        sel = sel.MI, method="approx") 
+```
+
+Plot univariate response functions:
+
+```{r g, fig.fullwidth=TRUE}
+ggplot(univar.MI, aes(z, est, ymin = est - 1.96*se, ymax = est + 1.96*se)) + 
+  geom_smooth(stat = "identity") + ylab("h(z)") + facet_wrap(~ variable)+ggtitle("")
+```
+
+##  Bivariate Risk Generation and Plot  
+
+First fit the new `PredictorResponseBivar` function to our MI fits using the approx method:
+
+```{r cache=TRUE, message=FALSE, warning=FALSE}  
+bivar.MI <- PredictorResponseBivar.MI(BKMRfits = BKMRfits10,  
+                                      min.plot.dist = 1, sel=seq(5001,10000,by=500), 
+                                      method="approx")  
+```
+
+ Now, apply the UNEDITED function `PredictorResponseBivarLevels` using the Z matrix containing ALL observations from the K MI datasets:
+
+```{r cache=TRUE, message=FALSE, warning=FALSE}  
+Z.MI <- Z.complete.MI(BKMRfits10)
+bivar.levels.MI <- PredictorResponseBivarLevels(pred.resp.df = bivar.MI, 
+                                                Z=Z.MI, both_pairs = TRUE, 
+                                                qs = c(0.25, 0.5, 0.75))
+```
+
+Create the plot for the bivariate curves:
+
+```{r plot, fig.fullwidth=TRUE}
+ggplot(bivar.levels.MI, aes(z1, est)) + geom_smooth(aes(col = quantile), stat = "identity") + 
+  facet_grid(variable2 ~ variable1) + ggtitle("h(expos1 | quantiles of expos2)") + xlab("expos1")
+```
+ 

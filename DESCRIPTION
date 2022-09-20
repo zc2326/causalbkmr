@@ -1,0 +1,35 @@
+Package: causalbkmr
+Type: Package
+Title: Causal Inference with Bayesian kernel machine regression 
+Version: 0.1.0
+Authors@R: c(
+    person("Zilan", "Chai", role = c("aut", "cre"), email = "zc2326@columbia.edu"),
+    person("Katrina", "Devick", role = "aut"),
+    person("Linda", "Valeri", role = "aut", email = "lv2424@cumc.columbia.edu")
+    )
+Maintainer: Zilan Chai <zc2326@columbia.edu>
+Description: Bayesian kernel machine regression (BKMR) is becoming a popular approach for studying the joint effect of environmental mixtures on health outcomes allowing for variable selection, which is particularly useful when continuous exposures display moderate correlations. An R package, bkmr, has been developed to implement this method. BKMR-causal mediation analysis (BKMR-CMA) has been proposed to estimate direct and indirect effects of mixtures through a hypothesized mediator.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Imports: 
+    bkmr,
+    compositions,
+    dplyr,
+    stats,
+    ggplot2,
+    mixtools,  
+    tibble, 
+    SimDesign,
+    fields, 
+    magrittr
+Suggests: 
+    rmarkdown,
+    knitr,
+    ggplot2,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)
