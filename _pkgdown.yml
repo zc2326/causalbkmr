@@ -1,29 +1,28 @@
 authors:
-  Zilan Chai:
-  Katrina Devick:
+  Zilan Chai: ~
+  Katrina Devick: ~
   Linda Valeri:
-    href: "https://www.lindavaleri.com/"
-
+    href: https://www.lindavaleri.com/
 title: causalbkmr
-
 url: https://zc2326.github.io/causalbkmr/
-
 template:
   params:
     bootswatch: cosmo
+
 navbar:
   type: default
   left:
-    - icon: fa-home
-      href: index.html
-    - text: "BKMR-CMA"
-      href: articles/Intro.html
-    - text: "MI BKMR"
-      href: articles/MI_BKMR.html
+  - icon: fa-home
+    href: index.html
+  - text: BKMR-CMA
+    href: articles/Intro.html
+  - text: MI BKMR
+    href: articles/MI_BKMR.html
   right:
-    - icon: fa-file-code-o
-      text: "Functions"
-      href: reference/index.html
-    - icon: fa-github fa-lg
-      text: "Github"
-      href: https://github.com/zilanchai/causalbkmr
+  - icon: fa-file-code-o
+    text: Functions
+    href: reference/index.html
+  - icon: fa-github fa-lg
+    text: Github
+    href: https://github.com/zc2326/causalbkmr
+
