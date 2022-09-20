@@ -16,8 +16,8 @@ navbar:
   - text: BKMR-CMA
     menu:
     - text: Overview of Methodology
-    - text: Examples
-      href: articles/Intro.html
+    - text: Quick Start
+      href: articles/BKMRCMA_QuickStart.html
   - text: MI BKMR
     menu:
     - text: Overview of Methodology
