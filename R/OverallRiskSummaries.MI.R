@@ -66,7 +66,7 @@ OverallRiskSummaries.MI <- function(BKMRfits, qs = seq(0.25, 0.75, by = 0.05), q
     }
   } else if(method=="approx") {
     print("approx method")
-    preds.fun <- function(znew) ComputePostmeanHnew.approx(fit = fit, y = y, Z = Z, X = X, Znew = znew, sel = sel)
+    preds.fun <- function(znew) causalbkmr::ComputePostmeanHnew.approx(fit = fit, y = y, Z = Z, X = X, Znew = znew, sel = sel)
 
     for(i in 1:length(qs)){
       quant <- qs[i]

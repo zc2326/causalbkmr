@@ -27,10 +27,12 @@ ComputePostmeanHnew.approx <- function (fit, y = NULL, Z = NULL, X = NULL, Znew 
       X <- fit$X
   }
   if (!is.null(Znew)) {
-    if (is.null(dim(Znew)))
+    if (is.null(dim(Znew))){
       Znew <- matrix(Znew, nrow = 1)
-    if (class(Znew) == "data.frame")
+    }
+    else{
       Znew <- data.matrix(Znew)
+    }
   }
   if (is.null(dim(X)))
     X <- matrix(X, ncol = 1)
