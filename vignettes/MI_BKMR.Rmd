@@ -1,5 +1,5 @@
 ---
-title: "MI BKMR"
+title: "BKMR MI Quick Start"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{MI_BKMR}
@@ -31,7 +31,7 @@ If the models were fit for 10,000 iterations this would be:
 sel.MI <- seq(5001,10000, by = 5) 
 ```
 
-Fit new `OverallRiskSummaries` function with our MI BKMR fits using approx method:
+Fit new `OverallRiskSummaries` function with our  BKMR MI fits using approx method:
 
 
 ```{r cache=TRUE, message=FALSE, warning=FALSE, results='hide'}
@@ -70,7 +70,7 @@ ggplot(overallrisks.MI.fixed, aes(quantile, est, ymin = est - 1.96*sd, ymax = es
 
 ##   Single Variable Risk Generation and Plot 
  
-Fit new `SingVarRiskSummaries` function with our MI BKMR fits:
+Fit new `SingVarRiskSummaries` function with our  BKMR MI fits:
 
 ```{r cache=TRUE, message=FALSE, warning=FALSE}  
 singvarrisk.MI <- SingVarRiskSummaries.MI(BKMRfits=BKMRfits10, qs.diff = c(0.25, 0.75),
