@@ -3,8 +3,11 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   BKMRCMA_QuickStart: BKMRCMA_QuickStart.html
+  BKMRCMA_method_overview: BKMRCMA_method_overview.html
+  BKMRMI_method_overview: BKMRMI_method_overview.html
   MI_BKMR: MI_BKMR.html
-last_built: 2022-09-21T01:37Z
+  gBKMR_method_overview: gBKMR_method_overview.html
+last_built: 2022-09-22T21:56Z
 urls:
   reference: https://zc2326.github.io/causalbkmr/reference
   article: https://zc2326.github.io/causalbkmr/articles
