@@ -16,13 +16,21 @@ navbar:
   - text: BKMR-CMA
     menu:
     - text: Overview of Methodology
+      href: articles/BKMRCMA_method_overview.html
     - text: Quick Start
       href: articles/BKMRCMA_QuickStart.html
   - text: MI BKMR
     menu:
     - text: Overview of Methodology
-    - text: Examples
+      href: articles/BKMRMI_method_overview.html
+    - text: Quick Start
       href: articles/MI_BKMR.html
+  - text: g-BKMR
+    menu:
+    - text: Overview of Methodology
+      href: articles/gBKMR_method_overview.html
+    - text: Quick Start
+
   right:
   - icon: fa-file-code-o
     text: Functions
