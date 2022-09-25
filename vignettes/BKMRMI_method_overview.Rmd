@@ -20,6 +20,17 @@ library(causalbkmr)
 
 
 
++ The data `BKMRfits10` is simulated data with 10 BKMRfits, each is a BKMR fit using multiple imputed data with size $n = 500$.
+
++ This code assumes you have $K$ BKMR fits and that each of these fits were ran for the same number if MCMC iterations.
+
++ All effects are calculated as the average change in the outcome for a change in the exposure elements from a particular quantile to another quantile calculated across ALL imputed datasets. If there are no missing values in the Z matrix (in the mixture exposure), this is same contrast considered when only using the observed Z.  
+
++ All functions have the option to choose between an "approx" or "exact" method. The "exact" method combines the posterior samples from all MI fits and uses this posterior chain of length  iterations times  MI datasets for inference. The "approx" method uses the bkmr approx estimates and std errors from each MI fit and calculates an overall estimate and sd using Rubin's 1987 method. (When using the "exact" method, the functions take a while to run, so make sure you save the data frames to be used for plotting).
+
++ This code can also be used with only 1 BKMR fit. The additional flexibility with this code over what is included in the `bkmr` package is that you have the option to fix specified variables to a given quantile when creating overall risk and single variable risk plots. 
+
+
 ## References 
 
 Anglen Bauer J, Devick KL, Bobb JF, Coull BA, Zoni S, Fedrighi C, Benedetti C, Guazzetti S, White R, Bellinger D, Yang Q, Webster T, Wright RO, Smith D, Lucchini R, Claus Henn. Associations from a mixture of manganese, lead, copper and chromium and adolescent neurobehavior. 
