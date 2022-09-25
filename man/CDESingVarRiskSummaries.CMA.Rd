@@ -10,7 +10,7 @@ CDESingVarRiskSummaries.CMA(
   e.y = NULL,
   e.y.names = NULL,
   which.z = 1:ncol(BKMRfits$Z),
-  z.names = colnames(BKMRfits$Z),
+  z.names = NULL,
   m.value = NULL,
   m.quant = c(0.1, 0.5, 0.75),
   m.name,

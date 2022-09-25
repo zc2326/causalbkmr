@@ -10,7 +10,7 @@ SingVarRiskSummaries.CMA(
   e.y = NULL,
   e.y.names = NULL,
   which.z = 1:ncol(BKMRfits$Z),
-  z.names = colnames(BKMRfits$Z),
+  z.names = NULL,
   qs.diff = c(0.25, 0.75),
   q.fixed = c(0.25, 0.5, 0.75),
   alpha = 0.05,

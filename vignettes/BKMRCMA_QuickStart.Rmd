@@ -259,7 +259,7 @@ CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
 
 
 ```{r}
-ggplot(df, aes(variable, est, ymin = est - 1.96*sd,
+ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
                             ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
   coord_flip()
