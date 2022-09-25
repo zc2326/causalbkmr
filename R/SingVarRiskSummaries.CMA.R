@@ -22,18 +22,23 @@
 SingVarRiskSummaries.CMA <-function(BKMRfits,
                                     e.y = NULL, e.y.names = NULL,
                                     which.z = 1:ncol(BKMRfits$Z),
-                                    z.names = colnames(BKMRfits$Z),
+                                    z.names = NULL,
                                     qs.diff = c(0.25, 0.75),
                                     q.fixed = c(0.25, 0.50, 0.75),
                                     alpha = 0.05, sel, seed = 122) {
   Z = BKMRfits$Z
-  if(is.null(z.names)) z.names <- paste0("z", 1:ncol(Z))
   if (!is.null(e.y.names)){
-    Z = Z[,-which(e.y.names == colnames(Z))]
+    Z = Z[, -which(e.y.names == colnames(Z))]
     which.z = 1:ncol(Z)
-    z.names = colnames(Z)
+    #z.names = colnames(Z)
   }
-  df <- tibble::tibble()
+
+  if(is.null(z.names)) {
+    z.names <- paste0("z", 1:ncol(Z))
+  }
+
+
+  df <- dplyr::data_frame()
   for(i in seq_along(q.fixed)) {
     for(j in seq_along(which.z)) {
       risk = VarRiskSummary.CMA(whichz = which.z[j],
@@ -41,15 +46,18 @@ SingVarRiskSummaries.CMA <-function(BKMRfits,
                                 e.y = e.y, e.y.names = e.y.names,
                                 qs.diff = qs.diff, q.fixed = q.fixed[i],
                                 alpha = alpha, sel = sel, seed = seed)
-      df0 <- tibble::tibble(q.fixed = q.fixed[i],
-                            variable = z.names[which.z[j]],
-                            est = risk["est"],
-                            sd = risk["sd"])
+      df0 <- dplyr::data_frame(q.fixed = q.fixed[i],
+                               variable = z.names[which.z[j]],
+                               est = risk["est"],
+                               sd = risk["sd"])
       df <- dplyr::bind_rows(df, df0)
+
+
     }
   }
-  df$variable <- factor(df$variable, levels = z.names[which.z])
-  df$q.fixed = as.factor(df$q.fixed)
+
+  df <- dplyr::mutate_(df, variable = ~factor(variable,levels = z.names[which.z]),
+                       q.fixed = ~as.factor(q.fixed))
   attr(df, "qs.diff") <- qs.diff
   return(df)
 }

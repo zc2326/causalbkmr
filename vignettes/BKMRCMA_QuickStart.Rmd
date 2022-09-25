@@ -1,5 +1,5 @@
 ---
-title: "BKMRCMA_QuickStart"
+title: "BKMRCMA Quick Start"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{BKMRCMA_QuickStart}
@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 ```{r setup, results='hide', warning=FALSE, message=FALSE}
@@ -33,6 +34,20 @@ dat = dat$data
 
 ## Fit BKMR Models
 
+let $A$ be a $n$-by-$L$ matrix containing an exposure mixture comprised of $L$ elements,`E.M` and `E.Y` be effect modifiers of exposure-mediator and exposure-outcome relationship respectively, $y$, a vector of outcome data, and  $m$, a vector of mediator data.
+
+`Z.M <- cbind(A,E.M)`
+
+`Z.Y <- cbind(A,E.Y)`
+
+ let `Z.M` be the exposures and effect modifers `E.M` and let `Z.Y` be the exposures and effect modifers `E.Y`, 
+create one more matrix containing the exposures, effect modifier `Z.Y` and mediator,  precisely in that order.
+
+`Zm.Y <- cbind(Z.Y,m)`
+
+NOTE: the last column of the `Zm.Y` matrix *must* be your mediator in order for the functions to work properly.
+
+
 ```{r cache = TRUE, warning=FALSE, message = FALSE, results='hide'}
 A <- cbind(dat$z1, dat$z2, dat$z3)
 X <- cbind(dat$x3)
@@ -47,33 +62,46 @@ Z.Y <- cbind(A, E.Y)
 Zm.Y <- cbind(Z.Y, m)
 
 set.seed(1)
-fit.y <- kmbayes(y=y, Z=Zm.Y, X=X, iter=20, verbose=TRUE, varsel=FALSE) 
+fit.y <- kmbayes(y=y, Z=Zm.Y, X=X, iter=5000, verbose=TRUE, varsel=FALSE) 
 #save(fit.y,file="bkmr_y.RData")
 
 set.seed(2)
-fit.y.TE <- kmbayes(y=y, Z=Z.Y, X=X, iter=20, verbose=TRUE, varsel=FALSE) 
+fit.y.TE <- kmbayes(y=y, Z=Z.Y, X=X, iter=5000, verbose=TRUE, varsel=FALSE) 
 #save(fit.y.TE,file="bkmr_y_TE.RData")
 
 set.seed(3)
-fit.m <- kmbayes(y=m, Z=Z.M, X=X, iter=20, verbose=TRUE, varsel=FALSE) 
+fit.m <- kmbayes(y=m, Z=Z.M, X=X, iter=5000, verbose=TRUE, varsel=FALSE) 
 #save(fit.m,file="bkmr_m.RData")
-
-sel<-seq(5,20,by=2)
 ```
+
 
 ## Values at which to predict counterfactuals
 
+Mean level of confounders:
 ```{r }
-## mean level of confounders
 X.predict <- matrix(colMeans(X),nrow=1)
-
-astar <- c(apply(A, 2, quantile, probs=0.25))  
-a <- c(apply(A, 2, quantile, probs=0.75))
 ``` 
 
-### Estimate TE for BKMR
+We define the change in exposure for which you want to estimate the mediation effects: in this example, we will consider a change in all exposures from their 25th to 75th percentiles, fixing age (`E.Y`) at testing to its 10th and 90th percentiles. However, this contrast can be anything. 
 
-Estimate the TE for a change in the exposures from $a^*$ to $a$ fixing Effect modifier at testing to its 10th percentile or 90th percentile
+Note: If modifiers are considered, you should fix the levels of the modifiers
+
+```{r contrasts, warning=FALSE}
+astar <- c(apply(A, 2, quantile, probs=0.25))  
+a <- c(apply(A, 2, quantile, probs=0.75))
+
+e.y10 = quantile(E.Y, probs=0.1)
+e.y90 = quantile(E.Y, probs=0.9)
+```
+The index of the MCMC iterations to be used for inference:
+
+```{r}
+sel<-seq(2500,5000,by=5)
+```
+
+## Estimate TE for BKMR
+
+Estimate the TE for a change in the exposures from $a^*$ to $a$ fixing Effect modifier at testing to its 10th percentile or 90th percentile:
 
 ```{r TE, warning=FALSE}
 e.y10 = quantile(E.Y, probs=0.1)
@@ -97,14 +125,11 @@ ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper))  +
   geom_pointrange(position = position_dodge(width = 0.75))  +  coord_flip()
 ```
 
-### Estimate CDE for BKMR
+## Estimate CDE for BKMR
 
-Estimate the CDE for a change in the exposures from astar to a, fixing the mediator at its 10th, 50th, and 75th percentile and the effect modifier at testing at its 10th percentile 
+Estimate the CDE for a change in the exposures from $a^*$ to $a$, fixing the mediator at its 10th, 50th, and 75th percentile and the effect modifier at testing at its 10th percentile:
 
-```{r CDE, warning=FALSE}
-## estimate the CDE for a change in the exposures from astar to a,
-## fixing the mediator at its 10th, 50th, and 75th percentile and
-## Effect modifier at testing at its 10th percentile 
+```{r CDE, warning=FALSE} 
 CDE.ey10 <- CDE.bkmr(a=a, astar=astar, e.y = e.y10, m.quant=c(0.1,0.5,0.75), fit.y=fit.y, alpha=0.05, sel=sel, seed=777)
 
 CDE.ey90 <- CDE.bkmr(a=a, astar=astar, e.y = e.y90, m.quant=c(0.1,0.5,0.75), fit.y=fit.y, alpha=0.05, sel=sel, seed=777)
@@ -122,12 +147,11 @@ ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  +
 
 
 
-### Estimate NDE/NIE for BKMR   
+## Estimate NDE/NIE for BKMR   
 
-Estimate the TE, NDE and NIE for a change in the exposures from astar to a fixing age at testing to its 90th percentile.
+Estimate the TE, NDE and NIE for a change in the exposures from $a^*$ to $a$ fixing age at testing to its 90th percentile.
  
- 
-Note: this step takes a while to run and will take longer for more complex bkmr fits, longer sel vectors and larger.
+Note: this step takes a while to run and will take longer for more complex BKMR fits, longer `sel` vectors and larger.
 
 ```{r NDENIE, warning=FALSE}
 mediationeffects.ey10  <- mediation.bkmr(a=a, astar=astar, e.y = e.y10, fit.m=fit.m, fit.y=fit.y, fit.y.TE=fit.y.TE, X.predict.M=X.predict, X.predict.Y=X.predict, alpha=0.05, sel=sel, seed=22, K=10)
@@ -151,7 +175,10 @@ ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  +
   geom_pointrange(position = position_dodge(width = 0.75))  +  coord_flip()
 ```
 
-## Plotting Risk
+## Summary statistics of the predictor-response function
+
+### Risk Summary For Totel Effect
+
 ```{r TERisk, warning=FALSE}
 riskSummary10 = TERiskSummaries.CMA(fit.TE = fit.y.TE, e.y=e.y10, e.y.name = "E.Y", sel=sel)
 
@@ -170,11 +197,12 @@ ggplot(riskSummary90,
            ymin = est - 1.96 * sd,
            ymax = est + 1.96 * sd)) +
   geom_pointrange()
-
 ```
 
-```{r TERisk2, warning=FALSE, message=FALSE, results='hide'} 
 
+### Risk Summary For Controlled Direct Effect
+
+```{r CDERisk, warning=FALSE, message=FALSE, results='hide'} 
 # CDE 
 CDEriskSummary10 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y10, e.y.name = "E.Y", m.name = "m", sel = sel)
 
@@ -186,7 +214,7 @@ ggplot(CDEriskSummary10, aes(quantile, est, ymin = est - 1.96*sd,
   geom_pointrange(position = position_dodge(width = 0.75))
 ```
 
-```{r TERisk3, warning=FALSE, message=FALSE, results='hide'} 
+```{r CDErisk90, warning=FALSE, message=FALSE, results='hide'} 
 CDEriskSummary90 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y90, e.y.name = "E.Y", m.name = "m", sel = sel)
 ```
 
@@ -194,43 +222,59 @@ CDEriskSummary90 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y90, e.y.name = "
 ggplot(CDEriskSummary90, aes(quantile, est, ymin = est - 1.96*sd, 
                              ymax = est + 1.96*sd, col = m)) + 
   geom_pointrange(position = position_dodge(width = 0.75))
+```
 
+## Single-predictor health risks
 
-
-# single variable total effects
-# risks.singvar10 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE,
-#                                            e.y=e.y10, e.y.names="E.Y",
-#                                            sel=sel)
-# ggplot(risks.singvar10, aes(variable, est, ymin = est - 1.96*sd, 
-#                             ymax = est + 1.96*sd, col = q.fixed)) + 
-#   geom_pointrange(position = position_dodge(width = 0.75)) + 
-#   coord_flip()
-# 
-# 
-# risks.singvar90 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE,
-#                                            e.y=e.y90, e.y.names="E.Y",
-#                                            sel=sel)
-# ggplot(risks.singvar90, aes(variable, est, ymin = est - 1.96*sd, 
-#                             ymax = est + 1.96*sd, col = q.fixed)) + 
-#   geom_pointrange(position = position_dodge(width = 0.75)) + 
-#   coord_flip()
-
+### Total Effect
+```{r warning=FALSE, message=FALSE}
  
+risks.singvar10 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
+                                           e.y=e.y10, e.y.names="E.Y",
+                                           sel=sel)
+ggplot(risks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
+                            ymax = est + 1.96*sd, col = q.fixed)) +
+  geom_pointrange(position = position_dodge(width = 0.75)) +
+  coord_flip()
+
+
+risks.singvar90 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
+                                           e.y=e.y90, e.y.names="E.Y",
+                                           sel=sel)
+ggplot(risks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
+                            ymax = est + 1.96*sd, col = q.fixed)) +
+  geom_pointrange(position = position_dodge(width = 0.75)) +
+  coord_flip()
+```
+
+
+### Controlled Direct Effect 
+
+```{r CDERisksingvar10, warning=FALSE, message=FALSE, results='hide'} 
 # single variable controlled direct effects
-# CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
-#                                            e.y=e.y10, e.y.names="E.Y", m.name = "m",
-#                                            sel=sel)
-# ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd, 
-#                             ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) + 
-#   geom_pointrange(position = position_dodge(width = 0.75)) + 
-#   coord_flip()
-# 
-# CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
-#                                                  e.y=e.y90, e.y.names="E.Y", m.name = "m",
-#                                                  sel=sel)
-# ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd, 
-#                                ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) + 
-#   geom_pointrange(position = position_dodge(width = 0.75)) + 
-#   coord_flip()
+CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
+                                           e.y=e.y10, e.y.names="E.Y", m.name = "m",
+                                           sel=sel)
+```
+
+
+```{r}
+ggplot(df, aes(variable, est, ymin = est - 1.96*sd,
+                            ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
+  geom_pointrange(position = position_dodge(width = 0.75)) +
+  coord_flip()
+```
+
+```{r CDERisksingvaar, warning=FALSE, message=FALSE, results='hide'} 
+CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
+                                                 e.y=e.y90, e.y.names="E.Y", m.name = "m",
+                                                 sel=sel)
+```
+
+```{r}
+ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
+                               ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
+  geom_pointrange(position = position_dodge(width = 0.75)) +
+  coord_flip()
 
 ```

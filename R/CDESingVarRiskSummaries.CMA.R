@@ -22,7 +22,7 @@
 CDESingVarRiskSummaries.CMA <-function(BKMRfits,
                                        e.y = NULL, e.y.names = NULL,
                                        which.z = 1:ncol(BKMRfits$Z),
-                                       z.names = colnames(BKMRfits$Z),
+                                       z.names = NULL,
                                        m.value = NULL, m.quant = c(0.1, 0.5, 0.75), m.name,
                                        qs.diff = c(0.25, 0.75),
                                        q.fixed = c(0.25, 0.50, 0.75),
@@ -31,13 +31,14 @@ CDESingVarRiskSummaries.CMA <-function(BKMRfits,
     m.quant = NULL
   }
   Z = BKMRfits$Z
-  if(is.null(z.names)) z.names <- paste0("z", 1:ncol(Z))
   if (!is.null(e.y.names)){
     Z = Z[,-which(e.y.names == colnames(Z))]
   }
   Z = Z[,-which(m.name == colnames(Z))]
+  if(is.null(z.names)) z.names <- paste0("z", 1:ncol(Z))
+
   which.z = 1:ncol(Z)
-  z.names = colnames(Z)
+ # z.names = colnames(Z)
   df <- tibble::tibble()
   for(i in seq_along(q.fixed)) {
     for(j in seq_along(which.z)) {

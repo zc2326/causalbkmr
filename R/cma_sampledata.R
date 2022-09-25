@@ -37,8 +37,8 @@ cma_sampledata <- function(N, L, P, scenario, seed) {
     hfunM <- function(z, ind1 = 1, ind2 = 2, ind3 = 4) 1/4*z[ind1] + 1/4*z[ind3] + 1/4*z[ind1]*z[ind3]
     hfunY <- function(z, ind1 = 1, ind2 = 4, ind3 = 5) 1/12*((z[ind1]+3) + (z[ind2]+3) + 1/3*(z[ind1]+3)*(z[ind2]+3)-12)+ 1/4*z[ind1]*z[ind3]
     ## scale random noise based on h functions
-    sig.trueM <- 0.25/signoiseM
-    sig.trueY <- 0.2044/signoiseY
+    sig.trueM <- 0.05/signoiseM
+    sig.trueY <- 0.044/signoiseY
   }else if(scenario==2){
     hfunM <- function(z, ind1 = 1, ind2 = 2, ind3 = 4) (plogis(z[ind1], 0, 0.2)-0.5)+ 1/4*z[ind3]
     hfunY <- function(z, ind1 = 1, ind2 = 2, ind3 = 5) (plogis(1/6*((z[ind1]+3) + (z[ind2]+3) + 1/3*(z[ind1]+3)*(z[ind2]+3)), 2, 0.2)-0.5)+ 1/4*z[ind3]
