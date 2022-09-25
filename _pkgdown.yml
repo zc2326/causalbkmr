@@ -7,7 +7,7 @@ authors:
 title: causalbkmr
 template:
   params:
-    bootswatch: minty
+    bootswatch: lumen
 navbar:
   type: default
   left:
