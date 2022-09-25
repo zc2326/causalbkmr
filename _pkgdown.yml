@@ -7,7 +7,7 @@ authors:
 title: causalbkmr
 template:
   params:
-    bootswatch: cosmo
+    bootswatch: journal
 navbar:
   type: default
   left:

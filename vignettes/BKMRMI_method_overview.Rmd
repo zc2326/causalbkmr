@@ -17,3 +17,18 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(causalbkmr)
 ```
+
+
+
+## References 
+
+Anglen Bauer J, Devick KL, Bobb JF, Coull BA, Zoni S, Fedrighi C, Benedetti C, Guazzetti S, White R, Bellinger D, Yang Q, Webster T, Wright RO, Smith D, Lucchini R, Claus Henn. Associations from a mixture of manganese, lead, copper and chromium and adolescent neurobehavior. 
+
+Bobb JF, Claus Henn B, Valeri L, Coull BA. 2018. Statistical software for analyzing the health effects of multiple concurrent exposures via Bayesian kernel machine regression. Environ Health 17:67; doi:10.1186/s12940-018-0413-y.
+
+Bobb JF, Valeri L, Claus Henn B, Christiani DC, Wright RO, Mazumdar M, et al. 2015. Bayesian kernel machine regression for estimating the health effects of multi-pollutant mixtures. Biostatistics 16:493–508; doi:10.1093/biostatistics/kxu058.
+
+Rubin DB. 1987. Multiple imputation for nonresponse in surveys. Wiley.
+
+Valeri L, Mazumdar M, Bobb J, Claus Henn B, Sharif O, Al. E. 2017. The joint effect of prenatal exposure to metal mixtures on neurodevelopmental outcomes at 24 months: evidence from rural Bangladesh. Env Heal Perspect 125; doi:DOI: 10.1289/EHP614.
+
