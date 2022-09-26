@@ -9,7 +9,6 @@
 #' @return need to update
 #' @export
 #'
-#' @examples
 #'
 #'
 makeKpart <- function(r, Z1, Z2 = NULL) {
