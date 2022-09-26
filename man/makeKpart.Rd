@@ -19,7 +19,3 @@ need to update
 \description{
 makeKpart
 }
-\examples{
-
-
-}

@@ -23,3 +23,7 @@ a data frame
 \description{
 Simulate simple sample dataset for BKMRCMA illustration, function to generate simulated data with multiple exposures and true mediated effect
 }
+\examples{
+dat <-  cma_sampledata(N=300, L=3, P=3, scenario=1, seed=7)
+head(dat$data, n = 3L)
+}

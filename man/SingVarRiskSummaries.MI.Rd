@@ -46,6 +46,25 @@ a data frame containing the (posterior mean) estimate and posterior standard dev
 Single Variable Risk Summaries for MI BKMR fits
 Compute summaries of the risks associated with a change in a single variable in \code{Z} from a single level (quantile) to a second level (quantile), for the other variables in \code{Z} fixed to a specific level (quantile) for MI BKMR fits
 }
+\details{
+For guided examples, go to https://zc2326.github.io/causalbkmr/articles/MI_BKMR.html
+}
 \examples{
+\dontrun{
+library(causalbkmr)
+data(BKMRfits10)
+singvarrisk.MI.fixed <- SingVarRiskSummaries.MI(BKMRfits = BKMRfits10, which.z=c(1,3,4),
+qs.diff = c(0.25, 0.75),  q.fixed = c(0.25, 0.50, 0.75),
+q.alwaysfixed = 0.25, index.alwaysfixed = 2,
+sel=sel.MI, method = "approx")
+
+## plot the single variable dataframe for the MI fits
+ggplot(singvarrisk.MI, aes(variable, est, ymin = est - 1.96*sd,
+                           ymax = est + 1.96*sd, col = q.fixed)) +
+  geom_hline(aes(yintercept=0), linetype="dashed", color="gray") +
+  geom_pointrange(position = position_dodge(width = 0.75)) +
+  coord_flip() + ggtitle("")+
+  scale_x_discrete(name="Variable")+ scale_y_continuous(name="estimate")
+}
 
 }

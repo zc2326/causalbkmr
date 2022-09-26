@@ -41,3 +41,17 @@ a long data frame with the predictor name, predictor value, posterior mean estim
 \description{
 Plot univariate predictor-response function on a new grid of point for MI BKMR
 }
+\details{
+For guided examples, go to https://zc2326.github.io/causalbkmr/articles/MI_BKMR.html
+}
+\examples{
+\dontrun{
+library(causalbkmr)
+data(BKMRfits10)
+univar.MI <- PredictorResponseUnivar.MI(BKMRfits10, ngrid = 50, q.fixed = 0.5, sel = sel.MI, method="approx")
+ggplot(univar.MI, aes(z, est, ymin = est - 1.96*se, ymax = est + 1.96*se)) +
+geom_smooth(stat = "identity") + ylab("h(z)") + facet_wrap(~ variable)+ggtitle("")
+}
+
+
+}

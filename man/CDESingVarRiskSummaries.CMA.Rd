@@ -55,3 +55,14 @@ a data frame containing the (posterior mean) estimate and posterior standard dev
 Single Variable Risk Summaries
 Compute summaries of the risks associated with a change in a single variable in \code{Z} from a single level (quantile) to a second level (quantile), for the other variables in \code{Z} fixed to a specific level (quantile)
 }
+\details{
+For guided examples, go to
+https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html
+}
+\examples{
+\dontrun{
+CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
+
+}
+
+}

@@ -35,3 +35,17 @@ a data frame containing the (posterior mean) estimate and posterior standard dev
 \description{
 Compare estimated h function when all predictors are at a particular quantile to when all are at a second fixed quantile
 }
+\details{
+For guided examples, go to https://zc2326.github.io/causalbkmr/articles/MI_BKMR.html
+}
+\examples{
+library(causalbkmr)
+data("BKMRfits10")
+sel.MI <- seq(5001,10000, by = 5)
+
+overallrisks.MI <- OverallRiskSummaries.MI(BKMRfits = BKMRfits10, qs = seq(0.1, 0.9, by = 0.05),  q.fixed = 0.5, sel = sel.MI, method = "approx")
+ggplot(overallrisks.MI, aes(quantile, est, ymin = est - 1.96 * sd, ymax = est + 1.96 * sd)) +
+geom_hline(yintercept = 00, linetype = "dashed", color = "gray") +
+  geom_pointrange()+ ggtitle("") + scale_y_continuous(name="estimate")
+
+}

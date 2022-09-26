@@ -47,3 +47,13 @@ a data frame containing the (posterior mean) estimate and posterior standard dev
 \description{
 Compare estimated Controlled Direct Effect when all predictors are at a particular quantile to when all are at a second fixed quantile
 }
+\details{
+For guided examples, go to
+https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html
+}
+\examples{
+
+\dontrun{
+CDEriskSummary10 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y10, e.y.name = "E.Y", m.name = "m", sel = sel)
+}
+}

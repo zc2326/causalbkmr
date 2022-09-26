@@ -2,9 +2,7 @@
 % Please edit documentation in R/Z.complete.MI.R
 \name{Z.complete.MI}
 \alias{Z.complete.MI}
-\title{Function to compile the exposures from all MI datasets
-This step is needed to so that the contrast used when estimating the effects across the MI BKMR fits is consistent. (i.e. the same 25th, 50th, and 75th percentile of the metals is used when estimating the effect of a change in all metals at their 25th to all their 75th on the outcome for each MI BKMR fit).
-If the data are not imputed in the exposures, the original Z matrix can used as Z.complete.MI}
+\title{Function to compile the exposures from all MI datasets}
 \usage{
 Z.complete.MI(BKMRfits)
 }
@@ -16,6 +14,15 @@ a dataframe
 }
 \description{
 Function to compile the exposures from all MI datasets
+}
+\details{
 This step is needed to so that the contrast used when estimating the effects across the MI BKMR fits is consistent. (i.e. the same 25th, 50th, and 75th percentile of the metals is used when estimating the effect of a change in all metals at their 25th to all their 75th on the outcome for each MI BKMR fit).
 If the data are not imputed in the exposures, the original Z matrix can used as Z.complete.MI
+For guided examples, go to https://zc2326.github.io/causalbkmr/articles/MI_BKMR.html
+}
+\examples{
+Z.MI <- Z.complete.MI(BKMRfits10)
+
+
+
 }

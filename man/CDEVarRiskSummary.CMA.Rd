@@ -51,3 +51,6 @@ a data frame containing the (posterior mean) estimate and posterior standard dev
 A combination function of VarRiskSummary and riskSummary.approx for MI BKMR fits.
 Compare estimated \code{h} function when a single variable (or a set of variables) is at the 75th versus 25th percentile, when all of the other variables are fixed at a particular percentile
 }
+\details{
+For guided examples, go to https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html
+}

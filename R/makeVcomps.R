@@ -31,7 +31,6 @@ Kpart
 #' @return need to update
 #' @export
 #'
-#' @examples
 makeVcomps <- function(r, lambda, Z, data.comps) {
   if (is.null(data.comps$knots)) {
     Kpart <- makeKpart(r, Z)

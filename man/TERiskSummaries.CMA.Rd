@@ -38,3 +38,21 @@ a data frame containing the (posterior mean) estimate and posterior standard dev
 \description{
 Compare estimated Total Effect when all predictors are at a particular quantile to when all are at a second fixed quantile
 }
+\details{
+For guided examples, go to
+https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html
+}
+\examples{
+\dontrun{
+library(causalbkmr)
+riskSummary10 = TERiskSummaries.CMA(fit.TE = fit.y.TE, e.y=e.y10, e.y.name = "E.Y", sel=sel)
+
+ggplot(riskSummary10,
+       aes(quantile,
+           est,
+           ymin = est - 1.96 * sd,
+           ymax = est + 1.96 * sd)) +
+  geom_pointrange()
+}
+
+}

@@ -1,11 +1,11 @@
 ---
-title: "BKMRCMA Quick Start"
+title: "bkmrcma_example_scenario3"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{BKMRCMA_QuickStart}
+  %\VignetteIndexEntry{bkmrcma_example_scenario3}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
----
+--- 
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -24,10 +24,10 @@ library(ggplot2)
 
 ## Sample simulated Dataset
 
-Example with N=50, L=3 for *scenario 1* (continuous $Y$, continuous $M$, Effect Modification for $Y$, `x2` is the effect modifier):
+Example with N=50, L=3 for *scenario 3* (continuous $Y$, binary $M$, no effect modification):
 
 ```{r warning=FALSE}
-dat <-  cma_sampledata(N = 50, L=3, P=3, scenario=1, seed=7) 
+dat <-  cma_sampledata(N = 50, L=3, P=3, scenario=3, seed=7) 
 head(dat$data, n = 3L)
 dat = dat$data
 ```
@@ -124,6 +124,8 @@ plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper))  + 
   geom_pointrange(position = position_dodge(width = 0.75))  +  coord_flip()
 ```
+
+
 
 ## Estimate CDE for BKMR
 
