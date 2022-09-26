@@ -13,6 +13,25 @@
 #' @param ...  other arguments to pass on to the prediction function
 #'
 #' @return a long data frame with the name of the first predictor, the name of the second predictor, the value of the first predictor, the value of the second predictor, the posterior mean estimate, and the posterior standard deviation of the estimated exposure response function
+#'
+#' @details
+#' For guided examples, go to https://zc2326.github.io/causalbkmr/articles/MI_BKMR.html
+#' @examples
+#' \dontrun{
+#' library(causalbkmr)
+#' data(BKMRfits10)
+#' bivar.MI <- PredictorResponseBivar.MI(BKMRfits = BKMRfits10,
+#' min.plot.dist = 1, sel=seq(5001,10000,by=500),
+#' method="approx")
+#' Z.MI <- Z.complete.MI(BKMRfits10)
+#'bivar.levels.MI <- PredictorResponseBivarLevels(pred.resp.df = bivar.MI,
+#'                                                Z=Z.MI, both_pairs = TRUE,
+#'                                                qs = c(0.25, 0.5, 0.75))
+#'
+#' ggplot(bivar.levels.MI, aes(z1, est)) + geom_smooth(aes(col = quantile), stat = "identity") +
+#' facet_grid(variable2 ~ variable1) + ggtitle("h(expos1 | quantiles of expos2)") + xlab("expos1")
+#' }
+#'
 #' @export
 #'
 #' @importFrom dplyr select

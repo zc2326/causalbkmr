@@ -10,7 +10,7 @@
 #' @return Point estimates and std errors when combining information across MI fits (for approx method)
 #' @export
 #'
-#' @examples
+#'
 Rubin.MI <- function(mean.vec, variance.vec){
   K    <- length(mean.vec)
   qbar <- mean(mean.vec)

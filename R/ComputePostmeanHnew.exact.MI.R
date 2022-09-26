@@ -18,7 +18,6 @@
 #' @return A list of mean, variance, entire mean matrix and variance array
 #' @export
 #' @importFrom stats var
-#' @examples
 ComputePostmeanHnew.exact.MI <- function(fit, y = NULL, Z = NULL, X = NULL, Znew = NULL, sel = NULL) {
 
   if (inherits(fit, "bkmrfit")) {

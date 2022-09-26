@@ -18,6 +18,8 @@
 #' @param seed the random seed to use to evaluate the code
 #'
 #' @return a data frame containing the (posterior mean) estimate and posterior standard deviation of the single predictor CDE risk measures
+#' @details
+#' For guided examples, go to https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html
 #' @export
 CDEVarRiskSummary.CMA <-function(whichz = 1,
                                  BKMRfits,

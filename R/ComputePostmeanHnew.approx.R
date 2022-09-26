@@ -16,7 +16,7 @@
 #' @export
 #' @importFrom stats var
 #' @importFrom bkmr ExtractEsts
-#' @examples
+
 ComputePostmeanHnew.approx <- function (fit, y = NULL, Z = NULL, X = NULL, Znew = NULL, sel = NULL) {
   if (inherits(fit, "bkmrfit")) {
     if (is.null(y))

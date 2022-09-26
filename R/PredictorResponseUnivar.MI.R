@@ -14,9 +14,20 @@
 #' @importFrom dplyr %>%
 #' @importFrom fields rdist
 #' @return a long data frame with the predictor name, predictor value, posterior mean estimate, and posterior standard deviation
-#' @export
 #'
+#' @details
+#' For guided examples, go to https://zc2326.github.io/causalbkmr/articles/MI_BKMR.html
 #' @examples
+#' \dontrun{
+#' library(causalbkmr)
+#' data(BKMRfits10)
+#' univar.MI <- PredictorResponseUnivar.MI(BKMRfits10, ngrid = 50, q.fixed = 0.5, sel = sel.MI, method="approx")
+#' ggplot(univar.MI, aes(z, est, ymin = est - 1.96*se, ymax = est + 1.96*se)) +
+#' geom_smooth(stat = "identity") + ylab("h(z)") + facet_wrap(~ variable)+ggtitle("")
+#' }
+#'
+#'
+#' @export
 PredictorResponseUnivar.MI <- function(BKMRfits, which.z = 1:ncol(BKMRfits[[1]]$Z), ngrid = 50, q.fixed = 0.5, sel = NULL, min.plot.dist = Inf, center = TRUE, method = "approx", ...) {
 
   start.time <- proc.time()["elapsed"]

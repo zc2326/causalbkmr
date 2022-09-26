@@ -11,6 +11,55 @@
 #' @param sel a vector selecting which iterations of the fit should be retained or inference
 #' @param seed the random seed to use to evaluate the code
 #' @return A list containing the sample prediction for Ya and Yastar
+#'
+#' @details
+#' For guided examples, go to
+#' https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html
+#'
+#' @examples
+#' \dontrun{
+#' library(causalbkmr)
+#' dat <-  cma_sampledata(N=300, L=3, P=3, scenario=1, seed=7)
+#'
+#' A <- cbind(dat$z1, dat$z2, dat$z3)
+#' X <- cbind(dat$x3)
+#' y  <- dat$y
+#' m  <- dat$M
+#'
+#' E.M <- NULL
+#' E.Y <- dat$x2
+#'
+#' Z.M <- cbind(A,E.M)
+#' Z.Y <- cbind(A, E.Y)
+#' Zm.Y <- cbind(Z.Y, m)
+#'
+#' set.seed(1)
+#' fit.y <- kmbayes(y=y, Z=Zm.Y, X=X, iter=5000, verbose=TRUE, varsel=FALSE)
+#' #save(fit.y,file="bkmr_y.RData")
+#'
+#' set.seed(2)
+#' fit.y.TE <- kmbayes(y=y, Z=Z.Y, X=X, iter=5000, verbose=TRUE, varsel=FALSE)
+#' #save(fit.y.TE,file="bkmr_y_TE.RData")
+#'
+#' set.seed(3)
+#' fit.m <- kmbayes(y=m, Z=Z.M, X=X, iter=5000, verbose=TRUE, varsel=FALSE)
+#' #save(fit.m,file="bkmr_m.RData")
+#'
+#' X.predict <- matrix(colMeans(X),nrow=1)
+#' astar <- c(apply(A, 2, quantile, probs=0.25))
+#' a <- c(apply(A, 2, quantile, probs=0.75))
+#'
+#' e.y10 = quantile(E.Y, probs=0.1)
+#' e.y90 = quantile(E.Y, probs=0.9)
+#'
+#' sel<-seq(2500,5000,by=5)
+#'
+#' TE.ey10 <- TE.bkmr(a=a, astar=astar, e.y = e.y10, fit.y.TE=fit.y.TE, X.predict=X.predict, alpha=0.05, sel=sel, seed=122)
+#' TE.ey90 <- TE.bkmr(a=a, astar=astar, e.y = e.y90, fit.y.TE=fit.y.TE, X.predict=X.predict, alpha=0.05, sel=sel, seed=122)
+#' TE.ey10$est
+#' TE.ey90$est
+#' }
+#'
 #' @export
 
 YaYastar.SamplePred <- function(a, astar, e.y, fit.y.TE, X.predict.Y, sel, seed){

@@ -22,7 +22,6 @@
 #' @return a data frame with value of the first predictor, the value of the second predictor, the posterior mean estimate, and the posterior standard deviation
 #' @export
 #'
-#' @examples
 PredictorResponseBivarPair.MI <- function(fit, y, Z, X, whichz1 = 1, whichz2 = 2, whichz3 = NULL, method = "approx", prob = 0.5, q.fixed = 0.5, sel = NULL, ngrid = 50, min.plot.dist = 0.5, center = TRUE, Z.MI, ...) {
   if(ncol(Z) < 3) stop("requires there to be at least 3 Z variables")
 

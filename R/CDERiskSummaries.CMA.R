@@ -14,9 +14,16 @@
 #' @param alpha 1-confidence interval
 #' @param sel a vector selecting which iterations of the fit should be retained or inference
 #' @param seed the random seed to use to evaluate the code
-#'
-#'
 #' @return a data frame containing the (posterior mean) estimate and posterior standard deviation of the CDE risk measures
+#' @details
+#' For guided examples, go to
+#' https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html
+#'
+#' @examples
+#'
+#' \dontrun{
+#' CDEriskSummary10 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y10, e.y.name = "E.Y", m.name = "m", sel = sel)
+#' }
 #' @export
 CDERiskSummaries.CMA <- function(fit.y,
                                  e.y=NULL, e.y.names=NULL,

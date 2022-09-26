@@ -12,6 +12,20 @@
 #'
 #' @importFrom stats var
 #' @return  a data frame containing the (posterior mean) estimate and posterior standard deviation of the overall risk measures
+#'
+#'
+#' @examples
+#' library(causalbkmr)
+#' data("BKMRfits10")
+#' sel.MI <- seq(5001,10000, by = 5)
+#'
+#' overallrisks.MI <- OverallRiskSummaries.MI(BKMRfits = BKMRfits10, qs = seq(0.1, 0.9, by = 0.05),  q.fixed = 0.5, sel = sel.MI, method = "approx")
+#' ggplot(overallrisks.MI, aes(quantile, est, ymin = est - 1.96 * sd, ymax = est + 1.96 * sd)) +
+#' geom_hline(yintercept = 00, linetype = "dashed", color = "gray") +
+#'   geom_pointrange()+ ggtitle("") + scale_y_continuous(name="estimate")
+#'
+#' @details
+#' For guided examples, go to https://zc2326.github.io/causalbkmr/articles/MI_BKMR.html
 #' @export
 OverallRiskSummaries.MI <- function(BKMRfits, qs = seq(0.25, 0.75, by = 0.05), q.fixed = 0.5, q.alwaysfixed = NULL, index.alwaysfixed = NULL, sel = NULL, method = "approx") {
 

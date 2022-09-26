@@ -16,6 +16,59 @@
 #' @param seed the random seed to use to evaluate the code
 #' @param K number of samples to generate for each MCMC iteration in YaMastar calculation
 #' @return A list contaning the sample prediction for TE, NDE, NIE and their summary statistics
+#'
+#' @details
+#' For guided examples, go to
+#' https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html
+#'
+#'
+#' @examples
+#' \dontrun{
+#' library(causalbkmr)
+#' dat <-  cma_sampledata(N=300, L=3, P=3, scenario=1, seed=7)
+#'
+#' A <- cbind(dat$z1, dat$z2, dat$z3)
+#' X <- cbind(dat$x3)
+#' y  <- dat$y
+#' m  <- dat$M
+#'
+#' E.M <- NULL
+#' E.Y <- dat$x2
+#'
+#' Z.M <- cbind(A,E.M)
+#' Z.Y <- cbind(A, E.Y)
+#' Zm.Y <- cbind(Z.Y, m)
+#'
+#' set.seed(1)
+#' fit.y <- kmbayes(y=y, Z=Zm.Y, X=X, iter=5000, verbose=TRUE, varsel=FALSE)
+#' #save(fit.y,file="bkmr_y.RData")
+#'
+#' set.seed(2)
+#' fit.y.TE <- kmbayes(y=y, Z=Z.Y, X=X, iter=5000, verbose=TRUE, varsel=FALSE)
+#' #save(fit.y.TE,file="bkmr_y_TE.RData")
+#'
+#' set.seed(3)
+#' fit.m <- kmbayes(y=m, Z=Z.M, X=X, iter=5000, verbose=TRUE, varsel=FALSE)
+#' #save(fit.m,file="bkmr_m.RData")
+#'
+#' X.predict <- matrix(colMeans(X),nrow=1)
+#' astar <- c(apply(A, 2, quantile, probs=0.25))
+#' a <- c(apply(A, 2, quantile, probs=0.75))
+#'
+#' e.y10 = quantile(E.Y, probs=0.1)
+#' e.y90 = quantile(E.Y, probs=0.9)
+#'
+#' sel<-seq(2500,5000,by=5)
+#'
+#' #' mediationeffects.ey10  <- mediation.bkmr(a=a, astar=astar, e.y = e.y10, fit.m=fit.m, fit.y=fit.y, fit.y.TE=fit.y.TE, X.predict.M=X.predict, X.predict.Y=X.predict, alpha=0.05, sel=sel, seed=22, K=10)
+#' mediationeffects.ey10$est
+#' plotdf <- as.data.frame(mediationeffects.ey10$est)
+#' plotdf["Effect"] <- rownames(plotdf)
+#' ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  +
+#'   geom_pointrange(position = position_dodge(width = 0.75))  +  coord_flip()
+#'
+#' }
+#'
 #' @export
 mediation.bkmr <- function(a, astar, e.y, fit.m=NULL, fit.y=NULL, fit.y.TE=NULL,
                            X.predict.M=NULL, X.predict.Y=NULL,
