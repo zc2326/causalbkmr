@@ -17,8 +17,15 @@ navbar:
     menu:
     - text: Overview of Methodology
       href: articles/BKMRCMA_method_overview.html
-    - text: Quick Start
+    - text: Quick Start (Example Scenario 1)
       href: articles/BKMRCMA_QuickStart.html
+    - text: BKMR CMA Example (Scenario 2)
+      href: articles/bkmrcma_example_scenario2.html
+    - text: BKMR CMA Example (Scenario 3)
+      href: articles/bkmrcma_example_scenario3.html
+    - text: BKMR CMA Example (Scenario 4)
+      href: articles/bkmrcma_example_scenario4.html
+
   - text: MI BKMR
     menu:
     - text: Overview of Methodology
