@@ -38,7 +38,16 @@
       <a href="../articles/BKMRCMA_method_overview.html">Overview of Methodology</a>
     </li>
     <li>
-      <a href="../articles/BKMRCMA_QuickStart.html">Quick Start</a>
+      <a href="../articles/BKMRCMA_QuickStart.html">Quick Start (Example Scenario 1)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario2.html">BKMR CMA Example (Scenario 2)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario3.html">BKMR CMA Example (Scenario 3)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario4.html">BKMR CMA Example (Scenario 4)</a>
     </li>
   </ul></li>
 <li class="dropdown">
@@ -155,7 +164,67 @@
 
 <p>Controlled direct effect for BKMR</p>
     </div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>For guided examples, go to
+https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html</p>
+    </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/zc2326/causalbkmr" class="external-link">causalbkmr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span>  <span class="fu"><a href="cma_sampledata.html">cma_sampledata</a></span><span class="op">(</span>N<span class="op">=</span><span class="fl">300</span>, L<span class="op">=</span><span class="fl">3</span>, P<span class="op">=</span><span class="fl">3</span>, scenario<span class="op">=</span><span class="fl">1</span>, seed<span class="op">=</span><span class="fl">7</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">z1</span>, <span class="va">dat</span><span class="op">$</span><span class="va">z2</span>, <span class="va">dat</span><span class="op">$</span><span class="va">z3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">x3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">y</span>  <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">y</span></span></span>
+<span class="r-in"><span><span class="va">m</span>  <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">M</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">E.M</span> <span class="op">&lt;-</span> <span class="cn">NULL</span></span></span>
+<span class="r-in"><span><span class="va">E.Y</span> <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">x2</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">Z.M</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">A</span>,<span class="va">E.M</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">Z.Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">A</span>, <span class="va">E.Y</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">Zm.Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">Z.Y</span>, <span class="va">m</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fit.y</span> <span class="op">&lt;-</span> <span class="fu">kmbayes</span><span class="op">(</span>y<span class="op">=</span><span class="va">y</span>, Z<span class="op">=</span><span class="va">Zm.Y</span>, X<span class="op">=</span><span class="va">X</span>, iter<span class="op">=</span><span class="fl">5000</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, varsel<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">#save(fit.y,file="bkmr_y.RData")</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fit.y.TE</span> <span class="op">&lt;-</span> <span class="fu">kmbayes</span><span class="op">(</span>y<span class="op">=</span><span class="va">y</span>, Z<span class="op">=</span><span class="va">Z.Y</span>, X<span class="op">=</span><span class="va">X</span>, iter<span class="op">=</span><span class="fl">5000</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, varsel<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">#save(fit.y.TE,file="bkmr_y_TE.RData")</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">fit.m</span> <span class="op">&lt;-</span> <span class="fu">kmbayes</span><span class="op">(</span>y<span class="op">=</span><span class="va">m</span>, Z<span class="op">=</span><span class="va">Z.M</span>, X<span class="op">=</span><span class="va">X</span>, iter<span class="op">=</span><span class="fl">5000</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, varsel<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="co">#save(fit.m,file="bkmr_m.RData")</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">X.predict</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colMeans</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>,nrow<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">astar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">A</span>, <span class="fl">2</span>, <span class="va">quantile</span>, probs<span class="op">=</span><span class="fl">0.25</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/apply.html" class="external-link">apply</a></span><span class="op">(</span><span class="va">A</span>, <span class="fl">2</span>, <span class="va">quantile</span>, probs<span class="op">=</span><span class="fl">0.75</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">e.y10</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">E.Y</span>, probs<span class="op">=</span><span class="fl">0.1</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">e.y90</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">E.Y</span>, probs<span class="op">=</span><span class="fl">0.9</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">sel</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">2500</span>,<span class="fl">5000</span>,by<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">CDE.ey10</span> <span class="op">&lt;-</span> <span class="fu">CDE.bkmr</span><span class="op">(</span>a<span class="op">=</span><span class="va">a</span>, astar<span class="op">=</span><span class="va">astar</span>, e.y <span class="op">=</span> <span class="va">e.y10</span>, m.quant<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>                     fit.y<span class="op">=</span><span class="va">fit.y</span>, alpha<span class="op">=</span><span class="fl">0.05</span>, sel<span class="op">=</span><span class="va">sel</span>, seed<span class="op">=</span><span class="fl">777</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">CDE.ey10</span><span class="op">$</span><span class="va">est</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">plotdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">CDE.ey10</span><span class="op">$</span><span class="va">est</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">plotdf</span><span class="op">[</span><span class="st">"Effect"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">plotdf</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">plotdf</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">Effect</span>, <span class="va">mean</span>, ymin <span class="op">=</span> <span class="va">lower</span>, ymax <span class="op">=</span> <span class="va">upper</span> <span class="op">)</span><span class="op">)</span>  <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">geom_pointrange</span><span class="op">(</span>position <span class="op">=</span> <span class="fu">position_dodge</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span>  <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

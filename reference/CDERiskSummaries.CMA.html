@@ -38,7 +38,16 @@
       <a href="../articles/BKMRCMA_method_overview.html">Overview of Methodology</a>
     </li>
     <li>
-      <a href="../articles/BKMRCMA_QuickStart.html">Quick Start</a>
+      <a href="../articles/BKMRCMA_QuickStart.html">Quick Start (Example Scenario 1)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario2.html">BKMR CMA Example (Scenario 2)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario3.html">BKMR CMA Example (Scenario 3)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario4.html">BKMR CMA Example (Scenario 4)</a>
     </li>
   </ul></li>
 <li class="dropdown">
@@ -165,7 +174,20 @@
 
 <p>a data frame containing the (posterior mean) estimate and posterior standard deviation of the CDE risk measures</p>
     </div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>For guided examples, go to
+https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html</p>
+    </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="va">CDEriskSummary10</span> <span class="op">=</span> <span class="fu">CDERiskSummaries.CMA</span><span class="op">(</span>fit.y <span class="op">=</span> <span class="va">fit.y</span>, e.y <span class="op">=</span> <span class="va">e.y10</span>, e.y.name <span class="op">=</span> <span class="st">"E.Y"</span>, m.name <span class="op">=</span> <span class="st">"m"</span>, sel <span class="op">=</span> <span class="va">sel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>

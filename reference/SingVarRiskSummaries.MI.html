@@ -41,7 +41,16 @@ Compute summaries of the risks associated with a change in a single variable in 
       <a href="../articles/BKMRCMA_method_overview.html">Overview of Methodology</a>
     </li>
     <li>
-      <a href="../articles/BKMRCMA_QuickStart.html">Quick Start</a>
+      <a href="../articles/BKMRCMA_QuickStart.html">Quick Start (Example Scenario 1)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario2.html">BKMR CMA Example (Scenario 2)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario3.html">BKMR CMA Example (Scenario 3)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario4.html">BKMR CMA Example (Scenario 4)</a>
     </li>
   </ul></li>
 <li class="dropdown">
@@ -165,11 +174,30 @@ Compute summaries of the risks associated with a change in a single variable in 
 
 <p>a data frame containing the (posterior mean) estimate and posterior standard deviation of the  predictor risk measures</p>
     </div>
+    <div id="details">
+    <h2>Details</h2>
+    <p>For guided examples, go to https://zc2326.github.io/causalbkmr/articles/MI_BKMR.html</p>
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/zc2326/causalbkmr" class="external-link">causalbkmr</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">BKMRfits10</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">singvarrisk.MI.fixed</span> <span class="op">&lt;-</span> <span class="fu">SingVarRiskSummaries.MI</span><span class="op">(</span>BKMRfits <span class="op">=</span> <span class="va">BKMRfits10</span>, which.z<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">4</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>qs.diff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.75</span><span class="op">)</span>,  q.fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>q.alwaysfixed <span class="op">=</span> <span class="fl">0.25</span>, index.alwaysfixed <span class="op">=</span> <span class="fl">2</span>,</span></span>
+<span class="r-in"><span>sel<span class="op">=</span><span class="va">sel.MI</span>, method <span class="op">=</span> <span class="st">"approx"</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## plot the single variable dataframe for the MI fits</span></span></span>
+<span class="r-in"><span><span class="fu">ggplot</span><span class="op">(</span><span class="va">singvarrisk.MI</span>, <span class="fu">aes</span><span class="op">(</span><span class="va">variable</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>,</span></span>
+<span class="r-in"><span>                           ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">q.fixed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">geom_hline</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">0</span><span class="op">)</span>, linetype<span class="op">=</span><span class="st">"dashed"</span>, color<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">geom_pointrange</span><span class="op">(</span>position <span class="op">=</span> <span class="fu">position_dodge</span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">coord_flip</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggtitle</span><span class="op">(</span><span class="st">""</span><span class="op">)</span><span class="op">+</span></span></span>
+<span class="r-in"><span>  <span class="fu">scale_x_discrete</span><span class="op">(</span>name<span class="op">=</span><span class="st">"Variable"</span><span class="op">)</span><span class="op">+</span> <span class="fu">scale_y_continuous</span><span class="op">(</span>name<span class="op">=</span><span class="st">"estimate"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>

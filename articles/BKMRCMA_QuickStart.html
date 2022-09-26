@@ -56,7 +56,16 @@
       <a href="../articles/BKMRCMA_method_overview.html">Overview of Methodology</a>
     </li>
     <li>
-      <a href="../articles/BKMRCMA_QuickStart.html">Quick Start</a>
+      <a href="../articles/BKMRCMA_QuickStart.html">Quick Start (Example Scenario 1)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario2.html">BKMR CMA Example (Scenario 2)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario3.html">BKMR CMA Example (Scenario 3)</a>
+    </li>
+    <li>
+      <a href="../articles/bkmrcma_example_scenario4.html">BKMR CMA Example (Scenario 4)</a>
     </li>
   </ul>
 </li>
@@ -135,18 +144,18 @@
 <div class="section level2">
 <h2 id="sample-simulated-dataset">Sample simulated Dataset<a class="anchor" aria-label="anchor" href="#sample-simulated-dataset"></a>
 </h2>
-<p>Example with N=300, L=3 for scenario 1:</p>
+<p>Example with N=50, L=3 for <em>scenario 1</em> (continuous <span class="math inline">\(Y\)</span>, continuous <span class="math inline">\(M\)</span>, Effect Modification for <span class="math inline">\(Y\)</span>, <code>x2</code> is the effect modifier):</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span>  <span class="fu"><a href="../reference/cma_sampledata.html">cma_sampledata</a></span><span class="op">(</span>N<span class="op">=</span><span class="fl">300</span>, L<span class="op">=</span><span class="fl">3</span>, P<span class="op">=</span><span class="fl">3</span>, scenario<span class="op">=</span><span class="fl">1</span>, seed<span class="op">=</span><span class="fl">7</span><span class="op">)</span> </span>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span>  <span class="fu"><a href="../reference/cma_sampledata.html">cma_sampledata</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fl">50</span>, L<span class="op">=</span><span class="fl">3</span>, P<span class="op">=</span><span class="fl">3</span>, scenario<span class="op">=</span><span class="fl">1</span>, seed<span class="op">=</span><span class="fl">7</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">data</span>, n <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span></span>
-<span><span class="co">#&gt;           z1          z2          z3           M          x1         x2</span></span>
-<span><span class="co">#&gt; 1  2.1398615  0.66567853 -0.80106452 -0.27040389 -1.00620320  0.4650244</span></span>
-<span><span class="co">#&gt; 2 -1.1923396 -0.42173859 -0.07880356 -0.35426206 -0.07811248  0.1077124</span></span>
-<span><span class="co">#&gt; 3 -0.7254667 -0.09880639 -0.45684941 -0.03429974 -1.44686488 -0.4673260</span></span>
-<span><span class="co">#&gt;           x3           y</span></span>
-<span><span class="co">#&gt; 1 -0.7528264 -0.43764653</span></span>
-<span><span class="co">#&gt; 2 -0.2061189 -0.54808553</span></span>
-<span><span class="co">#&gt; 3 -0.2041117 -0.03444855</span></span>
+<span><span class="co">#&gt;           z1         z2         z3           M         x1          x2        x3</span></span>
+<span><span class="co">#&gt; 1  2.2767428  0.1432685  0.7973699  0.58827130 -0.3556944  2.02334405 -1.477592</span></span>
+<span><span class="co">#&gt; 2 -1.0893537 -0.0944783  0.4035083  0.01382552  1.0973004  0.86249250 -2.973256</span></span>
+<span><span class="co">#&gt; 3 -0.6389109  0.2491581 -0.1243989 -0.42344188 -0.9066920 -0.02490949 -1.339762</span></span>
+<span><span class="co">#&gt;           y</span></span>
+<span><span class="co">#&gt; 1  1.964451</span></span>
+<span><span class="co">#&gt; 2 -1.526532</span></span>
+<span><span class="co">#&gt; 3 -1.305984</span></span>
 <span><span class="va">dat</span> <span class="op">=</span> <span class="va">dat</span><span class="op">$</span><span class="va">data</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -155,12 +164,12 @@
 <p>let <span class="math inline">\(A\)</span> be a <span class="math inline">\(n\)</span>-by-<span class="math inline">\(L\)</span> matrix containing an exposure mixture comprised of <span class="math inline">\(L\)</span> elements,<code>E.M</code> and <code>E.Y</code> be effect modifiers of exposure-mediator and exposure-outcome relationship respectively, <span class="math inline">\(y\)</span>, a vector of outcome data, and <span class="math inline">\(m\)</span>, a vector of mediator data.</p>
 <p><code>Z.M &lt;- cbind(A,E.M)</code></p>
 <p><code>Z.Y &lt;- cbind(A,E.Y)</code></p>
-<p>let <code>Z.M</code> be the exposures and effect modifers <code>E.M</code> and let <code>Z.Y</code> be the exposures and effect modifers <code>E.Y</code>, create one more matrix containing the exposures, effect modifier <code>Z.Y</code> and mediator, precisely in that order.</p>
+<p>Let <code>Z.M</code> be the exposures and effect modifers <code>E.M</code> and let <code>Z.Y</code> be the exposures and effect modifers <code>E.Y</code>, create one more matrix containing the exposures, effect modifier <code>Z.Y</code> and mediator, precisely in that order.</p>
 <p><code>Zm.Y &lt;- cbind(Z.Y,m)</code></p>
 <p>NOTE: the last column of the <code>Zm.Y</code> matrix <em>must</em> be your mediator in order for the functions to work properly.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">z1</span>, <span class="va">dat</span><span class="op">$</span><span class="va">z2</span>, <span class="va">dat</span><span class="op">$</span><span class="va">z3</span><span class="op">)</span></span>
-<span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">x3</span><span class="op">)</span></span>
+<span><span class="va">X</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">x1</span>, <span class="va">dat</span><span class="op">$</span><span class="va">x2</span>, <span class="va">dat</span><span class="op">$</span><span class="va">x3</span><span class="op">)</span></span>
 <span><span class="va">y</span>  <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">y</span></span>
 <span><span class="va">m</span>  <span class="op">&lt;-</span> <span class="va">dat</span><span class="op">$</span><span class="va">M</span> </span>
 <span></span>
@@ -172,15 +181,15 @@
 <span><span class="va">Zm.Y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">Z.Y</span>, <span class="va">m</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span></span>
-<span><span class="va">fit.y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bkmr/man/kmbayes.html" class="external-link">kmbayes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">y</span>, Z<span class="op">=</span><span class="va">Zm.Y</span>, X<span class="op">=</span><span class="va">X</span>, iter<span class="op">=</span><span class="fl">5000</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, varsel<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span>
+<span><span class="va">fit.y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bkmr/man/kmbayes.html" class="external-link">kmbayes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">y</span>, Z<span class="op">=</span><span class="va">Zm.Y</span>, X<span class="op">=</span><span class="va">X</span>, iter<span class="op">=</span><span class="fl">10000</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, varsel<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span>
 <span><span class="co">#save(fit.y,file="bkmr_y.RData")</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="va">fit.y.TE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bkmr/man/kmbayes.html" class="external-link">kmbayes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">y</span>, Z<span class="op">=</span><span class="va">Z.Y</span>, X<span class="op">=</span><span class="va">X</span>, iter<span class="op">=</span><span class="fl">5000</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, varsel<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span>
+<span><span class="va">fit.y.TE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bkmr/man/kmbayes.html" class="external-link">kmbayes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">y</span>, Z<span class="op">=</span><span class="va">Z.Y</span>, X<span class="op">=</span><span class="va">X</span>, iter<span class="op">=</span><span class="fl">10000</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, varsel<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span>
 <span><span class="co">#save(fit.y.TE,file="bkmr_y_TE.RData")</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">3</span><span class="op">)</span></span>
-<span><span class="va">fit.m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bkmr/man/kmbayes.html" class="external-link">kmbayes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">m</span>, Z<span class="op">=</span><span class="va">Z.M</span>, X<span class="op">=</span><span class="va">X</span>, iter<span class="op">=</span><span class="fl">5000</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, varsel<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span>
+<span><span class="va">fit.m</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bkmr/man/kmbayes.html" class="external-link">kmbayes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">m</span>, Z<span class="op">=</span><span class="va">Z.M</span>, X<span class="op">=</span><span class="va">X</span>, iter<span class="op">=</span><span class="fl">10000</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, varsel<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span>
 <span><span class="co">#save(fit.m,file="bkmr_m.RData")</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -199,7 +208,7 @@
 <span><span class="va">e.y90</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">E.Y</span>, probs<span class="op">=</span><span class="fl">0.9</span><span class="op">)</span></span></code></pre></div>
 <p>The index of the MCMC iterations to be used for inference:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sel</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">2500</span>,<span class="fl">5000</span>,by<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">sel</span><span class="op">&lt;-</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">5000</span>,<span class="fl">10000</span>,by<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="estimate-te-for-bkmr">Estimate TE for BKMR<a class="anchor" aria-label="anchor" href="#estimate-te-for-bkmr"></a>
@@ -215,11 +224,11 @@
 <p>Look at the posterior mean, median, and 95% CI for TE:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">TE.ey10</span><span class="op">$</span><span class="va">est</span></span>
-<span><span class="co">#&gt;         mean    median      lower     upper         sd</span></span>
-<span><span class="co">#&gt; TE 0.1972567 0.2009817 0.03891261 0.3471681 0.07992888</span></span>
+<span><span class="co">#&gt;         mean    median     lower    upper        sd</span></span>
+<span><span class="co">#&gt; TE 0.4433419 0.4451366 0.2863908 0.601123 0.0802884</span></span>
 <span><span class="va">TE.ey90</span><span class="op">$</span><span class="va">est</span></span>
-<span><span class="co">#&gt;         mean    median     lower     upper         sd</span></span>
-<span><span class="co">#&gt; TE 0.3292442 0.3325204 0.1722635 0.4926946 0.07961249</span></span>
+<span><span class="co">#&gt;        mean   median    lower    upper         sd</span></span>
+<span><span class="co">#&gt; TE 1.339359 1.343762 1.179134 1.477626 0.07874423</span></span>
 <span></span>
 <span><span class="va">plotdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">TE.ey10</span><span class="op">$</span><span class="va">est</span><span class="op">)</span></span>
 <span><span class="va">plotdf</span><span class="op">[</span><span class="st">"Effect"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">plotdf</span><span class="op">)</span></span>
@@ -242,89 +251,61 @@
 <span><span class="co">#&gt; [1] "Running 3 mediator values for CDE:"</span></span>
 <span><span class="co">#&gt; [1] "1 out of 3"</span></span>
 <span><span class="co">#&gt; [1] "2 out of 3"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 3"</span></span>
-<span></span>
-<span><span class="co">## look at the posterior mean, median, and 95% CI for the CDEs </span></span>
-<span><span class="va">CDE.ey10</span><span class="op">$</span><span class="va">est</span></span>
-<span><span class="co">#&gt;               mean      median       lower      upper         sd</span></span>
-<span><span class="co">#&gt; CDE10% -0.15795370 -0.16052993 -0.37406748 0.05740205 0.10713204</span></span>
-<span><span class="co">#&gt; CDE50%  0.09320856  0.09166863 -0.02841539 0.21392233 0.06098577</span></span>
-<span><span class="co">#&gt; CDE75%  0.36535506  0.36274113  0.17674959 0.54952990 0.09315730</span></span>
+<span><span class="co">#&gt; [1] "3 out of 3"</span></span></code></pre></div>
+<p>Look at the posterior mean, median, and 95% CI for the CDEs:</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">CDE.ey10</span><span class="op">$</span><span class="va">est</span></span>
+<span><span class="co">#&gt;             mean    median     lower     upper         sd</span></span>
+<span><span class="co">#&gt; CDE10% 0.3260377 0.3276014 0.1254467 0.5072569 0.10005344</span></span>
+<span><span class="co">#&gt; CDE50% 0.3478852 0.3488510 0.1461287 0.5280398 0.09656925</span></span>
+<span><span class="co">#&gt; CDE75% 0.3581060 0.3617068 0.1598766 0.5443135 0.10011163</span></span>
 <span><span class="va">CDE.ey90</span><span class="op">$</span><span class="va">est</span></span>
-<span><span class="co">#&gt;               mean      median      lower     upper         sd</span></span>
-<span><span class="co">#&gt; CDE10% -0.02986998 -0.03034477 -0.2522798 0.1637132 0.10532499</span></span>
-<span><span class="co">#&gt; CDE50%  0.22769762  0.22519539  0.1022898 0.3508965 0.05975881</span></span>
-<span><span class="co">#&gt; CDE75%  0.49535820  0.49397753  0.3068852 0.6943767 0.09740651</span></span>
-<span><span class="co">## Plotting</span></span>
-<span></span>
-<span><span class="va">plotdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">CDE.ey10</span><span class="op">$</span><span class="va">est</span><span class="op">)</span></span>
+<span><span class="co">#&gt;            mean   median     lower    upper         sd</span></span>
+<span><span class="co">#&gt; CDE10% 1.215059 1.220603 0.9850737 1.413276 0.10774925</span></span>
+<span><span class="co">#&gt; CDE50% 1.233969 1.237500 1.0434691 1.410319 0.09388749</span></span>
+<span><span class="co">#&gt; CDE75% 1.238180 1.244269 1.0387424 1.408041 0.09410765</span></span></code></pre></div>
+<p>Plotting:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">plotdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">CDE.ey10</span><span class="op">$</span><span class="va">est</span><span class="op">)</span></span>
 <span><span class="va">plotdf</span><span class="op">[</span><span class="st">"Effect"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">plotdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plotdf</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Effect</span>, <span class="va">mean</span>, ymin <span class="op">=</span> <span class="va">lower</span>, ymax <span class="op">=</span> <span class="va">upper</span> <span class="op">)</span><span class="op">)</span>  <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_QuickStart_files/figure-html/CDE-1.png" width="700"></p>
+<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="estimate-ndenie-for-bkmr">Estimate NDE/NIE for BKMR<a class="anchor" aria-label="anchor" href="#estimate-ndenie-for-bkmr"></a>
 </h2>
 <p>Estimate the TE, NDE and NIE for a change in the exposures from <span class="math inline">\(a^*\)</span> to <span class="math inline">\(a\)</span> fixing age at testing to its 90th percentile.</p>
 <p>Note: this step takes a while to run and will take longer for more complex BKMR fits, longer <code>sel</code> vectors and larger.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mediationeffects.ey10</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mediation.bkmr.html">mediation.bkmr</a></span><span class="op">(</span>a<span class="op">=</span><span class="va">a</span>, astar<span class="op">=</span><span class="va">astar</span>, e.y <span class="op">=</span> <span class="va">e.y10</span>, fit.m<span class="op">=</span><span class="va">fit.m</span>, fit.y<span class="op">=</span><span class="va">fit.y</span>, fit.y.TE<span class="op">=</span><span class="va">fit.y.TE</span>, X.predict.M<span class="op">=</span><span class="va">X.predict</span>, X.predict.Y<span class="op">=</span><span class="va">X.predict</span>, alpha<span class="op">=</span><span class="fl">0.05</span>, sel<span class="op">=</span><span class="va">sel</span>, seed<span class="op">=</span><span class="fl">22</span>, K<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "iter 50 time:  0.14 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 100 time:  0.16 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 150 time:  0.17 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 200 time:  0.18 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 250 time:  0.2 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 300 time:  0.21 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 350 time:  0.22 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 400 time:  0.24 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 450 time:  0.25 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 500 time:  0.26 min"</span></span>
-<span><span class="co">#&gt; [1] "Running 3 mediator values for CDE:"</span></span>
-<span><span class="co">#&gt; [1] "1 out of 3"</span></span>
-<span><span class="co">#&gt; [1] "2 out of 3"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 3"</span></span>
-<span></span>
-<span><span class="va">mediationeffects.ey90</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mediation.bkmr.html">mediation.bkmr</a></span><span class="op">(</span>a<span class="op">=</span><span class="va">a</span>, astar<span class="op">=</span><span class="va">astar</span>, e.y <span class="op">=</span> <span class="va">e.y90</span>, fit.m<span class="op">=</span><span class="va">fit.m</span>, fit.y<span class="op">=</span><span class="va">fit.y</span>, fit.y.TE<span class="op">=</span><span class="va">fit.y.TE</span>, X.predict.M<span class="op">=</span><span class="va">X.predict</span>, X.predict.Y<span class="op">=</span><span class="va">X.predict</span>, alpha<span class="op">=</span><span class="fl">0.05</span>, sel<span class="op">=</span><span class="va">sel</span>, seed<span class="op">=</span><span class="fl">22</span>, K<span class="op">=</span><span class="fl">10</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; [1] "iter 50 time:  0.16 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 100 time:  0.18 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 150 time:  0.19 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 200 time:  0.21 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 250 time:  0.22 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 300 time:  0.24 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 350 time:  0.25 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 400 time:  0.27 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 450 time:  0.28 min"</span></span>
-<span><span class="co">#&gt; [1] "iter 500 time:  0.3 min"</span></span>
-<span><span class="co">#&gt; [1] "Running 3 mediator values for CDE:"</span></span>
-<span><span class="co">#&gt; [1] "1 out of 3"</span></span>
-<span><span class="co">#&gt; [1] "2 out of 3"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 3"</span></span></code></pre></div>
-<p>Look at the posterior mean, median, and 95% CI for the TE, NDE, and NIE</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mediationeffects.ey10</span><span class="op">$</span><span class="va">est</span></span>
-<span><span class="co">#&gt;               mean      median       lower      upper         sd</span></span>
-<span><span class="co">#&gt; TE      0.18839275  0.19081924  0.02402315 0.33203410 0.08035746</span></span>
-<span><span class="co">#&gt; NDE     0.06990064  0.06790526 -0.13767511 0.25286472 0.09768692</span></span>
-<span><span class="co">#&gt; NIE     0.11849211  0.11843516 -0.05854702 0.27878456 0.09194563</span></span>
-<span><span class="co">#&gt; CDE10% -0.16760302 -0.17309056 -0.37116337 0.04866149 0.10930078</span></span>
-<span><span class="co">#&gt; CDE50%  0.08627221  0.08842825 -0.03844119 0.21156145 0.06295329</span></span>
-<span><span class="co">#&gt; CDE75%  0.35652011  0.36344706  0.16734634 0.53923025 0.09652634</span></span>
-<span><span class="va">mediationeffects.ey90</span><span class="op">$</span><span class="va">est</span></span>
-<span><span class="co">#&gt;               mean      median       lower     upper         sd</span></span>
-<span><span class="co">#&gt; TE      0.32033586  0.32186019  0.16722090 0.4675896 0.07721401</span></span>
-<span><span class="co">#&gt; NDE     0.14818670  0.14688050 -0.05488049 0.3447725 0.10039708</span></span>
-<span><span class="co">#&gt; NIE     0.17214916  0.17496446 -0.01459393 0.3478283 0.09642324</span></span>
-<span><span class="co">#&gt; CDE10% -0.03980834 -0.03950922 -0.25080142 0.1590785 0.10687558</span></span>
-<span><span class="co">#&gt; CDE50%  0.22090084  0.22237829  0.10258243 0.3428779 0.06132832</span></span>
-<span><span class="co">#&gt; CDE75%  0.48652109  0.48809170  0.28211595 0.6780383 0.10054364</span></span></code></pre></div>
-<p>Plotting</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mediationeffects.ey10</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mediation.bkmr.html">mediation.bkmr</a></span><span class="op">(</span>a<span class="op">=</span><span class="va">a</span>, astar<span class="op">=</span><span class="va">astar</span>, e.y <span class="op">=</span> <span class="va">e.y10</span>, fit.m<span class="op">=</span><span class="va">fit.m</span>, fit.y<span class="op">=</span><span class="va">fit.y</span>, fit.y.TE<span class="op">=</span><span class="va">fit.y.TE</span>, X.predict.M<span class="op">=</span><span class="va">X.predict</span>, X.predict.Y<span class="op">=</span><span class="va">X.predict</span>, alpha<span class="op">=</span><span class="fl">0.05</span>, sel<span class="op">=</span><span class="va">sel</span>, seed<span class="op">=</span><span class="fl">22</span>, K<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">mediationeffects.ey90</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mediation.bkmr.html">mediation.bkmr</a></span><span class="op">(</span>a<span class="op">=</span><span class="va">a</span>, astar<span class="op">=</span><span class="va">astar</span>, e.y <span class="op">=</span> <span class="va">e.y90</span>, fit.m<span class="op">=</span><span class="va">fit.m</span>, fit.y<span class="op">=</span><span class="va">fit.y</span>, fit.y.TE<span class="op">=</span><span class="va">fit.y.TE</span>, X.predict.M<span class="op">=</span><span class="va">X.predict</span>, X.predict.Y<span class="op">=</span><span class="va">X.predict</span>, alpha<span class="op">=</span><span class="fl">0.05</span>, sel<span class="op">=</span><span class="va">sel</span>, seed<span class="op">=</span><span class="fl">22</span>, K<span class="op">=</span><span class="fl">10</span><span class="op">)</span> </span></code></pre></div>
+<p>Look at the posterior mean, median, and 95% CI for the TE, NDE, and NIE</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mediationeffects.ey10</span><span class="op">$</span><span class="va">est</span></span>
+<span><span class="co">#&gt;              mean     median       lower     upper         sd</span></span>
+<span><span class="co">#&gt; TE     0.43475329 0.43695477  0.28272467 0.5967626 0.07940782</span></span>
+<span><span class="co">#&gt; NDE    0.34646758 0.34589094 -0.15942431 0.8452010 0.26231657</span></span>
+<span><span class="co">#&gt; NIE    0.08828571 0.08618004 -0.41892744 0.5845620 0.26551892</span></span>
+<span><span class="co">#&gt; CDE10% 0.31667148 0.31721110  0.09980919 0.4998968 0.09934223</span></span>
+<span><span class="co">#&gt; CDE50% 0.33851356 0.33967494  0.13406825 0.5088642 0.09641575</span></span>
+<span><span class="co">#&gt; CDE75% 0.34827973 0.35279634  0.12335966 0.5288362 0.10060523</span></span>
+<span><span class="va">mediationeffects.ey90</span><span class="op">$</span><span class="va">est</span></span>
+<span><span class="co">#&gt;             mean    median      lower     upper         sd</span></span>
+<span><span class="co">#&gt; TE     1.3317666 1.3362016  1.1664505 1.4777750 0.07597909</span></span>
+<span><span class="co">#&gt; NDE    1.1884003 1.1969614  0.6276377 1.7311322 0.28853695</span></span>
+<span><span class="co">#&gt; NIE    0.1433662 0.1405457 -0.3614840 0.7385272 0.28260910</span></span>
+<span><span class="co">#&gt; CDE10% 1.2056666 1.2082351  0.9692586 1.4128013 0.10788303</span></span>
+<span><span class="co">#&gt; CDE50% 1.2255143 1.2276630  1.0196915 1.3944634 0.09285689</span></span>
+<span><span class="co">#&gt; CDE75% 1.2296552 1.2332571  1.0226156 1.3937021 0.09261384</span></span></code></pre></div>
+<p>Plotting</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">plotdf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">mediationeffects.ey10</span><span class="op">$</span><span class="va">est</span><span class="op">)</span></span>
 <span><span class="va">plotdf</span><span class="op">[</span><span class="st">"Effect"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">plotdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plotdf</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Effect</span>, <span class="va">mean</span>, ymin <span class="op">=</span> <span class="va">lower</span>, ymax <span class="op">=</span> <span class="va">upper</span> <span class="op">)</span><span class="op">)</span>  <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="summary-statistics-of-the-predictor-response-function">Summary statistics of the predictor-response function<a class="anchor" aria-label="anchor" href="#summary-statistics-of-the-predictor-response-function"></a>
@@ -332,7 +313,7 @@
 <div class="section level3">
 <h3 id="risk-summary-for-totel-effect">Risk Summary For Totel Effect<a class="anchor" aria-label="anchor" href="#risk-summary-for-totel-effect"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">riskSummary10</span> <span class="op">=</span> <span class="fu"><a href="../reference/TERiskSummaries.CMA.html">TERiskSummaries.CMA</a></span><span class="op">(</span>fit.TE <span class="op">=</span> <span class="va">fit.y.TE</span>, e.y<span class="op">=</span><span class="va">e.y10</span>, e.y.name <span class="op">=</span> <span class="st">"E.Y"</span>, sel<span class="op">=</span><span class="va">sel</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">riskSummary10</span>,</span>
@@ -342,7 +323,7 @@
 <span>           ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> <span class="va">sd</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><img src="BKMRCMA_QuickStart_files/figure-html/TERisk-1.png" width="700"></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">riskSummary90</span> <span class="op">=</span> <span class="fu"><a href="../reference/TERiskSummaries.CMA.html">TERiskSummaries.CMA</a></span><span class="op">(</span>fit.TE <span class="op">=</span> <span class="va">fit.y.TE</span>, e.y<span class="op">=</span><span class="va">e.y90</span>, e.y.name <span class="op">=</span> <span class="st">"E.Y"</span>, sel<span class="op">=</span><span class="va">sel</span><span class="op">)</span></span>
 <span></span>
@@ -357,21 +338,21 @@
 <div class="section level3">
 <h3 id="risk-summary-for-controlled-direct-effect">Risk Summary For Controlled Direct Effect<a class="anchor" aria-label="anchor" href="#risk-summary-for-controlled-direct-effect"></a>
 </h3>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># CDE </span></span>
 <span><span class="va">CDEriskSummary10</span> <span class="op">=</span> <span class="fu"><a href="../reference/CDERiskSummaries.CMA.html">CDERiskSummaries.CMA</a></span><span class="op">(</span>fit.y <span class="op">=</span> <span class="va">fit.y</span>, e.y <span class="op">=</span> <span class="va">e.y10</span>, e.y.name <span class="op">=</span> <span class="st">"E.Y"</span>, m.name <span class="op">=</span> <span class="st">"m"</span>, sel <span class="op">=</span> <span class="va">sel</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CDEriskSummary10</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">quantile</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, </span>
 <span>                             ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">m</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CDEriskSummary90</span> <span class="op">=</span> <span class="fu"><a href="../reference/CDERiskSummaries.CMA.html">CDERiskSummaries.CMA</a></span><span class="op">(</span>fit.y <span class="op">=</span> <span class="va">fit.y</span>, e.y <span class="op">=</span> <span class="va">e.y90</span>, e.y.name <span class="op">=</span> <span class="st">"E.Y"</span>, m.name <span class="op">=</span> <span class="st">"m"</span>, sel <span class="op">=</span> <span class="va">sel</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CDEriskSummary90</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">quantile</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, </span>
 <span>                             ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">m</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
+<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 </div>
 </div>
 <div class="section level2">
@@ -380,7 +361,7 @@
 <div class="section level3">
 <h3 id="total-effect">Total Effect<a class="anchor" aria-label="anchor" href="#total-effect"></a>
 </h3>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span> </span>
 <span><span class="va">risks.singvar10</span> <span class="op">=</span> <span class="fu"><a href="../reference/SingVarRiskSummaries.CMA.html">SingVarRiskSummaries.CMA</a></span><span class="op">(</span>BKMRfits <span class="op">=</span> <span class="va">fit.y.TE</span>, which.z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
 <span>                                           e.y<span class="op">=</span><span class="va">e.y10</span>, e.y.names<span class="op">=</span><span class="st">"E.Y"</span>,</span>
@@ -389,8 +370,8 @@
 <span>                            ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">q.fixed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span></span>
 <span><span class="va">risks.singvar90</span> <span class="op">=</span> <span class="fu"><a href="../reference/SingVarRiskSummaries.CMA.html">SingVarRiskSummaries.CMA</a></span><span class="op">(</span>BKMRfits <span class="op">=</span> <span class="va">fit.y.TE</span>, which.z <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">3</span>,</span>
@@ -400,32 +381,32 @@
 <span>                            ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">q.fixed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-11-2.png" width="700"></p>
+<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-13-2.png" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="controlled-direct-effect">Controlled Direct Effect<a class="anchor" aria-label="anchor" href="#controlled-direct-effect"></a>
 </h3>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># single variable controlled direct effects</span></span>
 <span><span class="va">CDErisks.singvar10</span> <span class="op">=</span> <span class="fu"><a href="../reference/CDESingVarRiskSummaries.CMA.html">CDESingVarRiskSummaries.CMA</a></span><span class="op">(</span>BKMRfits <span class="op">=</span> <span class="va">fit.y</span>,</span>
 <span>                                           e.y<span class="op">=</span><span class="va">e.y10</span>, e.y.names<span class="op">=</span><span class="st">"E.Y"</span>, m.name <span class="op">=</span> <span class="st">"m"</span>,</span>
 <span>                                           sel<span class="op">=</span><span class="va">sel</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CDErisks.singvar10</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">variable</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>,</span>
 <span>                            ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">q.fixed</span>, linetype <span class="op">=</span> <span class="va">m.fixed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CDErisks.singvar90</span> <span class="op">=</span> <span class="fu"><a href="../reference/CDESingVarRiskSummaries.CMA.html">CDESingVarRiskSummaries.CMA</a></span><span class="op">(</span>BKMRfits <span class="op">=</span> <span class="va">fit.y</span>,</span>
 <span>                                                 e.y<span class="op">=</span><span class="va">e.y90</span>, e.y.names<span class="op">=</span><span class="st">"E.Y"</span>, m.name <span class="op">=</span> <span class="st">"m"</span>,</span>
 <span>                                                 sel<span class="op">=</span><span class="va">sel</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CDErisks.singvar90</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">variable</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>,</span>
 <span>                               ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">q.fixed</span>, linetype <span class="op">=</span> <span class="va">m.fixed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
+<p><img src="BKMRCMA_QuickStart_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 </div>
 </div>
   </div>
