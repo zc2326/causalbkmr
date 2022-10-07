@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BKMR MI Quick Start • causalbkmr</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmos/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -179,8 +179,8 @@
 <code class="sourceCode R"><span><span class="va">singvarrisk.MI</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SingVarRiskSummaries.MI.html">SingVarRiskSummaries.MI</a></span><span class="op">(</span>BKMRfits<span class="op">=</span><span class="va">BKMRfits10</span>, qs.diff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.75</span><span class="op">)</span>,</span>
 <span>                         q.fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span><span class="op">)</span>, sel<span class="op">=</span><span class="va">sel.MI</span>, method <span class="op">=</span> <span class="st">"approx"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "1 out of 3 complete:  0.05 min run time"</span></span>
-<span><span class="co">#&gt; [1] "2 out of 3 complete:  0.11 min run time"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 3 complete:  0.16 min run time"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "2 out of 3 complete:  0.1 min run time"</span></span>
+<span><span class="co">#&gt; [1] "3 out of 3 complete:  0.15 min run time"</span></span></code></pre></div>
 <p>Rerun the <code>SingVarRiskSummaries.MI</code> function but now <em>fixing</em> the quantile for <code>z2</code> to 0.25 (for all comparisons)</p>
 <p>NOTE: you can fix one or more elements of the mixture, but the quantile you are fixing them to needs to be the same (<code>q.alwaysfixed</code>).</p>
 <p>Also, you need to specify which.z to NOT include the fixed elements (it will still run if you dont do this, but your plot will look funny).</p>
@@ -191,7 +191,7 @@
 <span>                               sel<span class="op">=</span><span class="va">sel.MI</span>, method <span class="op">=</span> <span class="st">"approx"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "1 out of 3 complete:  0.04 min run time"</span></span>
 <span><span class="co">#&gt; [1] "2 out of 3 complete:  0.08 min run time"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 3 complete:  0.13 min run time"</span></span>
+<span><span class="co">#&gt; [1] "3 out of 3 complete:  0.12 min run time"</span></span>
 <span> </span>
 <span><span class="co">## plot the single variable dataframe for the MI fits</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">singvarrisk.MI</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">variable</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>,  </span>
