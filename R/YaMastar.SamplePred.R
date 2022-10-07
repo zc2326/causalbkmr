@@ -5,6 +5,7 @@
 #'
 #' @param a exposure variables at current level
 #' @param astar exposure variables at counterfactual level
+#' @param e.m effect modifier for the mediator variable
 #' @param e.y effect modifier for the outcome variable
 #' @param fit.m model fit regressing mediator on exposures and confounders on mediator
 #' @param fit.y model fit regressing outcome on exposures, effect modifiers, mediator and confounders on outcome
@@ -15,11 +16,12 @@
 #' @param K number of samples to generate for each MCMC iteration
 #' @return A vector containing the sample prediction for YaMastar
 #' @export
-YaMastar.SamplePred <- function(a, astar, e.y, fit.m, fit.y, X.predict.M, X.predict.Y, sel, seed, K){
+YaMastar.SamplePred <- function(a, astar, e.m, e.y, fit.m, fit.y, X.predict.M, X.predict.Y, sel, seed, K){
   start.time <- proc.time()
 
   set.seed(seed)
-  EM.samp <- bkmr::SamplePred(fit.m, Znew = astar, Xnew = X.predict.M, sel=sel)
+  z.m <- c(a, e.m)
+  EM.samp <- bkmr::SamplePred(fit.m, Znew = z.m, Xnew = X.predict.M, sel=sel)
   Mastar     <- as.vector(EM.samp)
 
   sigma.samp  <- sqrt(fit.m$sigsq.eps[sel])

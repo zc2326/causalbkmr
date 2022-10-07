@@ -2,6 +2,7 @@
 #'
 #' @param a exposure variables at current level
 #' @param astar exposure variables at counterfactual level
+#' @param e.m effect modifier for the mediator variable
 #' @param e.y effect modifier for the outcome variable
 #' @param fit.m model fit regressing mediator on exposures and confounders on mediator
 #' @param fit.y model fit regressing outcome on exposures, effect modifiers, mediator and confounders on outcome
@@ -70,7 +71,7 @@
 #' }
 #'
 #' @export
-mediation.bkmr <- function(a, astar, e.y, fit.m=NULL, fit.y=NULL, fit.y.TE=NULL,
+mediation.bkmr <- function(a, astar, e.m, e.y, fit.m=NULL, fit.y=NULL, fit.y.TE=NULL,
                            X.predict.M=NULL, X.predict.Y=NULL,
                            effects = "all",  # c("all", "TE", "CDE", (meidation: "PNDE", "TNIE"), ("TNDE", "PNIE"))
                            m.quant=c(0.1,0.5,0.75),
@@ -137,7 +138,7 @@ mediation.bkmr <- function(a, astar, e.y, fit.m=NULL, fit.y=NULL, fit.y.TE=NULL,
       Ya     <- TE$Ya.samp
       Yastar <- TE$Yastar.samp
 
-      YaMastar <- YaMastar.SamplePred(a=a, astar=astar, e.y = e.y, fit.m=fit.m, fit.y=fit.y,
+      YaMastar <- YaMastar.SamplePred(a=a, astar=astar, e.m = e.m, e.y = e.y, fit.m=fit.m, fit.y=fit.y,
                                       X.predict.M=X.predict.M, X.predict.Y=X.predict.Y, sel=sel, seed=seed, K=K)
       if ("NDE" %in% effects){
         NDE <- YaMastar - Yastar
