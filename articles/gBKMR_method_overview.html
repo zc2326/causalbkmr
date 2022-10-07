@@ -138,9 +138,53 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/zc2326/causalbkmr" class="external-link">causalbkmr</a></span><span class="op">)</span></span></code></pre></div>
+<div class="section level2">
+<h2 id="causal-estimands">Causal Estimands<a class="anchor" aria-label="anchor" href="#causal-estimands"></a>
+</h2>
+<p>We consider a setting in which <span class="math inline">\(n\)</span> subjects, labelled <span class="math inline">\(i = 1, ..., n\)</span>, enter a study at baseline (time <span class="math inline">\(t=0\)</span>) and are subjected to treatment <span class="math inline">\(A_{0, i}\)</span>. In a clinical trial, the value of <span class="math inline">\(A_{0, i}\)</span> is determined by the study protocol, usually at random. In an observational study, <span class="math inline">\(A_{0, i}\)</span> is observed and recorded. A collection of covariates, <span class="math inline">\(C_{0, i}\)</span>, are also measured at baseline. At the subsequent follow-up visits, the time-varying confounders, <span class="math inline">\(L_{t, i}\)</span> and treatment <span class="math inline">\(A_{t, i}\)</span> are recorded, <span class="math inline">\(t = 1, ..., T\)</span>. An outcome <span class="math inline">\(Y_i\)</span> is observed for each subject, measured at the final visit <span class="math inline">\(T\)</span>, <span class="math inline">\(Y_i\)</span> can be continuous or binary.</p>
+<p>Along with the  <span class="math inline">\(Y_i\)</span> for each subject, for each possible realization of the treatment history <span class="math inline">\(\Bar{a} \in \Bar{\mathcal{A}}\)</span>; we also define <span class="math inline">\(Y_i^{\Bar{a}}\)</span>, the  that would have been observed had the subject, possibly contrary to fact, received treatment history <span class="math inline">\(\Bar{a}\)</span>.</p>
+<p>In a simple setting with 3 visits, assume the following DAG. Under the static, fixed treatment regimes, the overall causal effect of the exposures changing form the <span class="math inline">\(25^{th}\)</span> percentile to the <span class="math inline">\(75^{th}\)</span> percentile can be defined as:</p>
+<p><span class="math display">\[ACE = E[Y^{A_0 = a_0^*, A_1 = a_1^*, A_2 = a_2^*}] - E[Y^{A_0 = a_0, A_1 = a_1, A_2 = a_2}]\]</span> where <span class="math inline">\(a_0, a_1, a_2\)</span> are the <span class="math inline">\(25^{th}\)</span> percentile of the exposures, <span class="math inline">\(a_0^*, a_1^*, a_2^*\)</span> are the <span class="math inline">\(75^{th}\)</span> percentile of the exposures.</p>
 <center>
 <img src="gbkmrdag.png" width="240">
 </center>
+</div>
+<div class="section level2">
+<h2 id="g-formula">g-formula<a class="anchor" aria-label="anchor" href="#g-formula"></a>
+</h2>
+<p>The basic idea of g-formula is standardization, a common approach to estimating the expected value of <span class="math inline">\(Y^{\bar{a}}\)</span> in the population. (Naimai, Ashley I., et al., 2017) It can be illustrated in a simple time-fixed confounding example where there are only baseline confounders <span class="math inline">\(C_0\)</span> where the sum is over all possible values <span class="math inline">\(c_0\)</span> of <span class="math inline">\(C_0\)</span>. <span class="math display">\[E\left(Y^{\bar{a}}\right)=\sum_{C_{0}  } E\left(Y \mid \bar{A}=\bar{a}, C_{0}=c_{0}\right) P\left(C_{0}=c_{0}\right)\]</span> where the sum is over all possible values <span class="math inline">\(c_0\)</span> of <span class="math inline">\(C_0\)</span>.\</p>
+<p>Using the above DAG, we now define 3 identifying assumptions:\</p>
+<ol style="list-style-type: decimal">
+<li><p>Consistency: <span class="math display">\[E[Y | A_0 = a_0, A_1 = a_1, A_2 = a_2] = E[Y^{a_0, a_1, a_2}| A_0 = a_0, A_1 = a_1, A_2 = a_2]\]</span></p></li>
+<li><p>Exchangeability:<br></p></li>
+<li><p>Positivity: <span class="math display">\[Pr(a_t|a_{t-1}, l_t, c_0) &gt; 0 \ \text{for all values of} \ l \  \text{with} \  Pr(L = l) \ne 0 \]</span></p></li>
+</ol>
+<p>The general expression of the g-formula for a static fixed intervention is: <span class="math display">\[\begin{equation}
+E[Y^{\bar{a}}]= \sum_{\bar{l}} \mathrm{E}[Y \mid \bar{A}=\bar{a}, \bar{L}=\bar{l}, C_0 = c_0] \prod_{t=0}^{T} f\left(l_{t} \mid \bar{a}_{t-1}, \bar{l}_{t-1} \right)f(c_0) 
+\end{equation}]
+\]</span></p>
+</div>
+<div class="section level2">
+<h2 id="bayesian-kernel-machine-regression">Bayesian kernel machine regression<a class="anchor" aria-label="anchor" href="#bayesian-kernel-machine-regression"></a>
+</h2>
+<p>We first review Kernel Machine Regression (KMR) as a framework for estimating the effect of a complex mixture when only a single time point of exposure is measured. For each subject <span class="math inline">\(i = 1, ..., n\)</span>, we assume</p>
+<p><span class="math display">\[\begin{equation}
+    Y_{i}=h\left(\mathbf{a}_{i}\right)+\mathbf{c}_{i}^{\mathrm{T}} \boldsymbol{\beta}+\epsilon_{i}
+\end{equation}\]</span> where <span class="math inline">\(\mathbf{a}_{i}=\left(a_{i 1}, \ldots, a_{i M}\right)^{\mathrm{T}}\)</span> is a vector of <span class="math inline">\(M\)</span> exposure variables.</p>
+<p>It can be shown that the above model can be expressed as the mixed model <span class="math display">\[y_{i} \sim N\left(h_{i}+\mathbf{c}_{i}^{T} \boldsymbol{\beta}, \sigma^{2}\right)\]</span></p>
+<p><span class="math display">\[\begin{equation}
+\mathbf{h} \equiv\left(h_{1}, \ldots, h_{n}\right)^{\mathrm{T}} \sim N(\mathbf{0}, \tau \mathbf{K})    
+\end{equation}\]</span></p>
+<p>where <span class="math inline">\(\mathbf{K}\)</span> is the kernel matrix, has <span class="math inline">\((i, j)-\)</span>element <span class="math inline">\(K(\mathbf{a}_{i}, \mathbf{a}_{j})\)</span></p>
+<p>There are different choices of the kernel. We focus on the Gaussian kernel, which flexibly captures a wide range of underlying functional forms for <span class="math inline">\(h(\cdot)\)</span>, although the methods are applicable to a broad choice of kernels. We assume <span class="math display">\[\operatorname{cor}\left(h_{i}, h_{j}\right)=\exp \left\{-(1 / \rho) \sum_{m=1}^{M}\left(a_{i m}-a_{j m}\right)^{2}\right\}\]</span> where <span class="math inline">\(\rho\)</span> is a tuning parameter that regulates the smoothness of the dose-response function. This assumption implies that two subjects with similar exposures will have more similar risks (<span class="math inline">\(a_i\)</span> to <span class="math inline">\(a_j\)</span>, and <span class="math inline">\(h_i\)</span> will be close to <span class="math inline">\(h_j\)</span> ).</p>
+<p><a href="https://academic.oup.com/biostatistics/article/16/3/493/269719" class="external-link">Bobb et al (2015)</a> presented the Bayesian Kernel Machine Regression (BKMR) as a framework to estimate the effect of a complex mixture on a health outcome.</p>
+<p>To fit (2), we assume a at prior on the coefficients for the confounding variables, <span class="math inline">\(\beta \sim 1\)</span>, and<br><span class="math inline">\(\sigma^{-2} \sim \operatorname{Gamma}\left(a_{\sigma}, b_{\sigma}\right)\)</span>, where we set <span class="math inline">\(a_{\sigma} = b_{\sigma} = 0.001\)</span>.</p>
+<p>We can parameterize BKMR by <span class="math inline">\(\lambda=\tau \sigma^{-2}\)</span>, and we assume a Gamma prior distribution for the variance component of <span class="math inline">\(\lambda\)</span>. For the smoothness parameter <span class="math inline">\(\rho\)</span>, we assume <span class="math inline">\(\rho \sim \operatorname{Unif}(a, b)\)</span> with <span class="math inline">\(a=0\)</span> and <span class="math inline">\(b=100\)</span>. For additional details regarding BKMR and prior specifications, see Bobb et al. (Bobb et al., <a href="https://academic.oup.com/biostatistics/article/16/3/493/269719" class="external-link">2015</a>, <a href="https://ehjournal.biomedcentral.com/articles/10.1186/s12940-018-0413-y" class="external-link">2018</a>)</p>
+</div>
+<div class="section level2">
+<h2 id="g-bayesian-kernel-machine-regressiong-bkmr">g-Bayesian kernel machine regression(g-BKMR)<a class="anchor" aria-label="anchor" href="#g-bayesian-kernel-machine-regressiong-bkmr"></a>
+</h2>
+</div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
