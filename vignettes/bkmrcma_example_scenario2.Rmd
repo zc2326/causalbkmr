@@ -1,5 +1,5 @@
 ---
-title: "bkmrcma_example_scenario2"
+title: "BKMR CMA Example 2"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{bkmrcma_example_scenario2}
@@ -22,9 +22,9 @@ library(causalbkmr)
 library(ggplot2)
 ```
 
-## Sample simulated Dataset
+In this scenario, we have a binary mediator $M$, a binary outcome $Y$, and no effect modification. The sample size is 50 and there are 3 covariates. 
 
-Example with N=50, L=3 for *scenario 2* (binary $Y$, binary $M$, no effect modification):
+## Sample simulated Dataset 
 
 ```{r warning=FALSE}
 dat <-  cma_sampledata(N = 50, L=3, P=3, scenario=2, seed=7) 
@@ -115,7 +115,7 @@ TE.ey90 <- TE.bkmr(a=a, astar=astar, e.y = e.y90, fit.y.TE=fit.y.TE, X.predict=X
 
 Look at the posterior mean, median, and 95% CI for TE:
 
-```{r}
+```{r dpi = 200}
 TE.ey10$est
 TE.ey90$est
 
@@ -209,6 +209,7 @@ ggplot(riskSummary90,
   geom_pointrange()
 ```
 
+Since there's no effect modification, the two above figures are similar. 
 
 ### Risk Summary For Controlled Direct Effect
 
@@ -234,6 +235,7 @@ ggplot(CDEriskSummary90, aes(quantile, est, ymin = est - 1.96*sd,
   geom_pointrange(position = position_dodge(width = 0.75))
 ```
 
+Since there's no effect modification, the two above figures are similar. 
 ## Single-predictor health risks
 
 ### Total Effect
@@ -257,6 +259,7 @@ ggplot(risks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
   coord_flip()
 ```
 
+Since there's no effect modification, the two above figures are similar. 
 
 ### Controlled Direct Effect 
 
@@ -281,10 +284,12 @@ CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                                  sel=sel)
 ```
 
-```{r}
+```{r dpi = 200}
 ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
                                ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
   coord_flip()
 
 ```
+
+Since there's no effect modification, the two above figures are similar. 

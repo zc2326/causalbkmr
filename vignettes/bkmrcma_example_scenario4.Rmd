@@ -1,5 +1,5 @@
 ---
-title: "bkmrcma_example_scenario4"
+title: "BKMR CMA Example 4"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{bkmrcma_example_scenario4}
@@ -21,6 +21,9 @@ library(mixtools)
 library(causalbkmr)
 library(ggplot2)
 ```
+
+In this scenario, we have a continuous $M$, a binary outcome $Y$, and an effect modifier on $Y$, `x2`. The sample size is 50 and there are 3 covariates. 
+
 
 ## Sample simulated Dataset
 

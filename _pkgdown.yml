@@ -7,7 +7,7 @@ authors:
 title: causalbkmr
 template:
   params:
-    bootswatch: lumen
+    bootswatch: cosmos
 navbar:
   type: default
   left:
@@ -17,13 +17,13 @@ navbar:
     menu:
     - text: Overview of Methodology
       href: articles/BKMRCMA_method_overview.html
-    - text: Quick Start (Example Scenario 1)
+    - text: Quick Start Example - continuous M and continuous Y
       href: articles/BKMRCMA_QuickStart.html
-    - text: BKMR CMA Example (Scenario 2)
+    - text: Example 2 - binary M and binary Y
       href: articles/bkmrcma_example_scenario2.html
-    - text: BKMR CMA Example (Scenario 3)
+    - text: Example 3 - binary M and continuous Y
       href: articles/bkmrcma_example_scenario3.html
-    - text: BKMR CMA Example (Scenario 4)
+    - text: Example 4 - continuous M and binary Y
       href: articles/bkmrcma_example_scenario4.html
 
   - text: MI BKMR
