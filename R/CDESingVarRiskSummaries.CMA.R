@@ -22,13 +22,6 @@
 #' For guided examples, go to
 #' https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html
 #'
-#' @examples
-#' \dontrun{
-#' CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
-#' e.y=e.y10, e.y.names="E.Y", m.name = "m",
-#' sel=sel)
-#'
-#' }
 #'
 #' @export
 CDESingVarRiskSummaries.CMA <-function(BKMRfits,
