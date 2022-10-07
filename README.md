@@ -84,13 +84,14 @@ for an overview of statistical modeling approaches.
 
 ### g-BKMR
 
-------------------------------------------------------------------------
-
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/master/examples>.
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+Exposure to environmental chemicals has been shown to rewire development
+affecting later health status. Quantifying the joint effect of
+environmental mixtures over time is crucial to determine intervention
+timing. However, causal interpretation of longitudinal environmental
+mixture studies encounters challenges. There is no statistical approach
+that allows simultaneously for time-varying confounding, flexible
+modeling, and variable selection when examining the effect of multiple,
+correlated, and time-varying exposures. To address these gaps, we
+develop a causal inference method, g-BKMR, which enables us to estimate
+nonlinear, non-additive effects of time-varying exposures and
+time-varying confounders, while also allowing for variable selection.

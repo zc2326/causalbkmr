@@ -66,6 +66,9 @@ For the smoothness parameter $\rho$, we assume $\rho \sim \operatorname{Unif}(a,
 
 ### Causal Mediation Analysis
 
+<center><img src="cmadag.png" width="240" /></center>
+
+
 In order to define causal contrasts in a mediation context, we first define our notation. Let $Y_{am}$ denote the counterfactual outcome $Y$ if the exposure $A$ was set to level $a$ and mediator $M$ was set to level $m$. Let $M_a$ be the counterfactual mediator $M$ that would have been observed if the exposure $A$ was set to level $a$. Accordingly,$Y_{aMa^∗}$ represents the counterfactual outcome $Y$ if the exposure $A$ was set to level  $a$ and the mediator $M$ was set to the level it would have taken if the exposure $A$ was set to level $a^∗$.
 
 The mediated effects of interest, the TE, the NDE, the NIE, and the CDEs, are formally defined as:
