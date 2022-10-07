@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(causalbkmr)
 ```
 
-<img src="man/figures/gbkmrdag.png" width="240" />
+<center><img src="gbkmrdag.png" width="240" /></center>
 
 ## References 
 
