@@ -7,7 +7,7 @@ authors:
 title: causalbkmr
 template:
   bootstrap: 5
-  bootswatch: pulse
+  bootswatch: united
 navbar:
   type: default
   left:
