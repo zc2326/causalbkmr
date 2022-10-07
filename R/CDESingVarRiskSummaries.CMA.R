@@ -1,7 +1,6 @@
 #' Single Variable Risk Summaries
 #
 #' Compute summaries of the risks associated with a change in a single variable in \code{Z} from a single level (quantile) to a second level (quantile), for the other variables in \code{Z} fixed to a specific level (quantile)
-
 #'
 #' @param BKMRfits An object contatinint the results return by the kmbayes function
 #' @param e.y effect modifier for the outcome variable
@@ -26,8 +25,8 @@
 #' @examples
 #' \dontrun{
 #' CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
-# e.y=e.y10, e.y.names="E.Y", m.name = "m",
-# sel=sel)
+#' e.y=e.y10, e.y.names="E.Y", m.name = "m",
+#' sel=sel)
 #'
 #' }
 #'
