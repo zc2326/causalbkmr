@@ -7,7 +7,7 @@ authors:
 title: causalbkmr
 template:
   bootstrap: 5
-  bootswatch: morph
+  bootswatch: minty
 navbar:
   type: default
   left:
