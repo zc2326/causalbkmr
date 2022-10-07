@@ -28,7 +28,7 @@ covariates, $C_{0, i}$, are also measured at baseline. At the subsequent follow-
  and treatment $A_{t, i}$ are recorded, $t = 1, ..., T$. An outcome $Y_i$ is observed for each subject, measured at the final visit $T$, $Y_i$ can be continuous or binary. 
 
  Along with the \textit{observed outcome} $Y_i$ for each subject, for each possible realization of the treatment
-history $\Bar{a} \in \Bar{\mathcal{A}}$; we also define $Y_i^{\Bar{a}}$, the \textit{potential outcome} that would have been observed had the subject, possibly contrary to fact, received treatment history $\Bar{a}$.
+history $\bar{a} \in \bar{\mathcal{A}}$; we also define $Y_i^{\bar{a}}$, the \textit{potential outcome} that would have been observed had the subject, possibly contrary to fact, received treatment history $\bar{a}$.
 
 In a simple setting with 3 visits, assume the following DAG. Under the static, fixed treatment regimes,  the overall causal effect of the exposures changing form the $25^{th}$ percentile to the $75^{th}$ percentile can be defined as:
 

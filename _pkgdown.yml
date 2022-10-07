@@ -6,8 +6,8 @@ authors:
     href: https://www.lindavaleri.com/
 title: causalbkmr
 template:
-  params:
-    bootswatch: cosmo
+  bootstrap: 5
+  bootswatch: morph
 navbar:
   type: default
   left:
