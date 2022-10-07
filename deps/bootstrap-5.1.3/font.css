@@ -1,21 +1,21 @@
 @font-face {
-  font-family: 'Nunito';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url(fonts/XRXV3I6Li01BKof4MQ.woff) format('woff');
+  src: url(fonts/JTUSjIg1_i6t8kCHKm45xW0.woff) format('woff');
 }
 @font-face {
-  font-family: 'Nunito';
+  font-family: 'Montserrat';
   font-style: normal;
-  font-weight: 600;
+  font-weight: 500;
   font-display: swap;
-  src: url(fonts/XRXW3I6Li01BKofA6sKkZQ.woff) format('woff');
+  src: url(fonts/JTURjIg1_i6t8kCHKm45_ZpC7g0.woff) format('woff');
 }
 @font-face {
-  font-family: 'Nunito';
+  font-family: 'Montserrat';
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url(fonts/XRXW3I6Li01BKofAjsOkZQ.woff) format('woff');
+  src: url(fonts/JTURjIg1_i6t8kCHKm45_dJE7g0.woff) format('woff');
 }
