@@ -16,7 +16,7 @@
 #' @param K number of samples to generate for each MCMC iteration
 #' @return A vector containing the sample prediction for YaMastar
 #' @export
-YaMastar.SamplePred <- function(a, astar, e.m, e.y, fit.m, fit.y, X.predict.M, X.predict.Y, sel, seed, K){
+YaMastar.SamplePred <- function(a, astar, e.m=NULL, e.y, fit.m, fit.y, X.predict.M, X.predict.Y, sel, seed, K){
   start.time <- proc.time()
 
   set.seed(seed)

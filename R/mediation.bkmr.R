@@ -4,7 +4,7 @@
 #' @param astar exposure variables at counterfactual level
 #' @param e.m effect modifier for the mediator variable
 #' @param e.y effect modifier for the outcome variable
-#' @param fit.m model fit regressing mediator on exposures and confounders on mediator
+#' @param fit.m   model fit regressing mediator on exposures and confounders on mediator
 #' @param fit.y model fit regressing outcome on exposures, effect modifiers, mediator and confounders on outcome
 #' @param fit.y.TE total effect model fit regressing outcome on exposures, effect modifiers and confounders on outcome
 #' @param X.predict.M counfounders for mediator
@@ -71,7 +71,7 @@
 #' }
 #'
 #' @export
-mediation.bkmr <- function(a, astar, e.m, e.y, fit.m=NULL, fit.y=NULL, fit.y.TE=NULL,
+mediation.bkmr <- function(a, astar, e.m = NULL, e.y, fit.m=NULL, fit.y=NULL, fit.y.TE=NULL,
                            X.predict.M=NULL, X.predict.Y=NULL,
                            effects = "all",  # c("all", "TE", "CDE", (meidation: "PNDE", "TNIE"), ("TNDE", "PNIE"))
                            m.quant=c(0.1,0.5,0.75),
