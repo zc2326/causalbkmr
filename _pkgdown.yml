@@ -6,7 +6,7 @@ authors:
     href: https://www.lindavaleri.com/
 title: causalbkmr
 template:
-  bootswatch: cosmo
+  bootswatch: sandstone
 navbar:
   type: default
   left:
