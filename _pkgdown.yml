@@ -6,7 +6,7 @@ authors:
     href: https://www.lindavaleri.com/
 title: causalbkmr
 template:
-  bootswatch: journal
+  bootswatch: cosmo
 navbar:
   type: default
   left:
@@ -25,7 +25,7 @@ navbar:
     - text: Example 4 - continuous M and binary Y
       href: articles/bkmrcma_example_scenario4.html
 
-  - text: MI BKMR
+  - text: BKMR-MI
     menu:
     - text: Overview of Methodology
       href: articles/BKMRMI_method_overview.html
