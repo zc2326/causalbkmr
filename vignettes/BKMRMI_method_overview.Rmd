@@ -1,5 +1,5 @@
 ---
-title: "BKMRMI_method_overview"
+title: "BKMRMI Method Overview"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{BKMRMI_method_overview}
@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+options(rmarkdown.html_vignette.check_title = FALSE)
 ```
 
 ```{r setup}
@@ -32,6 +33,8 @@ library(causalbkmr)
 
 
 ## References 
+
+Bauer, Julia A., Katrina L. Devick, Jennifer F. Bobb, Brent A. Coull, David Bellinger, Chiara Benedetti, Giuseppa Cagna et al. "Associations of a metal mixture measured in multiple biomarkers with IQ: evidence from Italian adolescents living near ferroalloy industry." Environmental health perspectives 128, no. 9 (2020): 097002.
 
 Anglen Bauer J, Devick KL, Bobb JF, Coull BA, Zoni S, Fedrighi C, Benedetti C, Guazzetti S, White R, Bellinger D, Yang Q, Webster T, Wright RO, Smith D, Lucchini R, Claus Henn. Associations from a mixture of manganese, lead, copper and chromium and adolescent neurobehavior. 
 
