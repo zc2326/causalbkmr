@@ -89,6 +89,7 @@ YaYastar.SamplePred <- function(a, astar, e.y, BKMRfits.y.TE, X.predict.Y, sel, 
 #' @param seed the random seed to use to evaluate the code
 #' @return Totak effect for BKMR
 #' @export
+#'
 TE.bkmr.MI <- function(a, astar, e.y, fit.y.TE, X.predict.Y, alpha=0.05, sel, seed){
 
   toreturn <- list()
