@@ -9,6 +9,7 @@
 #' @param alpha 1-confidence interval
 #' @param sel a vector selecting which iterations of thfe fit should be retained or inference
 #' @param seed the random seed to use to evaluate the code
+#'
 #' @return Controlled direct effect for BKMR
 #'
 #' @details

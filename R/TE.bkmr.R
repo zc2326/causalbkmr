@@ -87,6 +87,7 @@ YaYastar.SamplePred <- function(a, astar, e.y, fit.y.TE, X.predict.Y, sel, seed)
 #' @param alpha 1-confidence interval
 #' @param sel a vector selecting which iterations of the fit should be retained or inference
 #' @param seed the random seed to use to evaluate the code
+#'
 #' @return Totak effect for BKMR
 #' @export
 TE.bkmr <- function(a, astar, e.y, fit.y.TE, X.predict.Y, alpha=0.05, sel, seed){

@@ -59,10 +59,3 @@ Compute summaries of the risks associated with a change in a single variable in 
 For guided examples, go to
 https://zc2326.github.io/causalbkmr/articles/BKMRCMA_QuickStart.html
 }
-\examples{
-\dontrun{
-CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
-
-}
-
-}

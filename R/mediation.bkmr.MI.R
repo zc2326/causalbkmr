@@ -16,6 +16,7 @@
 #' @param sel a vector selecting which iterations of the fit should be retained or inference
 #' @param seed the random seed to use to evaluate the code
 #' @param K number of samples to generate for each MCMC iteration in YaMastar calculation
+#'
 #' @return A list contaning the sample prediction for TE, NDE, NIE and their summary statistics
 #'
 #' @details
