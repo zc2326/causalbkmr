@@ -126,7 +126,8 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Bayesian kernel machine regression-causal mediation analysis</h1>
+      <h1 data-toc-skip>Bayesian kernel machine regression-causal
+mediation analysis</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/zc2326/causalbkmr/blob/HEAD/vignettes/BKMRCMA_method_overview.Rmd" class="external-link"><code>vignettes/BKMRCMA_method_overview.Rmd</code></a></small>
@@ -139,30 +140,106 @@
 <div class="section level3">
 <h3 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h3>
-<p>The ability to identify pathways through which a complex exposure mixture operates is critical for the development of public health policy, as mediation pathways can often be influenced via interventions.</p>
-<p>Exposure to complex mixtures is ubiquitous, and recent work in toxicology and epidemiology now emphasizes assessing mixtures of chemicals. Since elements of a mixture have the potential to exhibit complex interactions,it is important to consider the whole mixture when evaluating the nature of the relationship of multiple chemicals on a health outcome.</p>
-<p>One approach to quantifying biological mechanisms is the use of causal mediation analysis. Causal mediation analysis allows for the decomposition of a total effect (TE) of an exposure on an outcome into the pathway that operates indirectly through an intermediate (mediator) variable and the pathway that is independent of the intermediate variable, or that operates directly from the exposure to the outcome.</p>
-<p>Few methods exist to estimate mediation effects when the exposure of interest is a mixture and exposure-mediator interactions are present. Current methods require specifying an outcome and a mediator regression model. If the media-tor variable is restricted to have a linear effect on the outcome, closed form solutions are available to estimate the natural direct effect (NDE), natural indirect effect (NIE), and controlled direct effects (CDEs) of a mediator on the relationship of a mixture on an outcome. In the presence of a nonlinear effect of the mediator on the outcome, to our knowledge, no other methods using a causal inference framework currently exist to estimate the NDE, NIE, and CDEs of a potentially complex exposure mixture on an outcome through a mediator variable.</p>
-<p>This <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/sim.9255" class="external-link">paper</a> present a novel causal mediation method to estimate the NDE, NIE, and CDEs for a poten-tially complex mixture of exposures on an outcome operating through an intermediate variable. The method allow for highly complex exposure-mediator and exposure-mediator-response functions, in addition to complex exposure-covariate and exposure-mediator-covariate relationships with the mediator and outcome respectively, using Bayesian Kernel Machine Regression (BKMR).</p>
-<p>This package <code>causalbkmr</code> implement the BKMR-CMA method, which use BKMR for the mediator and outcome regression models since BKMR allows for all possible nonlinearities and interactions among the elements included in the kernel with the specified outcome, without a prior specification, and credible intervals a BKMR fit inherently control for multiple testing due to the Bayesian nature of the model and the prior specification.</p>
-<p>We predict counterfactuals using the posterior predictive distributions of the mediator and the outcome and present an algorithm for estimation of mediation effects. We also conduct a simulation study to compare how our approach performs relative to current mediation methods that assume a restrictive linear relationship between the exposure, mediator, and outcome.</p>
+<p>The ability to identify pathways through which a complex exposure
+mixture operates is critical for the development of public health
+policy, as mediation pathways can often be influenced via
+interventions.</p>
+<p>Exposure to complex mixtures is ubiquitous, and recent work in
+toxicology and epidemiology now emphasizes assessing mixtures of
+chemicals. Since elements of a mixture have the potential to exhibit
+complex interactions,it is important to consider the whole mixture when
+evaluating the nature of the relationship of multiple chemicals on a
+health outcome.</p>
+<p>One approach to quantifying biological mechanisms is the use of
+causal mediation analysis. Causal mediation analysis allows for the
+decomposition of a total effect (TE) of an exposure on an outcome into
+the pathway that operates indirectly through an intermediate (mediator)
+variable and the pathway that is independent of the intermediate
+variable, or that operates directly from the exposure to the
+outcome.</p>
+<p>Few methods exist to estimate mediation effects when the exposure of
+interest is a mixture and exposure-mediator interactions are present.
+Current methods require specifying an outcome and a mediator regression
+model. If the media-tor variable is restricted to have a linear effect
+on the outcome, closed form solutions are available to estimate the
+natural direct effect (NDE), natural indirect effect (NIE), and
+controlled direct effects (CDEs) of a mediator on the relationship of a
+mixture on an outcome. In the presence of a nonlinear effect of the
+mediator on the outcome, to our knowledge, no other methods using a
+causal inference framework currently exist to estimate the NDE, NIE, and
+CDEs of a potentially complex exposure mixture on an outcome through a
+mediator variable.</p>
+<p>This <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/sim.9255" class="external-link">paper</a>
+present a novel causal mediation method to estimate the NDE, NIE, and
+CDEs for a poten-tially complex mixture of exposures on an outcome
+operating through an intermediate variable. The method allow for highly
+complex exposure-mediator and exposure-mediator-response functions, in
+addition to complex exposure-covariate and exposure-mediator-covariate
+relationships with the mediator and outcome respectively, using Bayesian
+Kernel Machine Regression (BKMR).</p>
+<p>This package <code>causalbkmr</code> implement the BKMR-CMA method,
+which use BKMR for the mediator and outcome regression models since BKMR
+allows for all possible nonlinearities and interactions among the
+elements included in the kernel with the specified outcome, without a
+prior specification, and credible intervals a BKMR fit inherently
+control for multiple testing due to the Bayesian nature of the model and
+the prior specification.</p>
+<p>We predict counterfactuals using the posterior predictive
+distributions of the mediator and the outcome and present an algorithm
+for estimation of mediation effects. We also conduct a simulation study
+to compare how our approach performs relative to current mediation
+methods that assume a restrictive linear relationship between the
+exposure, mediator, and outcome.</p>
 </div>
 <div class="section level3">
 <h3 id="bayesian-kernel-machine-regression">Bayesian kernel machine regression<a class="anchor" aria-label="anchor" href="#bayesian-kernel-machine-regression"></a>
 </h3>
-<p>We first review Kernel Machine Regression (KMR) as a framework for estimating the effect of a complex mixture when only a single time point of exposure is measured. For each subject <span class="math inline">\(i = 1, ..., n\)</span>, we assume</p>
+<p>We first review Kernel Machine Regression (KMR) as a framework for
+estimating the effect of a complex mixture when only a single time point
+of exposure is measured. For each subject <span class="math inline">\(i
+= 1, ..., n\)</span>, we assume</p>
 <p><span class="math display">\[\begin{equation}
-    Y_{i}=h\left(\mathbf{a}_{i}\right)+\mathbf{c}_{i}^{\mathrm{T}} \boldsymbol{\beta}+\epsilon_{i}
-\end{equation}\]</span> where <span class="math inline">\(\mathbf{a}_{i}=\left(a_{i 1}, \ldots, a_{i M}\right)^{\mathrm{T}}\)</span> is a vector of <span class="math inline">\(M\)</span> exposure variables.</p>
-<p>It can be shown that the above model can be expressed as the mixed model <span class="math display">\[y_{i} \sim N\left(h_{i}+\mathbf{c}_{i}^{T} \boldsymbol{\beta}, \sigma^{2}\right)\]</span></p>
+    Y_{i}=h\left(\mathbf{a}_{i}\right)+\mathbf{c}_{i}^{\mathrm{T}}
+\boldsymbol{\beta}+\epsilon_{i}
+\end{equation}\]</span> where <span class="math inline">\(\mathbf{a}_{i}=\left(a_{i 1}, \ldots, a_{i
+M}\right)^{\mathrm{T}}\)</span> is a vector of <span class="math inline">\(M\)</span> exposure variables.</p>
+<p>It can be shown that the above model can be expressed as the mixed
+model <span class="math display">\[y_{i} \sim
+N\left(h_{i}+\mathbf{c}_{i}^{T} \boldsymbol{\beta},
+\sigma^{2}\right)\]</span></p>
 <p><span class="math display">\[\begin{equation}
-\mathbf{h} \equiv\left(h_{1}, \ldots, h_{n}\right)^{\mathrm{T}} \sim N(\mathbf{0}, \tau \mathbf{K})    
+\mathbf{h} \equiv\left(h_{1}, \ldots, h_{n}\right)^{\mathrm{T}} \sim
+N(\mathbf{0}, \tau \mathbf{K})    
 \end{equation}\]</span></p>
-<p>where <span class="math inline">\(\mathbf{K}\)</span> is the kernel matrix, has <span class="math inline">\((i, j)-\)</span>element <span class="math inline">\(K(\mathbf{a}_{i}, \mathbf{a}_{j})\)</span></p>
-<p>There are different choices of the kernel. We focus on the Gaussian kernel, which flexibly captures a wide range of underlying functional forms for <span class="math inline">\(h(\cdot)\)</span>, although the methods are applicable to a broad choice of kernels. We assume <span class="math display">\[\operatorname{cor}\left(h_{i}, h_{j}\right)=\exp \left\{-(1 / \rho) \sum_{m=1}^{M}\left(a_{i m}-a_{j m}\right)^{2}\right\}\]</span> where <span class="math inline">\(\rho\)</span> is a tuning parameter that regulates the smoothness of the dose-response function. This assumption implies that two subjects with similar exposures will have more similar risks (<span class="math inline">\(a_i\)</span> to <span class="math inline">\(a_j\)</span>, and <span class="math inline">\(h_i\)</span> will be close to <span class="math inline">\(h_j\)</span> ).</p>
-<p><a href="https://academic.oup.com/biostatistics/article/16/3/493/269719" class="external-link">Bobb et al (2015)</a> presented the Bayesian Kernel Machine Regression (BKMR) as a framework to estimate the effect of a complex mixture on a health outcome.</p>
-<p>To fit (2), we assume a at prior on the coefficients for the confounding variables, <span class="math inline">\(\beta \sim 1\)</span>, and<br><span class="math inline">\(\sigma^{-2} \sim \operatorname{Gamma}\left(a_{\sigma}, b_{\sigma}\right)\)</span>, where we set <span class="math inline">\(a_{\sigma} = b_{\sigma} = 0.001\)</span>.</p>
-<p>We can parameterize BKMR by <span class="math inline">\(\lambda=\tau \sigma^{-2}\)</span>, and we assume a Gamma prior distribution for the variance component of <span class="math inline">\(\lambda\)</span>. For the smoothness parameter <span class="math inline">\(\rho\)</span>, we assume <span class="math inline">\(\rho \sim \operatorname{Unif}(a, b)\)</span> with <span class="math inline">\(a=0\)</span> and <span class="math inline">\(b=100\)</span>. For additional details regarding BKMR and prior specifications, see Bobb et al. (Bobb et al., <a href="https://academic.oup.com/biostatistics/article/16/3/493/269719" class="external-link">2015</a>, <a href="https://ehjournal.biomedcentral.com/articles/10.1186/s12940-018-0413-y" class="external-link">2018</a>)</p>
+<p>where <span class="math inline">\(\mathbf{K}\)</span> is the kernel
+matrix, has <span class="math inline">\((i, j)-\)</span>element <span class="math inline">\(K(\mathbf{a}_{i}, \mathbf{a}_{j})\)</span></p>
+<p>There are different choices of the kernel. We focus on the Gaussian
+kernel, which flexibly captures a wide range of underlying functional
+forms for <span class="math inline">\(h(\cdot)\)</span>, although the
+methods are applicable to a broad choice of kernels. We assume <span class="math display">\[\operatorname{cor}\left(h_{i}, h_{j}\right)=\exp
+\left\{-(1 / \rho) \sum_{m=1}^{M}\left(a_{i m}-a_{j
+m}\right)^{2}\right\}\]</span> where <span class="math inline">\(\rho\)</span> is a tuning parameter that regulates
+the smoothness of the dose-response function. This assumption implies
+that two subjects with similar exposures will have more similar risks
+(<span class="math inline">\(a_i\)</span> to <span class="math inline">\(a_j\)</span>, and <span class="math inline">\(h_i\)</span> will be close to <span class="math inline">\(h_j\)</span> ).</p>
+<p><a href="https://academic.oup.com/biostatistics/article/16/3/493/269719" class="external-link">Bobb
+et al (2015)</a> presented the Bayesian Kernel Machine Regression (BKMR)
+as a framework to estimate the effect of a complex mixture on a health
+outcome.</p>
+<p>To fit (2), we assume a at prior on the coefficients for the
+confounding variables, <span class="math inline">\(\beta \sim
+1\)</span>, and<br><span class="math inline">\(\sigma^{-2} \sim
+\operatorname{Gamma}\left(a_{\sigma}, b_{\sigma}\right)\)</span>, where
+we set <span class="math inline">\(a_{\sigma} = b_{\sigma} =
+0.001\)</span>.</p>
+<p>We can parameterize BKMR by <span class="math inline">\(\lambda=\tau
+\sigma^{-2}\)</span>, and we assume a Gamma prior distribution for the
+variance component of <span class="math inline">\(\lambda\)</span>. For
+the smoothness parameter <span class="math inline">\(\rho\)</span>, we
+assume <span class="math inline">\(\rho \sim \operatorname{Unif}(a,
+b)\)</span> with <span class="math inline">\(a=0\)</span> and <span class="math inline">\(b=100\)</span>. For additional details regarding
+BKMR and prior specifications, see Bobb et al. (Bobb et al., <a href="https://academic.oup.com/biostatistics/article/16/3/493/269719" class="external-link">2015</a>,
+<a href="https://ehjournal.biomedcentral.com/articles/10.1186/s12940-018-0413-y" class="external-link">2018</a>)</p>
 </div>
 <div class="section level3">
 <h3 id="causal-mediation-analysis">Causal Mediation Analysis<a class="anchor" aria-label="anchor" href="#causal-mediation-analysis"></a>
@@ -170,40 +247,112 @@
 <center>
 <img src="cmadag.png" width="240">
 </center>
-<p>In order to define causal contrasts in a mediation context, we first define our notation. Let <span class="math inline">\(Y_{am}\)</span> denote the counterfactual outcome <span class="math inline">\(Y\)</span> if the exposure <span class="math inline">\(A\)</span> was set to level <span class="math inline">\(a\)</span> and mediator <span class="math inline">\(M\)</span> was set to level <span class="math inline">\(m\)</span>. Let <span class="math inline">\(M_a\)</span> be the counterfactual mediator <span class="math inline">\(M\)</span> that would have been observed if the exposure <span class="math inline">\(A\)</span> was set to level <span class="math inline">\(a\)</span>. Accordingly,<span class="math inline">\(Y_{aMa^∗}\)</span> represents the counterfactual outcome <span class="math inline">\(Y\)</span> if the exposure <span class="math inline">\(A\)</span> was set to level <span class="math inline">\(a\)</span> and the mediator <span class="math inline">\(M\)</span> was set to the level it would have taken if the exposure <span class="math inline">\(A\)</span> was set to level <span class="math inline">\(a^∗\)</span>.</p>
-<p>The mediated effects of interest, the TE, the NDE, the NIE, and the CDEs, are formally defined as:</p>
+<p>In order to define causal contrasts in a mediation context, we first
+define our notation. Let <span class="math inline">\(Y_{am}\)</span>
+denote the counterfactual outcome <span class="math inline">\(Y\)</span>
+if the exposure <span class="math inline">\(A\)</span> was set to level
+<span class="math inline">\(a\)</span> and mediator <span class="math inline">\(M\)</span> was set to level <span class="math inline">\(m\)</span>. Let <span class="math inline">\(M_a\)</span> be the counterfactual mediator <span class="math inline">\(M\)</span> that would have been observed if the
+exposure <span class="math inline">\(A\)</span> was set to level <span class="math inline">\(a\)</span>. Accordingly,<span class="math inline">\(Y_{aMa^∗}\)</span> represents the counterfactual
+outcome <span class="math inline">\(Y\)</span> if the exposure <span class="math inline">\(A\)</span> was set to level <span class="math inline">\(a\)</span> and the mediator <span class="math inline">\(M\)</span> was set to the level it would have
+taken if the exposure <span class="math inline">\(A\)</span> was set to
+level <span class="math inline">\(a^∗\)</span>.</p>
+<p>The mediated effects of interest, the TE, the NDE, the NIE, and the
+CDEs, are formally defined as:</p>
 <p><span class="math display">\[
 \begin{aligned}
 \mathrm{TE} &amp;=\mathrm{E}\left[Y_a-Y_{a^*}\right] \\
-\mathrm{NDE} &amp;=\mathrm{E}\left[Y_{a M_{a^*}}-Y_{a^* M_{a^*}}\right] \\
+\mathrm{NDE} &amp;=\mathrm{E}\left[Y_{a M_{a^*}}-Y_{a^* M_{a^*}}\right]
+\\
 \mathrm{NIE} &amp;=\mathrm{E}\left[Y_{a M_a}-Y_{a M_{a^*}}\right] \\
 \mathrm{CDE}(m) &amp;=\mathrm{E}\left[Y_{a m}-Y_{a^* m}\right]
 \end{aligned}
 \]</span></p>
-<p>The NDE captures the average difference in the counterfactual outcomes for a change in exposure level <span class="math inline">\(a^∗\)</span> to <span class="math inline">\(a\)</span> , while fixing the mediator to the level it would have taken if the exposure was set to <span class="math inline">\(a^∗\)</span>. The NIE measures the average difference in counterfactual outcomes when fixing the exposure to level <span class="math inline">\(a\)</span>, while the mediator varies from the level it would have taken if the exposure was set to a compared to <span class="math inline">\(a^∗\)</span>. The CDE quantifies the average difference in the counterfactual outcomes for a change in exposure level from <span class="math inline">\(a^∗\)</span> to <span class="math inline">\(a\)</span> , while intervening to fix the mediator to a specified level, <span class="math inline">\(m\)</span>.</p>
+<p>The NDE captures the average difference in the counterfactual
+outcomes for a change in exposure level <span class="math inline">\(a^∗\)</span> to <span class="math inline">\(a\)</span> , while fixing the mediator to the
+level it would have taken if the exposure was set to <span class="math inline">\(a^∗\)</span>. The NIE measures the average
+difference in counterfactual outcomes when fixing the exposure to level
+<span class="math inline">\(a\)</span>, while the mediator varies from
+the level it would have taken if the exposure was set to a compared to
+<span class="math inline">\(a^∗\)</span>. The CDE quantifies the average
+difference in the counterfactual outcomes for a change in exposure level
+from <span class="math inline">\(a^∗\)</span> to <span class="math inline">\(a\)</span> , while intervening to fix the mediator
+to a specified level, <span class="math inline">\(m\)</span>.</p>
 </div>
 <div class="section level3">
 <h3 id="bayesian-kernel-machine-regression-causal-mediation-analysis">Bayesian kernel machine regression-causal mediation analysis<a class="anchor" aria-label="anchor" href="#bayesian-kernel-machine-regression-causal-mediation-analysis"></a>
 </h3>
-<p>For BKMR-Causal Mediation Analysis (BKMR-CMA), we consider a single normally distributed health outcome <span class="math inline">\(Y\)</span>, single normally distributed mediator variable <span class="math inline">\(M\)</span>, continuous exposure mixture <span class="math inline">\(\mathbf{A}\)</span>, continuous effect modifiers <span class="math inline">\(\mathbf{E}_M\)</span> that may have a complex relationship with the exposures on the mediator, and continuous effect modifiers <span class="math inline">\(\mathbf{E}_Y\)</span> that may have a complex relationship with the exposures and mediator on the outcome. Let <span class="math inline">\(\mathbf{Z}_M=\left(\mathbf{A}, \mathbf{E}_M\right)\)</span> and <span class="math inline">\(\mathbf{Z}_Y=\left(\mathbf{A}, \mathbf{E}_Y\right)\)</span> be matrices containing all of the exposure variables (e.g., metals) and the effect modifiers to include in the prospective kernel functions. Although <span class="math inline">\(\mathbf{Z}_M\)</span> and <span class="math inline">\(\mathbf{Z}_Y\)</span> might be the same sets of variables, our framework allows for them to differ. Additionally, one or both of the sets of variables <span class="math inline">\(\mathbf{E}_M\)</span> or <span class="math inline">\(\mathbf{E}_Y\)</span> could be empty (i.e., there are no effect modifiers that interact with the exposures and/or have a nonlinear relationship with the mediator or outcome). Lastly, let <span class="math inline">\(\mathbf{C}\)</span> be a matrix of confounders assumed to have a linear effect on the outcome. To allow for potentially complex relationships between the elements in <span class="math inline">\(\mathbf{Z}_M\)</span>, we model the mediator variable using the BMKR model:</p>
+<p>For BKMR-Causal Mediation Analysis (BKMR-CMA), we consider a single
+normally distributed health outcome <span class="math inline">\(Y\)</span>, single normally distributed mediator
+variable <span class="math inline">\(M\)</span>, continuous exposure
+mixture <span class="math inline">\(\mathbf{A}\)</span>, continuous
+effect modifiers <span class="math inline">\(\mathbf{E}_M\)</span> that
+may have a complex relationship with the exposures on the mediator, and
+continuous effect modifiers <span class="math inline">\(\mathbf{E}_Y\)</span> that may have a complex
+relationship with the exposures and mediator on the outcome. Let <span class="math inline">\(\mathbf{Z}_M=\left(\mathbf{A},
+\mathbf{E}_M\right)\)</span> and <span class="math inline">\(\mathbf{Z}_Y=\left(\mathbf{A},
+\mathbf{E}_Y\right)\)</span> be matrices containing all of the exposure
+variables (e.g., metals) and the effect modifiers to include in the
+prospective kernel functions. Although <span class="math inline">\(\mathbf{Z}_M\)</span> and <span class="math inline">\(\mathbf{Z}_Y\)</span> might be the same sets of
+variables, our framework allows for them to differ. Additionally, one or
+both of the sets of variables <span class="math inline">\(\mathbf{E}_M\)</span> or <span class="math inline">\(\mathbf{E}_Y\)</span> could be empty (i.e., there
+are no effect modifiers that interact with the exposures and/or have a
+nonlinear relationship with the mediator or outcome). Lastly, let <span class="math inline">\(\mathbf{C}\)</span> be a matrix of confounders
+assumed to have a linear effect on the outcome. To allow for potentially
+complex relationships between the elements in <span class="math inline">\(\mathbf{Z}_M\)</span>, we model the mediator
+variable using the BMKR model:</p>
 <p><span class="math display">\[
-M_i=h_M\left(\mathbf{Z}_{M i}\right)+\mathbf{C}_i^T \boldsymbol{\beta}+\epsilon_{M i},
+M_i=h_M\left(\mathbf{Z}_{M i}\right)+\mathbf{C}_i^T
+\boldsymbol{\beta}+\epsilon_{M i},
 \]</span></p>
-<p>where <span class="math inline">\(\epsilon_{M i} \stackrel{u d}{\sim} N\left(0, \sigma_M^2\right)\)</span>. Since accounting for exposure-mediator interactions is important to obtain unbiased effect estimates, we include the mediator variable along with <span class="math inline">\(\mathbf{Z}_Y\)</span> in the kernel function when modeling the health outcome in : <span class="math display">\[
-Y_i=h_Y\left(\mathbf{Z}_{Y i}, M_i\right)+\mathbf{C}_i^T \boldsymbol{\theta}+\epsilon_{Y i},
-\]</span> where <span class="math inline">\(\epsilon_{Y i} \stackrel{i i d}{\sim} N\left(0, \sigma_Y^2\right)\)</span>. By fitting the models separately, we assume <span class="math inline">\(\epsilon_{M i}\)</span> and <span class="math inline">\(\epsilon_{Y i}\)</span> are independent. To model the TE of the exposure mixture on the outcome, we consider BKMR model : <span class="math display">\[
-Y_i=h_{T E}\left(\mathbf{Z}_{Y i}\right)+\mathbf{C}_i^T \gamma+\epsilon_{T E i},
-\]</span> where <span class="math inline">\(\epsilon_{T E i} \stackrel{i d d}{\sim} N\left(0, \sigma_{T E}^2\right)\)</span></p>
-<p>We estimate the TE, NDE, and NIE using BKMR-CMA at particular levels of the effect modifiers, <span class="math inline">\(\mathbf{e}_M\)</span> and <span class="math inline">\(\mathbf{e}_Y\)</span>, for a change in exposure mixture from <span class="math inline">\(\boldsymbol{a}^*\)</span> to <span class="math inline">\(\boldsymbol{a}\)</span> via the following algorithm, where we let <span class="math inline">\(\mathbf{z}_M=\left(\boldsymbol{\alpha}, \mathbf{e}_M\right), \mathbf{z}_M^*=\left(\boldsymbol{a}^*, \mathbf{e}_M\right), \mathbf{z}_Y=\)</span> <span class="math inline">\(\left(\boldsymbol{a}, \mathbf{e}_Y\right)\)</span>, and <span class="math inline">\(\mathbf{z}_Y^*=\left(\boldsymbol{a}^*, \mathbf{e}_Y\right)\)</span>. This corresponds to a fixed intervention in the exposures. It is of utmost importance that careful thought is given to the choice of values for <span class="math inline">\(\boldsymbol{a}^*\)</span> and <span class="math inline">\(\boldsymbol{a}\)</span> as well as <span class="math inline">\(\mathbf{e}_M\)</span> and <span class="math inline">\(\mathbf{e}_Y\)</span> used to estimate the mediation effects. These values should lie within the support of the multivariate distribution of the data to ensure that the values compared are observable in the population under study.</p>
-<p>For additional details regarding BKMR-CMA algorithm, see <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/sim.9255" class="external-link">Devick et al.</a></p>
+<p>where <span class="math inline">\(\epsilon_{M i} \stackrel{u d}{\sim}
+N\left(0, \sigma_M^2\right)\)</span>. Since accounting for
+exposure-mediator interactions is important to obtain unbiased effect
+estimates, we include the mediator variable along with <span class="math inline">\(\mathbf{Z}_Y\)</span> in the kernel function when
+modeling the health outcome in : <span class="math display">\[
+Y_i=h_Y\left(\mathbf{Z}_{Y i}, M_i\right)+\mathbf{C}_i^T
+\boldsymbol{\theta}+\epsilon_{Y i},
+\]</span> where <span class="math inline">\(\epsilon_{Y i} \stackrel{i i
+d}{\sim} N\left(0, \sigma_Y^2\right)\)</span>. By fitting the models
+separately, we assume <span class="math inline">\(\epsilon_{M
+i}\)</span> and <span class="math inline">\(\epsilon_{Y i}\)</span> are
+independent. To model the TE of the exposure mixture on the outcome, we
+consider BKMR model : <span class="math display">\[
+Y_i=h_{T E}\left(\mathbf{Z}_{Y i}\right)+\mathbf{C}_i^T
+\gamma+\epsilon_{T E i},
+\]</span> where <span class="math inline">\(\epsilon_{T E i} \stackrel{i
+d d}{\sim} N\left(0, \sigma_{T E}^2\right)\)</span></p>
+<p>We estimate the TE, NDE, and NIE using BKMR-CMA at particular levels
+of the effect modifiers, <span class="math inline">\(\mathbf{e}_M\)</span> and <span class="math inline">\(\mathbf{e}_Y\)</span>, for a change in exposure
+mixture from <span class="math inline">\(\boldsymbol{a}^*\)</span> to
+<span class="math inline">\(\boldsymbol{a}\)</span> via the following
+algorithm, where we let <span class="math inline">\(\mathbf{z}_M=\left(\boldsymbol{\alpha},
+\mathbf{e}_M\right), \mathbf{z}_M^*=\left(\boldsymbol{a}^*,
+\mathbf{e}_M\right), \mathbf{z}_Y=\)</span> <span class="math inline">\(\left(\boldsymbol{a},
+\mathbf{e}_Y\right)\)</span>, and <span class="math inline">\(\mathbf{z}_Y^*=\left(\boldsymbol{a}^*,
+\mathbf{e}_Y\right)\)</span>. This corresponds to a fixed intervention
+in the exposures. It is of utmost importance that careful thought is
+given to the choice of values for <span class="math inline">\(\boldsymbol{a}^*\)</span> and <span class="math inline">\(\boldsymbol{a}\)</span> as well as <span class="math inline">\(\mathbf{e}_M\)</span> and <span class="math inline">\(\mathbf{e}_Y\)</span> used to estimate the
+mediation effects. These values should lie within the support of the
+multivariate distribution of the data to ensure that the values compared
+are observable in the population under study.</p>
+<p>For additional details regarding BKMR-CMA algorithm, see <a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/sim.9255" class="external-link">Devick
+et al.</a></p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
 </h2>
-<p>Devick, Katrina L., et al. “Bayesian kernel machine regression‐causal mediation analysis.” Statistics in Medicine 41.5 (2022): 860-876.</p>
-<p>Bobb JF, Claus Henn B, Valeri L, Coull BA. 2018. Statistical software for analyzing the health effects of multiple concurrent exposures via Bayesian kernel machine regression. Environ Health 17:67; <a href="doi:10.1186/s12940-018-0413-y" class="uri">doi:10.1186/s12940-018-0413-y</a>.</p>
-<p>Bobb JF, Valeri L, Claus Henn B, Christiani DC, Wright RO, Mazumdar M, et al. 2015. Bayesian kernel machine regression for estimating the health effects of multi-pollutant mixtures. Biostatistics 16:493–508; <a href="doi:10.1093/biostatistics/kxu058" class="uri">doi:10.1093/biostatistics/kxu058</a>.</p>
-<p>Valeri L, Mazumdar M, Bobb J, Claus Henn B, Sharif O, Al. E. 2017. The joint effect of prenatal exposure to metal mixtures on neurodevelopmental outcomes at 24 months: evidence from rural Bangladesh. Env Heal Perspect 125; <a href="doi:DOI" class="uri">doi:DOI</a>: 10.1289/EHP614.</p>
+<p>Devick, Katrina L., et al. “Bayesian kernel machine regression‐causal
+mediation analysis.” Statistics in Medicine 41.5 (2022): 860-876.</p>
+<p>Bobb JF, Claus Henn B, Valeri L, Coull BA. 2018. Statistical software
+for analyzing the health effects of multiple concurrent exposures via
+Bayesian kernel machine regression. Environ Health 17:67; <a href="doi:10.1186/s12940-018-0413-y" class="uri">doi:10.1186/s12940-018-0413-y</a>.</p>
+<p>Bobb JF, Valeri L, Claus Henn B, Christiani DC, Wright RO, Mazumdar
+M, et al. 2015. Bayesian kernel machine regression for estimating the
+health effects of multi-pollutant mixtures. Biostatistics 16:493–508; <a href="doi:10.1093/biostatistics/kxu058" class="uri">doi:10.1093/biostatistics/kxu058</a>.</p>
+<p>Valeri L, Mazumdar M, Bobb J, Claus Henn B, Sharif O, Al. E. 2017.
+The joint effect of prenatal exposure to metal mixtures on
+neurodevelopmental outcomes at 24 months: evidence from rural
+Bangladesh. Env Heal Perspect 125; <a href="doi:DOI" class="uri">doi:DOI</a>: 10.1289/EHP614.</p>
 </div>
   </div>
 
@@ -224,7 +373,7 @@ Y_i=h_{T E}\left(\mathbf{Z}_{Y i}\right)+\mathbf{C}_i^T \gamma+\epsilon_{T E i},
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
