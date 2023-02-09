@@ -7,6 +7,7 @@
 mediation.bkmr(
   a,
   astar,
+  e.m = NULL,
   e.y,
   fit.m = NULL,
   fit.y = NULL,
@@ -26,6 +27,8 @@ mediation.bkmr(
 \item{a}{exposure variables at current level}
 
 \item{astar}{exposure variables at counterfactual level}
+
+\item{e.m}{effect modifier for the mediator variable}
 
 \item{e.y}{effect modifier for the outcome variable}
 

@@ -7,6 +7,7 @@
 YaMastar.SamplePred(
   a,
   astar,
+  e.m = NULL,
   e.y,
   fit.m,
   fit.y,
@@ -21,6 +22,8 @@ YaMastar.SamplePred(
 \item{a}{exposure variables at current level}
 
 \item{astar}{exposure variables at counterfactual level}
+
+\item{e.m}{effect modifier for the mediator variable}
 
 \item{e.y}{effect modifier for the outcome variable}
 
