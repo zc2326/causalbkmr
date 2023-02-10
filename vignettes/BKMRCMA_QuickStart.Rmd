@@ -9,6 +9,7 @@ vignette: >
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
+  dpi = 300, 
   collapse = TRUE,
   comment = "#>"
 )
@@ -20,6 +21,7 @@ library(bkmr)
 library(mixtools)
 library(causalbkmr)
 library(ggplot2)
+library(ggpubr)
 ```
 
 In this scenario, we have a continuous mediator $M$, a continuous outcome $Y$, and `x2` as the effect modifier on $Y$. The sample size is 50 and there are 3 covariates. 
@@ -116,7 +118,7 @@ TE.ey90 <- TE.bkmr(a=a, astar=astar, e.y = e.y90, fit.y.TE=fit.y.TE, X.predict=X
 
 Look at the posterior mean, median, and 95% CI for TE:
 
-```{r}
+```{r fig.width=4}
 TE.ey10$est
 TE.ey90$est
 
@@ -147,7 +149,7 @@ CDE.ey90$est
 
 Plotting:
 
-```{r warning=FALSE} 
+```{r warning=FALSE,fig.width=4} 
 plotdf <- as.data.frame(CDE.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -177,7 +179,7 @@ mediationeffects.ey90$est
 
 Plotting
 
-```{r}
+```{r fig.width=4}
 plotdf <- as.data.frame(mediationeffects.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -211,13 +213,13 @@ ggplot(riskSummary90,
 
 ### Risk Summary For Controlled Direct Effect
 
-```{r CDERisk, warning=FALSE, message=FALSE, results='hide'} 
+```{r CDERisk, warning=FALSE, message=FALSE, results='hide',fig.width=4} 
 # CDE 
 CDEriskSummary10 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y10, e.y.name = "E.Y", m.name = "m", sel = sel)
 
 ```
 
-```{r}
+```{r fig.width=4}
 ggplot(CDEriskSummary10, aes(quantile, est, ymin = est - 1.96*sd, 
                              ymax = est + 1.96*sd, col = m)) + 
   geom_pointrange(position = position_dodge(width = 0.75))
@@ -227,7 +229,7 @@ ggplot(CDEriskSummary10, aes(quantile, est, ymin = est - 1.96*sd,
 CDEriskSummary90 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y90, e.y.name = "E.Y", m.name = "m", sel = sel)
 ```
 
-```{r}
+```{r fig.width=4}
 ggplot(CDEriskSummary90, aes(quantile, est, ymin = est - 1.96*sd, 
                              ymax = est + 1.96*sd, col = m)) + 
   geom_pointrange(position = position_dodge(width = 0.75))
@@ -236,7 +238,7 @@ ggplot(CDEriskSummary90, aes(quantile, est, ymin = est - 1.96*sd,
 ## Single-predictor health risks
 
 ### Total Effect
-```{r warning=FALSE, message=FALSE}
+```{r warning=FALSE, message=FALSE, fig.width=4}
  
 risks.singvar10 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
                                            e.y=e.y10, e.y.names="E.Y",
@@ -267,7 +269,7 @@ CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
 ```
 
 
-```{r}
+```{r fig.width=4}
 ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
                             ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
@@ -280,10 +282,44 @@ CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                                  sel=sel)
 ```
 
-```{r}
+```{r fig.width=4}
 ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
                                ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
   coord_flip()
+
+```
+
+
+### Joint effect of co-exposure to Z1, Z2 and Z3 and single variable effects, presented when the Effect Modifier is fixed at its 10th percentile or 90th percentile
+
+```{r warning=FALSE, message=FALSE}
+list.fit.y <- list(fit.y)
+colnames(list.fit.y[[1]]$Z) <- c("z1", "z2", "z3", "E.Y", "m")
+
+overallrisks.y.joint.x10 <- OverallRiskSummaries.MI(BKMRfits=list.fit.y , qs = seq(0.1, 0.9, by = 0.05), q.fixed = 0.5, q.alwaysfixed = 0.1, index.alwaysfixed = 4, sel = sel, method="approx") 
+singvarrisks.y.joint.x10   <- SingVarRiskSummaries.MI(BKMRfits=list.fit.y,  qs.diff = c(0.25, 0.75),  q.fixed = c(0.25, 0.50, 0.75), q.alwaysfixed = 0.1, index.alwaysfixed = 4, sel=sel, method = "approx")
+
+overallrisks.y.joint.x90 <- OverallRiskSummaries.MI(BKMRfits=list.fit.y, qs = seq(0.1, 0.9, by = 0.05), q.fixed = 0.5, q.alwaysfixed = 0.9, index.alwaysfixed = 4, sel = sel, method="approx") 
+singvarrisks.y.joint.x90  <- SingVarRiskSummaries.MI(BKMRfits=list.fit.y, which.z=c(1,2,3), qs.diff = c(0.25, 0.75), q.fixed = c(0.25, 0.50, 0.75), q.alwaysfixed = 0.9, index.alwaysfixed = 4, sel=sel, method = "approx")
+
+
+pA <- ggplot(overallrisks.y.joint.x10, aes(quantile, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd)) +  geom_hline(yintercept=00, linetype="dashed", color="gray")+ 
+  geom_pointrange()+ ggtitle("")+ scale_y_continuous(name="estimate") 
+
+
+pB <- ggplot(singvarrisks.y.joint.x10 , aes(variable, est, ymin = est - 1.96*sd,  ymax = est + 1.96*sd, col = q.fixed)) +  geom_hline(aes(yintercept=0), linetype="dashed", color="gray")+ 
+  geom_pointrange(position = position_dodge(width = 0.75)) +  coord_flip() + ggtitle("")+ theme(legend.position="none")+
+  scale_x_discrete(name="")+ scale_y_continuous(name="estimate")  
+
+
+pC <- ggplot(overallrisks.y.joint.x90, aes(quantile, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd)) +  geom_hline(yintercept=00, linetype="dashed", color="gray")+ 
+  geom_pointrange()+ ggtitle("")+ scale_y_continuous(name="estimate") 
+
+pD <- ggplot(singvarrisks.y.joint.x10 , aes(variable, est, ymin = est - 1.96*sd,  ymax = est + 1.96*sd, col = q.fixed)) +  geom_hline(aes(yintercept=0), linetype="dashed", color="gray")+ 
+  geom_pointrange(position = position_dodge(width = 0.75)) +  coord_flip() + ggtitle("")+ theme(legend.position="none")+
+  scale_x_discrete(name="")+ scale_y_continuous(name="estimate")  
+
+ggarrange(pA, pB, pC, pD, ncol=2, nrow =2)
 
 ```
