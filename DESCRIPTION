@@ -23,7 +23,8 @@ Imports:
     tibble, 
     SimDesign,
     fields, 
-    magrittr
+    magrittr, 
+    ggpubr
 Suggests: 
     rmarkdown,
     knitr, 
