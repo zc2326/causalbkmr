@@ -25,6 +25,8 @@ navbar:
       href: articles/bkmrcma_example_scenario3.html
     - text: Example 4 - continuous M and binary Y
       href: articles/bkmrcma_example_scenario4.html
+    - text: Effect estimates when Effect Modifier is fixed
+      href: articles/BKMRCMA_Effectof_singleZ.html
 
   - text: BKMR-MI
     menu:
