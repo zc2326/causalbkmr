@@ -1,0 +1,19 @@
+---
+title: "BKMRCMA_Effectof_singleZ"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{BKMRCMA_Effectof_singleZ}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(causalbkmr)
+```
