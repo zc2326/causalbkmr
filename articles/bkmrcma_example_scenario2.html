@@ -248,7 +248,7 @@ its 10th percentile or 90th percentile:</p>
 <span><span class="va">plotdf</span><span class="op">[</span><span class="st">"Effect"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">plotdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plotdf</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Effect</span>, <span class="va">mean</span>, ymin <span class="op">=</span> <span class="va">lower</span>, ymax <span class="op">=</span> <span class="va">upper</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-6-1.png" width="1458.33333333333"></p>
+<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-6-1.png" width="2187.5"></p>
 </div>
 <div class="section level2">
 <h2 id="estimate-cde-for-bkmr">Estimate CDE for BKMR<a class="anchor" aria-label="anchor" href="#estimate-cde-for-bkmr"></a>
@@ -286,7 +286,7 @@ percentile:</p>
 <span><span class="va">plotdf</span><span class="op">[</span><span class="st">"Effect"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">rownames</a></span><span class="op">(</span><span class="va">plotdf</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">plotdf</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">Effect</span>, <span class="va">mean</span>, ymin <span class="op">=</span> <span class="va">lower</span>, ymax <span class="op">=</span> <span class="va">upper</span> <span class="op">)</span><span class="op">)</span>  <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span>  <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-8-1.png" width="2187.5"></p>
 </div>
 <div class="section level2">
 <h2 id="estimate-ndenie-for-bkmr">Estimate NDE/NIE for BKMR<a class="anchor" aria-label="anchor" href="#estimate-ndenie-for-bkmr"></a>
@@ -305,16 +305,16 @@ NIE</p>
 <code class="sourceCode R"><span><span class="va">mediationeffects.ey10</span><span class="op">$</span><span class="va">est</span></span>
 <span><span class="co">#&gt;              mean      median       lower     upper        sd</span></span>
 <span><span class="co">#&gt; TE     0.30916635 0.314290915 -0.02660571 0.5727188 0.1549434</span></span>
-<span><span class="co">#&gt; NDE    0.29834270 0.301233360 -0.33291485 0.9103089 0.3239850</span></span>
-<span><span class="co">#&gt; NIE    0.01082364 0.004102463 -0.59770537 0.6713659 0.3193340</span></span>
+<span><span class="co">#&gt; NDE    0.29818254 0.301233360 -0.33291485 0.9103089 0.3238701</span></span>
+<span><span class="co">#&gt; NIE    0.01098381 0.004102463 -0.59739418 0.6713659 0.3191244</span></span>
 <span><span class="co">#&gt; CDE10% 0.28813715 0.295343850 -0.10165967 0.6682970 0.1904052</span></span>
 <span><span class="co">#&gt; CDE50% 0.34321913 0.342000447 -0.04373672 0.7398543 0.1917391</span></span>
 <span><span class="co">#&gt; CDE75% 0.34321913 0.342000447 -0.04373672 0.7398543 0.1917391</span></span>
 <span><span class="va">mediationeffects.ey90</span><span class="op">$</span><span class="va">est</span></span>
 <span><span class="co">#&gt;                mean      median       lower     upper        sd</span></span>
 <span><span class="co">#&gt; TE      0.415301283  0.40574600  0.11468494 0.7543082 0.1656023</span></span>
-<span><span class="co">#&gt; NDE     0.422781310  0.40948509 -0.27526006 1.1759479 0.3487023</span></span>
-<span><span class="co">#&gt; NIE    -0.007480027 -0.01404017 -0.74070549 0.7414162 0.3649172</span></span>
+<span><span class="co">#&gt; NDE     0.422672544  0.40739621 -0.27526006 1.1759479 0.3486962</span></span>
+<span><span class="co">#&gt; NIE    -0.007371261 -0.01404017 -0.74070549 0.7414162 0.3648544</span></span>
 <span><span class="co">#&gt; CDE10%  0.386433102  0.39061531 -0.03306667 0.8217995 0.2082319</span></span>
 <span><span class="co">#&gt; CDE50%  0.437912375  0.43447120  0.05164739 0.8499772 0.2022834</span></span>
 <span><span class="co">#&gt; CDE75%  0.437912375  0.43447120  0.05164739 0.8499772 0.2022834</span></span></code></pre></div>
@@ -341,7 +341,7 @@ NIE</p>
 <span>           ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> <span class="va">sd</span>,</span>
 <span>           ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> <span class="va">sd</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="bkmrcma_example_scenario2_files/figure-html/TERisk-1.png" width="700"></p>
+<p><img src="bkmrcma_example_scenario2_files/figure-html/TERisk-1.png" width="2187.5"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">riskSummary90</span> <span class="op">=</span> <span class="fu"><a href="../reference/TERiskSummaries.CMA.html">TERiskSummaries.CMA</a></span><span class="op">(</span>fit.TE <span class="op">=</span> <span class="va">fit.y.TE</span>, e.y<span class="op">=</span><span class="va">e.y90</span>, e.y.name <span class="op">=</span> <span class="st">"E.Y"</span>, sel<span class="op">=</span><span class="va">sel</span><span class="op">)</span></span>
@@ -352,7 +352,7 @@ NIE</p>
 <span>           ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> <span class="va">sd</span>,</span>
 <span>           ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> <span class="va">sd</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="bkmrcma_example_scenario2_files/figure-html/TERisk-2.png" width="700"></p>
+<p><img src="bkmrcma_example_scenario2_files/figure-html/TERisk-2.png" width="2187.5"></p>
 <p>Since there’s no effect modification, the two above figures are
 similar.</p>
 </div>
@@ -366,14 +366,14 @@ similar.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CDEriskSummary10</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">quantile</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, </span>
 <span>                             ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">m</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
+<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-11-1.png" width="2187.5"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CDEriskSummary90</span> <span class="op">=</span> <span class="fu"><a href="../reference/CDERiskSummaries.CMA.html">CDERiskSummaries.CMA</a></span><span class="op">(</span>fit.y <span class="op">=</span> <span class="va">fit.y</span>, e.y <span class="op">=</span> <span class="va">e.y90</span>, e.y.name <span class="op">=</span> <span class="st">"E.Y"</span>, m.name <span class="op">=</span> <span class="st">"m"</span>, sel <span class="op">=</span> <span class="va">sel</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CDEriskSummary90</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">quantile</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, </span>
 <span>                             ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">m</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-12-1.png" width="2187.5"></p>
 <p>Since there’s no effect modification, the two above figures are
 similar. ## Single-predictor health risks</p>
 </div>
@@ -417,7 +417,7 @@ similar.</p>
 <span>                            ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">q.fixed</span>, linetype <span class="op">=</span> <span class="va">m.fixed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-14-1.png" width="2187.5"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CDErisks.singvar90</span> <span class="op">=</span> <span class="fu"><a href="../reference/CDESingVarRiskSummaries.CMA.html">CDESingVarRiskSummaries.CMA</a></span><span class="op">(</span>BKMRfits <span class="op">=</span> <span class="va">fit.y</span>,</span>
 <span>                                                 e.y<span class="op">=</span><span class="va">e.y90</span>, e.y.names<span class="op">=</span><span class="st">"E.Y"</span>, m.name <span class="op">=</span> <span class="st">"m"</span>,</span>
@@ -427,7 +427,7 @@ similar.</p>
 <span>                               ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">q.fixed</span>, linetype <span class="op">=</span> <span class="va">m.fixed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-15-1.png" width="1458.33333333333"></p>
+<p><img src="bkmrcma_example_scenario2_files/figure-html/unnamed-chunk-15-1.png" width="2187.5"></p>
 <p>Since there’s no effect modification, the two above figures are
 similar.</p>
 </div>
