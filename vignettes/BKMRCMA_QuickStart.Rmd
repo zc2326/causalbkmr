@@ -118,7 +118,7 @@ TE.ey90 <- TE.bkmr(a=a, astar=astar, e.y = e.y90, fit.y.TE=fit.y.TE, X.predict=X
 
 Look at the posterior mean, median, and 95% CI for TE:
 
-```{r fig.width=4}
+```{r fig.width=4,dpi = 300}
 TE.ey10$est
 TE.ey90$est
 
@@ -149,7 +149,7 @@ CDE.ey90$est
 
 Plotting:
 
-```{r warning=FALSE,fig.width=4} 
+```{r warning=FALSE,fig.width=4,dpi = 300} 
 plotdf <- as.data.frame(CDE.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -179,7 +179,7 @@ mediationeffects.ey90$est
 
 Plotting
 
-```{r fig.width=4}
+```{r fig.width=4,dpi = 300}
 plotdf <- as.data.frame(mediationeffects.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -190,7 +190,7 @@ ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  +
 
 ### Risk Summary For Totel Effect
 
-```{r TERisk, warning=FALSE}
+```{r TERisk, warning=FALSE,dpi = 300}
 riskSummary10 = TERiskSummaries.CMA(fit.TE = fit.y.TE, e.y=e.y10, e.y.name = "E.Y", sel=sel)
 
 p_riskSummary10 <-ggplot(riskSummary10,
@@ -215,13 +215,13 @@ ggarrange(p_riskSummary10, p_riskSummary90, ncol=2, nrow =1)
 
 ### Risk Summary For Controlled Direct Effect
 
-```{r CDERisk, warning=FALSE, message=FALSE, results='hide',fig.width=4} 
+```{r CDERisk, warning=FALSE, message=FALSE, results='hide',dpi = 300} 
 # CDE 
 CDEriskSummary10 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y10, e.y.name = "E.Y", m.name = "m", sel = sel)
 
 ```
 
-```{r fig.width=4}
+```{r dpi = 300}
 plot_CDErisk10 <- ggplot(CDEriskSummary10, aes(quantile, est, ymin = est - 1.96*sd, 
                              ymax = est + 1.96*sd, col = m)) + 
   geom_pointrange(position = position_dodge(width = 0.75))  
@@ -231,7 +231,7 @@ plot_CDErisk10 <- ggplot(CDEriskSummary10, aes(quantile, est, ymin = est - 1.96*
 CDEriskSummary90 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y90, e.y.name = "E.Y", m.name = "m", sel = sel)
 ```
 
-```{r fig.width=4}
+```{r dpi = 300}
 plot_CDErisk90 <- ggplot(CDEriskSummary90, aes(quantile, est, ymin = est - 1.96*sd, 
                              ymax = est + 1.96*sd, col = m)) + 
   geom_pointrange(position = position_dodge(width = 0.75))
@@ -242,7 +242,7 @@ ggarrange(plot_CDErisk10, plot_CDErisk90, ncol=2, nrow =1)
 ## Single-predictor health risks
 
 ### Total Effect
-```{r warning=FALSE, message=FALSE, fig.width=4}
+```{r warning=FALSE, message=FALSE, dpi = 300}
  
 risks.singvar10 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
                                            e.y=e.y10, e.y.names="E.Y",
@@ -275,7 +275,7 @@ CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
 ```
 
 
-```{r fig.width=4}
+```{r dpi = 300}
 plotCDE10 <- ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
                             ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
@@ -288,7 +288,7 @@ CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                                  sel=sel)
 ```
 
-```{r fig.width=4}
+```{r dpi = 300}
 plotCDE90 <- ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
                                ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +

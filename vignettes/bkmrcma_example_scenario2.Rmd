@@ -115,7 +115,7 @@ TE.ey90 <- TE.bkmr(a=a, astar=astar, e.y = e.y90, fit.y.TE=fit.y.TE, X.predict=X
 
 Look at the posterior mean, median, and 95% CI for TE:
 
-```{r dpi = 200}
+```{r dpi = 300}
 TE.ey10$est
 TE.ey90$est
 
@@ -148,7 +148,7 @@ CDE.ey90$est
 
 Plotting:
 
-```{r warning=FALSE} 
+```{r warning=FALSE,dpi = 300} 
 plotdf <- as.data.frame(CDE.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -189,7 +189,7 @@ ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  +
 
 ### Risk Summary For Totel Effect
 
-```{r TERisk, warning=FALSE}
+```{r TERisk, warning=FALSE,dpi = 300}
 riskSummary10 = TERiskSummaries.CMA(fit.TE = fit.y.TE, e.y=e.y10, e.y.name = "E.Y", sel=sel)
 
 ggplot(riskSummary10,
@@ -219,7 +219,7 @@ CDEriskSummary10 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y10, e.y.name = "
 
 ```
 
-```{r}
+```{r dpi = 300}
 ggplot(CDEriskSummary10, aes(quantile, est, ymin = est - 1.96*sd, 
                              ymax = est + 1.96*sd, col = m)) + 
   geom_pointrange(position = position_dodge(width = 0.75))
@@ -229,7 +229,7 @@ ggplot(CDEriskSummary10, aes(quantile, est, ymin = est - 1.96*sd,
 CDEriskSummary90 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y90, e.y.name = "E.Y", m.name = "m", sel = sel)
 ```
 
-```{r}
+```{r dpi = 300}
 ggplot(CDEriskSummary90, aes(quantile, est, ymin = est - 1.96*sd, 
                              ymax = est + 1.96*sd, col = m)) + 
   geom_pointrange(position = position_dodge(width = 0.75))
@@ -271,7 +271,7 @@ CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
 ```
 
 
-```{r}
+```{r dpi = 300}
 ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
                             ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
@@ -284,7 +284,7 @@ CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                                  sel=sel)
 ```
 
-```{r dpi = 200}
+```{r dpi = 300}
 ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
                                ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
