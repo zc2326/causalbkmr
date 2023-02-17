@@ -143,7 +143,8 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/jenfb/bkmr" class="external-link">bkmr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/dsy109/mixtools" class="external-link">mixtools</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/zc2326/causalbkmr" class="external-link">causalbkmr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rpkgs.datanovia.com/ggpubr/" class="external-link">ggpubr</a></span><span class="op">)</span></span></code></pre></div>
 <p>In this scenario, we have a binary <span class="math inline">\(M\)</span>, a continuous outcome <span class="math inline">\(Y\)</span>, and no effect modification. The sample
 size is 50 and there are 3 covariates.</p>
 <div class="section level2">
@@ -309,16 +310,16 @@ NIE</p>
 <code class="sourceCode R"><span><span class="va">mediationeffects.ey10</span><span class="op">$</span><span class="va">est</span></span>
 <span><span class="co">#&gt;               mean      median      lower     upper        sd</span></span>
 <span><span class="co">#&gt; TE      0.94593757  0.94804084  0.7198756 1.1688652 0.1131085</span></span>
-<span><span class="co">#&gt; NDE     0.97650700  0.96133770  0.4041084 1.5122865 0.2878012</span></span>
-<span><span class="co">#&gt; NIE    -0.03056943 -0.03241357 -0.5850728 0.5677202 0.2879940</span></span>
+<span><span class="co">#&gt; NDE     0.97687919  0.96133770  0.4041084 1.5122865 0.2876060</span></span>
+<span><span class="co">#&gt; NIE    -0.03094162 -0.03898101 -0.5850728 0.5677202 0.2881401</span></span>
 <span><span class="co">#&gt; CDE10%  0.84526794  0.85391990  0.5286018 1.0973116 0.1433318</span></span>
 <span><span class="co">#&gt; CDE50%  0.86766860  0.87805519  0.5693485 1.1282255 0.1374816</span></span>
 <span><span class="co">#&gt; CDE75%  0.86766860  0.87805519  0.5693485 1.1282255 0.1374816</span></span>
 <span><span class="va">mediationeffects.ey90</span><span class="op">$</span><span class="va">est</span></span>
 <span><span class="co">#&gt;              mean     median      lower     upper        sd</span></span>
 <span><span class="co">#&gt; TE     0.94638543 0.94983721  0.7192391 1.1691483 0.1166110</span></span>
-<span><span class="co">#&gt; NDE    0.93592364 0.92888322  0.2986041 1.5583039 0.3127008</span></span>
-<span><span class="co">#&gt; NIE    0.01046179 0.01401281 -0.5507629 0.6581325 0.3196764</span></span>
+<span><span class="co">#&gt; NDE    0.93585319 0.92888322  0.2986041 1.5583039 0.3126441</span></span>
+<span><span class="co">#&gt; NIE    0.01053224 0.01401281 -0.5507629 0.6581325 0.3195609</span></span>
 <span><span class="co">#&gt; CDE10% 0.83077989 0.83275278  0.5200515 1.1285557 0.1525085</span></span>
 <span><span class="co">#&gt; CDE50% 0.85236830 0.85845312  0.5757799 1.1208304 0.1426577</span></span>
 <span><span class="co">#&gt; CDE75% 0.85236830 0.85845312  0.5757799 1.1208304 0.1426577</span></span></code></pre></div>
@@ -415,20 +416,20 @@ NIE</p>
 <span>                                           e.y<span class="op">=</span><span class="va">e.y10</span>, e.y.names<span class="op">=</span><span class="st">"E.Y"</span>, m.name <span class="op">=</span> <span class="st">"m"</span>,</span>
 <span>                                           sel<span class="op">=</span><span class="va">sel</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CDErisks.singvar10</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">variable</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>,</span>
+<code class="sourceCode R"><span><span class="va">plotCDE10</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CDErisks.singvar10</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">variable</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>,</span>
 <span>                            ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">q.fixed</span>, linetype <span class="op">=</span> <span class="va">m.fixed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<p><img src="bkmrcma_example_scenario3_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CDErisks.singvar90</span> <span class="op">=</span> <span class="fu"><a href="../reference/CDESingVarRiskSummaries.CMA.html">CDESingVarRiskSummaries.CMA</a></span><span class="op">(</span>BKMRfits <span class="op">=</span> <span class="va">fit.y</span>,</span>
 <span>                                                 e.y<span class="op">=</span><span class="va">e.y90</span>, e.y.names<span class="op">=</span><span class="st">"E.Y"</span>, m.name <span class="op">=</span> <span class="st">"m"</span>,</span>
 <span>                                                 sel<span class="op">=</span><span class="va">sel</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CDErisks.singvar90</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">variable</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>,</span>
+<code class="sourceCode R"><span><span class="va">plotCDE90</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">CDErisks.singvar90</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">variable</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>,</span>
 <span>                               ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">q.fixed</span>, linetype <span class="op">=</span> <span class="va">m.fixed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html" class="external-link">ggarrange</a></span><span class="op">(</span><span class="va">plotCDE10</span>, <span class="va">plotCDE90</span>, ncol<span class="op">=</span><span class="fl">2</span>, nrow <span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
 <p><img src="bkmrcma_example_scenario3_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 </div>
 </div>
