@@ -89,44 +89,59 @@ overallrisks.y.TE.joint.x90 <- OverallRiskSummaries.MI(BKMRfits=list.fit.y.TE, q
  
 
 pA <- ggplot(overallrisks.y.TE.joint.x10, aes(quantile, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd)) +  geom_hline(yintercept=00, linetype="dashed", color="gray")+ 
-  geom_pointrange()+ ggtitle("")+ scale_y_continuous(name="estimate") 
+  geom_pointrange()+ ggtitle("A")+ scale_y_continuous(name="estimate") 
  
-pC <- ggplot(overallrisks.y.TE.joint.x90, aes(quantile, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd)) +  geom_hline(yintercept=00, linetype="dashed", color="gray")+ 
-  geom_pointrange()+ ggtitle("")+ scale_y_continuous(name="estimate") 
+pB <- ggplot(overallrisks.y.TE.joint.x90, aes(quantile, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd)) +  geom_hline(yintercept=00, linetype="dashed", color="gray")+ 
+  geom_pointrange()+ ggtitle("B")+ scale_y_continuous(name="estimate") 
 
-ggarrange(pA , pC , ncol=2, nrow =1)
+ggarrange(pA , pB , ncol=2, nrow =1)
 ```
+
+Interpretation of the point estimate in figures A, B:
+
+$$E[Y^{z_1^*, z_2^*, z_3^*}|x_{EM} = x^q] - E[Y^{z_1, z_2, z_3}|x_{EM} = x^q]$$
+Figure (A). Overall effect of the mixture (estimates and 95% credible interval) , by comparing the value of `h` when all of predictors are at a particular percentile as compared to when all of them are at their 50th percentile, while the effect modifier `E.Y` is fixed at it's 10th percentile;
+
+
+Figure (B). Overall effect of the mixture (estimates and 95% credible interval) , by comparing the value of `h` when all of predictors are at a particular percentile as compared to when all of them are at their 50th percentile, while the effect modifier `E.Y` is fixed at it's 90th percentile. 
+
 
 
 ### Single exposure associations with outcome Y (estimates and 95% CI) presented when the age is fixed at its 10th percentile or 90th percentile
 
 
 ```{r}
-singvarrisk.y.TE.joint.x10  <- SingVarRiskSummaries.MI(BKMRfits=list.fit.y.TE, which.z=c(1,2,3), qs.diff = c(0.25, 0.75), q.alwaysfixed = 0.1, index.alwaysfixed = 4, sel=sel, method = "approx")
+singvarrisk.y.TE.joint.x10  <- SingVarRiskSummaries.MI(BKMRfits=list.fit.y.TE, which.z=c(1,2,3), qs.diff = c(0.25, 0.75), q.fixed = c(0.25, 0.50, 0.75), q.alwaysfixed = 0.1, index.alwaysfixed = 4, sel=sel, method = "approx")
 
-singvarrisk.y.TE.joint.x90  <- SingVarRiskSummaries.MI(BKMRfits=list.fit.y.TE, which.z=c(1,2,3), qs.diff = c(0.25, 0.75),q.fixed = c(0.25, 0.50, 0.75), q.alwaysfixed = 0.9, index.alwaysfixed = 4, sel=sel, method = "approx")
+singvarrisk.y.TE.joint.x90  <- SingVarRiskSummaries.MI(BKMRfits=list.fit.y.TE, which.z=c(1,2,3), qs.diff = c(0.25, 0.75), q.fixed = c(0.25, 0.50, 0.75), q.alwaysfixed = 0.9, index.alwaysfixed = 4, sel=sel, method = "approx")
 
-pB <- ggplot(singvarrisk.y.TE.joint.x10 , aes(variable, est, ymin = est - 1.96*sd,  ymax = est + 1.96*sd, col = q.fixed)) +  geom_hline(aes(yintercept=0), linetype="dashed", color="gray")+ 
+pC <- ggplot(singvarrisk.y.TE.joint.x10 , aes(variable, est, ymin = est - 1.96*sd,  ymax = est + 1.96*sd, col = q.fixed)) +  geom_hline(aes(yintercept=0), linetype="dashed", color="gray")+ 
   geom_pointrange(position = position_dodge(width = 0.75)) +  coord_flip() + ggtitle("")+ theme(legend.position="none")+
-  scale_x_discrete(name="")+ scale_y_continuous(name="estimate")  
+  scale_x_discrete(name="")+ scale_y_continuous(name="estimate")  + ggtitle("C")
 
 pD <- ggplot(singvarrisk.y.TE.joint.x90 , aes(variable, est, ymin = est - 1.96*sd,  ymax = est + 1.96*sd, col = q.fixed)) +  geom_hline(aes(yintercept=0), linetype="dashed", color="gray")+ 
-  geom_pointrange(position = position_dodge(width = 0.75)) +  coord_flip() + ggtitle("")+ theme(legend.position="none")+
-  scale_x_discrete(name="")+ scale_y_continuous(name="estimate")  
+  geom_pointrange(position = position_dodge(width = 0.75)) +  coord_flip() + ggtitle("")+ 
+  scale_x_discrete(name="")+ scale_y_continuous(name="estimate")  + ggtitle("D") 
 
-ggarrange(pB , pD , ncol=2, nrow =1)
+ggarrange(pC , pD , ncol=2, nrow =1)
 
 ```
 
+Interpretation of the point estimate in figures C, D:
 
-Interpretation of the point estimate in figures A, C:
+$Z_1$:
 
-$$E[Y^{z_1^*, z_2^*, z_3^*}|x_{EM} = x_q] - E[Y^{z_1, z_2, z_3}|x_{EM} = x_q]$$
+$$E[Y^{z_1^*, z_2^p, z_3^p}|x_{EM} = x^q] - E[Y^{z_1, z_2^p, z_3^p}|x_{EM} = x^q]$$
+$Z_2$:
 
-Interpretation of the point estimate in figures B, D:
+$$E[Y^{z_1^p, z_2^*, z_3^p}|x_{EM} = x^q] - E[Y^{z_1^p, z_2, z_3^p}|x_{EM} = x^q]$$
+$Z_3$:
+
+$$E[Y^{z_1^p, z_2^p, z_3^*}|x_{EM} = x^q] - E[Y^{z_1^p, z_2^p, z_3}|x_{EM} = x^q]$$
 
 
-$$E[Y^{z_1^*, z_2, z_3}|x_{EM} = x_q] - E[Y^{z_1, z_2, z_3}|x_{EM} = x_q]$$
+Figure (C). Single Exposure association (estimates and 95% credible intervals) while the effect modifier `E.Y` is fixed at it's 10th percentile. This plot compares the outcome when a single exposure is at the 75th vs. 25th percentile, when all the other exposures are fixed at either the 25th, 50th, or 75th percentile, and the effect modifier fixed at it's 10th percentile. 
 
-$$E[Y^{z_1, z_2^*, z_3}|x_{EM} = x_q] - E[Y^{z_1, z_2, z_3}|x_{EM} = x_q]$$
-$$E[Y^{z_1, z_2, z_3^*}|x_{EM} = x_q] - E[Y^{z_1, z_2, z_3}|x_{EM} = x_q]$$
+
+Figure (D).  Single Exposure association (estimates and 95% credible intervals) while the effect modifier `E.Y` is fixed at it's 90th percentile. This plot compares the outcome when a single exposure is at the 75th vs. 25th percentile, and the effect modifier fixed at it's 10th percentile. 
+

@@ -20,6 +20,7 @@ library(bkmr)
 library(mixtools)
 library(causalbkmr)
 library(ggplot2)
+library(ggpubr)
 ```
 
 In this scenario, we have a binary $M$, a continuous outcome $Y$, and no effect modification. The sample size is 50 and there are 3 covariates. 
@@ -259,7 +260,6 @@ ggplot(risks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
   coord_flip()
 ```
 
-
 ### Controlled Direct Effect 
 
 ```{r CDERisksingvar10, warning=FALSE, message=FALSE, results='hide'} 
@@ -271,7 +271,7 @@ CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
 
 
 ```{r}
-ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
+plotCDE10 <- ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
                             ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
   coord_flip()
@@ -283,10 +283,11 @@ CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                                  sel=sel)
 ```
 
-```{r}
-ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
+```{r }
+plotCDE90 <- ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
                                ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
   coord_flip()
-
+ggarrange(plotCDE10, plotCDE90, ncol=2, nrow =1)
 ```
+
