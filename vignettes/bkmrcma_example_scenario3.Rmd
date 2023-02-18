@@ -267,23 +267,17 @@ ggplot(risks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
 CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                            e.y=e.y10, e.y.names="E.Y", m.name = "m",
                                            sel=sel)
-```
 
-
-```{r}
 plotCDE10 <- ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
                             ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
   coord_flip()
-```
 
-```{r CDERisksingvaar, warning=FALSE, message=FALSE, results='hide'} 
+ 
 CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                                  e.y=e.y90, e.y.names="E.Y", m.name = "m",
                                                  sel=sel)
-```
 
-```{r }
 plotCDE90 <- ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
                                ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
