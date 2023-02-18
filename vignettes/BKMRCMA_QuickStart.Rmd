@@ -163,7 +163,7 @@ Estimate the TE, NDE and NIE for a change in the exposures from $a^*$ to $a$ fix
  
 Note: this step takes a while to run and will take longer for more complex BKMR fits, longer `sel` vectors and larger.
 
-```{r NDENIE, warning=FALSE, message=FALSE, results='hide'}
+```{r NDENIE, warning=FALSE, message=FALSE,  results='hide'}
 mediationeffects.ey10  <- mediation.bkmr(a=a, astar=astar, e.y = e.y10, fit.m=fit.m, fit.y=fit.y, fit.y.TE=fit.y.TE, X.predict.M=X.predict, X.predict.Y=X.predict, alpha=0.05, sel=sel, seed=22, K=10)
 
 mediationeffects.ey90  <- mediation.bkmr(a=a, astar=astar, e.y = e.y90, fit.m=fit.m, fit.y=fit.y, fit.y.TE=fit.y.TE, X.predict.M=X.predict, X.predict.Y=X.predict, alpha=0.05, sel=sel, seed=22, K=10) 
@@ -219,8 +219,7 @@ ggarrange(p_riskSummary10, p_riskSummary90, ncol=2, nrow =1)
 CDEriskSummary10 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y10, e.y.name = "E.Y", m.name = "m", sel = sel)
  
 plot_CDErisk10 <- ggplot(CDEriskSummary10, aes(quantile, est, ymin = est - 1.96*sd, 
-                             ymax = est + 1.96*sd, col = m)) + 
-  geom_pointrange(position = position_dodge(width = 0.75))   
+                             ymax = est + 1.96*sd, col = m)) + theme(legend.position="none") + geom_pointrange(position = position_dodge(width = 0.75))   
 
 CDEriskSummary90 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y90, e.y.name = "E.Y", m.name = "m", sel = sel)
 
@@ -234,7 +233,7 @@ ggarrange(plot_CDErisk10, plot_CDErisk90, ncol=2, nrow =1)
 ## Single-predictor health risks
 
 ### Total Effect
-```{r warning=FALSE, message=FALSE, dpi = 300}
+```{r warning=FALSE, message=FALSE, results='hide'}
  
 risks.singvar10 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
                                            e.y=e.y10, e.y.names="E.Y",
@@ -268,7 +267,7 @@ CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                            sel=sel) 
 plotCDE10 <- ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
                             ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
-  geom_pointrange(position = position_dodge(width = 0.75)) +
+  geom_pointrange(position = position_dodge(width = 0.75)) +theme(legend.position="none")+
   coord_flip() 
 
 CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,

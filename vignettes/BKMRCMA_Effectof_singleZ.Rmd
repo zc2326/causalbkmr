@@ -61,20 +61,7 @@ X.predict <- matrix(colMeans(X),nrow=1)
 sel<-seq(5000,10000,by=10)
 ```
 
-
-
-```{r TEModels, warning=FALSE}
-astar <- c(apply(A, 2, quantile, probs=0.25))  
-a <- c(apply(A, 2, quantile, probs=0.75))
-
-e.y10 = quantile(E.Y, probs=0.1)
-e.y90 = quantile(E.Y, probs=0.9)
-
-TE.ey10 <- TE.bkmr(a=a, astar=astar, e.y = e.y10, fit.y.TE=fit.y.TE, X.predict=X.predict, alpha=0.05, sel=sel, seed=122)
-
-TE.ey90 <- TE.bkmr(a=a, astar=astar, e.y = e.y90, fit.y.TE=fit.y.TE, X.predict=X.predict, alpha=0.05, sel=sel, seed=122)
-```
-
+ 
 
 ### Joint effect of co-exposure to Z1, Z2 and Z3 and single variable effects, presented when the Effect Modifier is fixed at its 10th percentile or 90th percentile
 
