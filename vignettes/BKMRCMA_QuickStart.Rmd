@@ -117,7 +117,7 @@ TE.ey90 <- TE.bkmr(a=a, astar=astar, e.y = e.y90, fit.y.TE=fit.y.TE, X.predict=X
 
 Look at the posterior mean, median, and 95% CI for TE:
 
-```{r  dpi = 300, fig.width=2}
+```{r  dpi = 300, fig.width=4, fig.height=2}
 TE.ey10$est
 TE.ey90$est
 
@@ -148,7 +148,7 @@ CDE.ey90$est
 
 Plotting:
 
-```{r dpi = 300, fig.width=3} 
+```{r dpi = 300, fig.width=3, fig.height=4} 
 plotdf <- as.data.frame(CDE.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -178,7 +178,7 @@ mediationeffects.ey90$est
 
 Plotting
 
-```{r  dpi = 300}
+```{r  dpi = 300, fig.width=3}
 plotdf <- as.data.frame(mediationeffects.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -227,34 +227,29 @@ plot_CDErisk90 <- ggplot(CDEriskSummary90, aes(quantile, est, ymin = est - 1.96*
                              ymax = est + 1.96*sd, col = m)) + 
   geom_pointrange(position = position_dodge(width = 0.75))
 ggarrange(plot_CDErisk10, plot_CDErisk90, ncol=2, nrow =1)
-
 ```
 
 ## Single-predictor health risks
 
 ### Total Effect
-```{r warning=FALSE, message=FALSE, results='hide'}
- 
+```{r TEsingvar, warning=FALSE, message=FALSE, results='hide'}
 risks.singvar10 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
                                            e.y=e.y10, e.y.names="E.Y",
                                            sel=sel)
 
-plot_singvar10 <- ggplot(risks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
-                            ymax = est + 1.96*sd, col = q.fixed)) +
+plot_singvar10 <- ggplot(risks.singvar10, aes(variable, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd, col = q.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
   coord_flip()
-
-
+ 
 risks.singvar90 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
                                            e.y=e.y90, e.y.names="E.Y",
                                            sel=sel)
 
-plot_singvar90 <- ggplot(risks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
-                            ymax = est + 1.96*sd, col = q.fixed)) +
+plot_singvar90 <- ggplot(risks.singvar90, aes(variable, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd, col = q.fixed)) +
   geom_pointrange(position = position_dodge(width = 0.75)) +
   coord_flip()
 
-ggarrange(plot_singvar10, plot_singvar90, ncol=2, nrow =1)
+ggarrange(plot_singvar10, plot_singvar90, ncol=2, nrow=1)
 ```
 
 
