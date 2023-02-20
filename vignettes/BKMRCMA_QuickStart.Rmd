@@ -117,7 +117,7 @@ TE.ey90 <- TE.bkmr(a=a, astar=astar, e.y = e.y90, fit.y.TE=fit.y.TE, X.predict=X
 
 Look at the posterior mean, median, and 95% CI for TE:
 
-```{r  dpi = 300, fig.width=4, fig.height=2}
+```{r   out.width = "25%"}
 TE.ey10$est
 TE.ey90$est
 
@@ -148,7 +148,7 @@ CDE.ey90$est
 
 Plotting:
 
-```{r dpi = 300, fig.width=3, fig.height=4} 
+```{r knitr::opts_chunk$set(out.width = "25%")} 
 plotdf <- as.data.frame(CDE.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
