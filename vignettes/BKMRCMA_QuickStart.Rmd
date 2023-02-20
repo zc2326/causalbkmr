@@ -117,7 +117,7 @@ TE.ey90 <- TE.bkmr(a=a, astar=astar, e.y = e.y90, fit.y.TE=fit.y.TE, X.predict=X
 
 Look at the posterior mean, median, and 95% CI for TE:
 
-```{r   out.width = "25%"}
+```{r   out.width = "50%"}
 TE.ey10$est
 TE.ey90$est
 
@@ -148,7 +148,8 @@ CDE.ey90$est
 
 Plotting:
 
-```{r knitr::opts_chunk$set(out.width = "25%")} 
+```{r } 
+knitr::opts_chunk$set(out.width = "25%")
 plotdf <- as.data.frame(CDE.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -178,7 +179,7 @@ mediationeffects.ey90$est
 
 Plotting
 
-```{r  dpi = 300, fig.width=3}
+```{r  out.width = "50%"}
 plotdf <- as.data.frame(mediationeffects.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -189,7 +190,7 @@ ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  +
 
 ### Risk Summary For Totel Effect
 
-```{r TERisk, warning=FALSE, dpi = 300}
+```{r TERisk, warning=FALSE, out.width = "100%"}
 riskSummary10 = TERiskSummaries.CMA(fit.TE = fit.y.TE, e.y=e.y10, e.y.name = "E.Y", sel=sel)
 
 p_riskSummary10 <-ggplot(riskSummary10,

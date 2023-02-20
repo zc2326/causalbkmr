@@ -1,6 +1,6 @@
 #' Calculate overall risk summaries when fixing multiple effect modifiers at certain levels
 #'
-#' @param BKMRfits  The BKMR model fit as a 'List' form.
+#' @param list.fit.y.TE  The Total Effect BKMR model fit in a 'List' form.
 #' @param qs  vector of quantiles at which to calculate the overall risk summary
 #' @param q.fixed  a second quantile at which to compare the estimated {h} function
 #' @param q.alwaysfixed  the quantile values in the point which we want to keep fixed for all comparisons
@@ -15,7 +15,7 @@
 #' For guided examples, go to https://zc2326.github.io/causalbkmr/articles/BKMRCMA_Effectof_singleZ.html
 #' @export
 #'
-OverallRiskSummaries.fixEY <- function(BKMRfits, qs = seq(0.25, 0.75, by = 0.05), q.fixed = 0.5,
+OverallRiskSummaries.fixEY <- function(list.fit.y.TE, qs = seq(0.25, 0.75, by = 0.05), q.fixed = 0.5,
                                        q.alwaysfixed = NULL,  EY.alwaysfixed.name = NULL,
                                        sel = NULL, method = "approx") {
   index.alwaysfixed <- which(colnames(list.fit.y.TE[[1]]$Z)   %in% EY.alwaysfixed.name )
