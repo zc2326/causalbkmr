@@ -24,7 +24,7 @@ OverallRiskSummaries.fixEY <- function(list.fit.y.TE, qs = seq(0.25, 0.75, by = 
   for(r in 1:length(q.alwaysfixed)){
     q.alwaysfixed_r <- q.alwaysfixed[r]
 
-    toreturn[[r]] <- OverallRiskSummaries.MI(BKMRfits=list.fit.y.TE, qs = qs,
+    toreturn[[r]] <- OverallRiskSummaries.MI(list.fit.y.TE = list.fit.y.TE, qs = qs,
                                              q.fixed = q.fixed, q.alwaysfixed = q.alwaysfixed_r,
                                              index.alwaysfixed = index.alwaysfixed, sel = sel, method="approx")
   }

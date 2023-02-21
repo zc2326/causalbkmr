@@ -1,7 +1,7 @@
 #' Calculate Single Variable Risk Summaries when fixing multiple effect modifiers at certain levels
 #' Compute summaries of the risks associated with a change in a single variable in \code{Z} from a single level (quantile) to a second level (quantile), for a set of effect modifiers (in \code{Z}) fixed to a specific level (quantile)
 #'
-#' @param list.fit.y.TE
+#' @param list.fit.y.TE The Total Effect BKMR model fit in a 'List' form.
 #' @param which.z  vector indicating which variables (columns of Z) for which the summary should be computed, effect modifiers are not included
 #' @param qs.diff vector indicating the two quantiles q_1 and q_2 at which to compute \code{h(z_{q2}) -h(z_{q1})}
 #' @param q.fixed vector of quantiles at which to fix the remaining predictors in Z
