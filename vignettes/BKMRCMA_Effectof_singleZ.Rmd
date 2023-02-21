@@ -70,17 +70,16 @@ list.fit.y.TE <- list(fit.y.TE)
 colnames(list.fit.y.TE[[1]]$Z) <- c("z1", "z2", "z3", "E.Y")
 
 
-overallrisks.y.TE.joint.x10 <- OverallRiskSummaries.MI(BKMRfits=list.fit.y.TE, qs = seq(0.1, 0.9, by = 0.05), q.fixed = 0.5, q.alwaysfixed = 0.1, index.alwaysfixed = 4, sel = sel, method="approx") 
+overallrisks.y.TE.joint.x10 <- OverallRiskSummaries.MI(list.fit.y.TE, qs = seq(0.1, 0.9, by = 0.05), q.fixed = 0.5, q.alwaysfixed = 0.1, index.alwaysfixed = 4, sel = sel, method="approx") 
  
-overallrisks.y.TE.joint.x90 <- OverallRiskSummaries.MI(BKMRfits=list.fit.y.TE, qs = seq(0.1, 0.9, by = 0.05), q.fixed = 0.5, q.alwaysfixed = 0.9, index.alwaysfixed = 4, sel = sel, method="approx") 
+overallrisks.y.TE.joint.x90 <- OverallRiskSummaries.MI(list.fit.y.TE, qs = seq(0.1, 0.9, by = 0.05), q.fixed = 0.5, q.alwaysfixed = 0.9, index.alwaysfixed = 4, sel = sel, method="approx") 
  
 
 pA <- ggplot(overallrisks.y.TE.joint.x10, aes(quantile, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd)) +  geom_hline(yintercept=00, linetype="dashed", color="gray")+ 
-  geom_pointrange()+ ggtitle("A")+ scale_y_continuous(name="estimate") + ylim(-1.3, 1.8)
+  geom_pointrange()+ ggtitle("A")+ scale_y_continuous(name="estimate", limits = c(-1.3, 1.8)) 
  
 pB <- ggplot(overallrisks.y.TE.joint.x90, aes(quantile, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd)) +  geom_hline(yintercept=00, linetype="dashed", color="gray")+ 
-  geom_pointrange()+ ggtitle("B")+ scale_y_continuous(name="estimate") + ylim(-1.3, 1.8)
-
+  geom_pointrange()+ ggtitle("B")+ scale_y_continuous(name="estimate", limits = c(-1.3, 1.8))  
 ggarrange(pA , pB , ncol=2, nrow =1)
 ```
 
@@ -98,9 +97,9 @@ Figure (B). Overall effect of the mixture (estimates and 95% credible interval) 
 
 
 ```{r}
-singvarrisk.y.TE.joint.x10  <- SingVarRiskSummaries.MI(BKMRfits=list.fit.y.TE, which.z=c(1,2,3), qs.diff = c(0.25, 0.75), q.fixed = c(0.25, 0.50, 0.75), q.alwaysfixed = 0.1, index.alwaysfixed = 4, sel=sel, method = "approx")
+singvarrisk.y.TE.joint.x10  <- SingVarRiskSummaries.MI(list.fit.y.TE, which.z=c(1,2,3), qs.diff = c(0.25, 0.75), q.fixed = c(0.25, 0.50, 0.75), q.alwaysfixed = 0.1, index.alwaysfixed = 4, sel=sel, method = "approx")
 
-singvarrisk.y.TE.joint.x90  <- SingVarRiskSummaries.MI(BKMRfits=list.fit.y.TE, which.z=c(1,2,3), qs.diff = c(0.25, 0.75), q.fixed = c(0.25, 0.50, 0.75), q.alwaysfixed = 0.9, index.alwaysfixed = 4, sel=sel, method = "approx")
+singvarrisk.y.TE.joint.x90  <- SingVarRiskSummaries.MI(list.fit.y.TE, which.z=c(1,2,3), qs.diff = c(0.25, 0.75), q.fixed = c(0.25, 0.50, 0.75), q.alwaysfixed = 0.9, index.alwaysfixed = 4, sel=sel, method = "approx")
 
 pC <- ggplot(singvarrisk.y.TE.joint.x10 , aes(variable, est, ymin = est - 1.96*sd,  ymax = est + 1.96*sd, col = q.fixed)) +  geom_hline(aes(yintercept=0), linetype="dashed", color="gray")+ 
   geom_pointrange(position = position_dodge(width = 0.75)) +  coord_flip() + ggtitle("")+ theme(legend.position="none")+
@@ -167,7 +166,7 @@ colnames(list.fit.y.TE[[1]]$Z) <- c("z1", "z2", "z3", "x1", "x2")
 
 ### Overall Risk Summaries for a list of fixed percentiles of the Effect modifiers
 ```{r}
-ListofResTables <- OverallRiskSummaries.fixEY(BKMRfits=list.fit.y.TE, qs = seq(0.1, 0.9, by = 0.05), 
+ListofResTables <- OverallRiskSummaries.fixEY(list.fit.y.TE, qs = seq(0.1, 0.9, by = 0.05), 
                            q.fixed = 0.5, q.alwaysfixed =  c(0.15, 0.85), 
                            EY.alwaysfixed.name =  c("x1", "x2"), sel = sel, method="approx")  
 
