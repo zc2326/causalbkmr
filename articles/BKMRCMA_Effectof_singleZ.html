@@ -163,53 +163,16 @@ percentile or 90th percentile<a class="anchor" aria-label="anchor" href="#joint-
 <span></span>
 <span></span>
 <span><span class="va">overallrisks.y.TE.joint.x10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/OverallRiskSummaries.MI.html">OverallRiskSummaries.MI</a></span><span class="op">(</span><span class="va">list.fit.y.TE</span>, qs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>, q.fixed <span class="op">=</span> <span class="fl">0.5</span>, q.alwaysfixed <span class="op">=</span> <span class="fl">0.1</span>, index.alwaysfixed <span class="op">=</span> <span class="fl">4</span>, sel <span class="op">=</span> <span class="va">sel</span>, method<span class="op">=</span><span class="st">"approx"</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; [1] "approx method"</span></span>
-<span><span class="co">#&gt; [1] "1 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "2 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "4 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "5 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "6 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "7 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "8 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "9 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "10 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "11 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "12 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "13 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "14 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "15 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "16 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "17 out of 17 complete:  0 min run time"</span></span>
 <span> </span>
-<span><span class="va">overallrisks.y.TE.joint.x90</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/OverallRiskSummaries.MI.html">OverallRiskSummaries.MI</a></span><span class="op">(</span><span class="va">list.fit.y.TE</span>, qs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>, q.fixed <span class="op">=</span> <span class="fl">0.5</span>, q.alwaysfixed <span class="op">=</span> <span class="fl">0.9</span>, index.alwaysfixed <span class="op">=</span> <span class="fl">4</span>, sel <span class="op">=</span> <span class="va">sel</span>, method<span class="op">=</span><span class="st">"approx"</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; [1] "approx method"</span></span>
-<span><span class="co">#&gt; [1] "1 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "2 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "4 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "5 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "6 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "7 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "8 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "9 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "10 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "11 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "12 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "13 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "14 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "15 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "16 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "17 out of 17 complete:  0 min run time"</span></span>
-<span> </span>
-<span></span>
-<span><span class="va">pA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">overallrisks.y.TE.joint.x10</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">quantile</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">00</span>, linetype<span class="op">=</span><span class="st">"dashed"</span>, color<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span><span class="op">+</span> </span>
+<span><span class="va">overallrisks.y.TE.joint.x90</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/OverallRiskSummaries.MI.html">OverallRiskSummaries.MI</a></span><span class="op">(</span><span class="va">list.fit.y.TE</span>, qs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>, q.fixed <span class="op">=</span> <span class="fl">0.5</span>, q.alwaysfixed <span class="op">=</span> <span class="fl">0.9</span>, index.alwaysfixed <span class="op">=</span> <span class="fl">4</span>, sel <span class="op">=</span> <span class="va">sel</span>, method<span class="op">=</span><span class="st">"approx"</span><span class="op">)</span> </span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pA</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">overallrisks.y.TE.joint.x10</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">quantile</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">00</span>, linetype<span class="op">=</span><span class="st">"dashed"</span>, color<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span><span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"A"</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"estimate"</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.3</span>, <span class="fl">1.8</span><span class="op">)</span><span class="op">)</span> </span>
 <span> </span>
 <span><span class="va">pB</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">overallrisks.y.TE.joint.x90</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">quantile</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">00</span>, linetype<span class="op">=</span><span class="st">"dashed"</span>, color<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span><span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"B"</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"estimate"</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1.3</span>, <span class="fl">1.8</span><span class="op">)</span><span class="op">)</span>  </span>
 <span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html" class="external-link">ggarrange</a></span><span class="op">(</span><span class="va">pA</span> , <span class="va">pB</span> , ncol<span class="op">=</span><span class="fl">2</span>, nrow <span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_Effectof_singleZ_files/figure-html/unnamed-chunk-3-1.png" width="2187.5"></p>
+<p><img src="BKMRCMA_Effectof_singleZ_files/figure-html/unnamed-chunk-4-1.png" width="2187.5"></p>
 <p>Interpretation of the point estimate in figures A, B:</p>
 <p><span class="math display">\[E[Y^{z_1^*, z_2^*, z_3^*}|x_{EM} = x^q]
 - E[Y^{z_1, z_2, z_3}|x_{EM} = x^q]\]</span> Figure (A). Overall effect
@@ -229,27 +192,12 @@ them are at their 50th percentile, while the effect modifier
 presented when the age is fixed at its 10th percentile or 90th
 percentile<a class="anchor" aria-label="anchor" href="#single-exposure-associations-with-outcome-y-estimates-and-95-ci-presented-when-the-age-is-fixed-at-its-10th-percentile-or-90th-percentile"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">singvarrisk.y.TE.joint.x10</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SingVarRiskSummaries.MI.html">SingVarRiskSummaries.MI</a></span><span class="op">(</span><span class="va">list.fit.y.TE</span>, which.z<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, qs.diff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.75</span><span class="op">)</span>, q.fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span><span class="op">)</span>, q.alwaysfixed <span class="op">=</span> <span class="fl">0.1</span>, index.alwaysfixed <span class="op">=</span> <span class="fl">4</span>, sel<span class="op">=</span><span class="va">sel</span>, method <span class="op">=</span> <span class="st">"approx"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: `data_frame()` was deprecated in tibble 1.1.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `tibble()` instead.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">causalbkmr</span> package.</span></span>
-<span><span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/zc2326/causalbkmr/issues&gt;</span>.</span></span>
-<span><span class="co">#&gt; [1] "1 out of 3 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "2 out of 3 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 3 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; Warning: `mutate_()` was deprecated in dplyr 0.7.0.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Please use `mutate()` instead.</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> See vignette('programming') for more help</span></span>
-<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> The deprecated feature was likely used in the <span style="color: #0000BB;">causalbkmr</span> package.</span></span>
-<span><span class="co">#&gt;   Please report the issue at <span style="color: #0000BB; font-style: italic;">&lt;https://github.com/zc2326/causalbkmr/issues&gt;</span>.</span></span>
 <span></span>
-<span><span class="va">singvarrisk.y.TE.joint.x90</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SingVarRiskSummaries.MI.html">SingVarRiskSummaries.MI</a></span><span class="op">(</span><span class="va">list.fit.y.TE</span>, which.z<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, qs.diff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.75</span><span class="op">)</span>, q.fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span><span class="op">)</span>, q.alwaysfixed <span class="op">=</span> <span class="fl">0.9</span>, index.alwaysfixed <span class="op">=</span> <span class="fl">4</span>, sel<span class="op">=</span><span class="va">sel</span>, method <span class="op">=</span> <span class="st">"approx"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "1 out of 3 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "2 out of 3 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 3 complete:  0 min run time"</span></span>
-<span></span>
-<span><span class="va">pC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">singvarrisk.y.TE.joint.x10</span> , <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">variable</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>,  ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">q.fixed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">0</span><span class="op">)</span>, linetype<span class="op">=</span><span class="st">"dashed"</span>, color<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span><span class="op">+</span> </span>
+<span><span class="va">singvarrisk.y.TE.joint.x90</span>  <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SingVarRiskSummaries.MI.html">SingVarRiskSummaries.MI</a></span><span class="op">(</span><span class="va">list.fit.y.TE</span>, which.z<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, qs.diff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.75</span><span class="op">)</span>, q.fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span><span class="op">)</span>, q.alwaysfixed <span class="op">=</span> <span class="fl">0.9</span>, index.alwaysfixed <span class="op">=</span> <span class="fl">4</span>, sel<span class="op">=</span><span class="va">sel</span>, method <span class="op">=</span> <span class="st">"approx"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">pC</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">singvarrisk.y.TE.joint.x10</span> , <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">variable</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>,  ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, col <span class="op">=</span> <span class="va">q.fixed</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">0</span><span class="op">)</span>, linetype<span class="op">=</span><span class="st">"dashed"</span>, color<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span><span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"none"</span><span class="op">)</span><span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_x_discrete</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"estimate"</span><span class="op">)</span>  <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"C"</span><span class="op">)</span></span>
 <span></span>
@@ -258,7 +206,7 @@ percentile<a class="anchor" aria-label="anchor" href="#single-exposure-associati
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_x_discrete</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"estimate"</span><span class="op">)</span>  <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"D"</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html" class="external-link">ggarrange</a></span><span class="op">(</span><span class="va">pC</span> , <span class="va">pD</span> , ncol<span class="op">=</span><span class="fl">2</span>, nrow <span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_Effectof_singleZ_files/figure-html/unnamed-chunk-4-1.png" width="2187.5"></p>
+<p><img src="BKMRCMA_Effectof_singleZ_files/figure-html/unnamed-chunk-6-1.png" width="2187.5"></p>
 <p>Interpretation of the point estimate in figures C, D:</p>
 <p><span class="math inline">\(Z_1\)</span>:</p>
 <p><span class="math display">\[E[Y^{z_1^*, z_2^p, z_3^p}|x_{EM} = x^q]
@@ -280,22 +228,15 @@ is at the 75th vs. 25th percentile, and the effect modifier fixed at
 it’s 10th percentile.</p>
 </div>
 <div class="section level3">
-<h3 id="functions-for-multiple-exposures-are-presented">Functions for multiple Exposures are presented<a class="anchor" aria-label="anchor" href="#functions-for-multiple-exposures-are-presented"></a>
+<h3 id="functions-for-the-scenarios-where-multiple-exposures-are-presented">Functions for the scenarios where multiple Exposures are
+presented<a class="anchor" aria-label="anchor" href="#functions-for-the-scenarios-where-multiple-exposures-are-presented"></a>
 </h3>
 <p>In the follwing scenario, we have a continuous mediator <span class="math inline">\(M\)</span>, a continuous outcome <span class="math inline">\(Y\)</span>. <code>x1</code> and <code>x2</code>
 are both effect modifiers on <span class="math inline">\(Y\)</span>. The
 sample size is 50 and there are 3 covariates.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span>  <span class="fu"><a href="../reference/cma_sampledata.html">cma_sampledata</a></span><span class="op">(</span>N <span class="op">=</span> <span class="fl">50</span>, L<span class="op">=</span><span class="fl">3</span>, P<span class="op">=</span><span class="fl">3</span>, scenario<span class="op">=</span><span class="fl">5</span>, seed<span class="op">=</span><span class="fl">7</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">data</span>, n <span class="op">=</span> <span class="fl">3L</span><span class="op">)</span></span>
-<span><span class="co">#&gt;           z1         z2         z3           M         x1          x2        x3</span></span>
-<span><span class="co">#&gt; 1  2.2767428  0.1432685  0.7973699  0.77853906 -0.3556944  2.02334405 -1.477592</span></span>
-<span><span class="co">#&gt; 2 -1.0893537 -0.0944783  0.4035083 -0.08605238  1.0973004  0.86249250 -2.973256</span></span>
-<span><span class="co">#&gt; 3 -0.6389109  0.2491581 -0.1243989 -0.40362413 -0.9066920 -0.02490949 -1.339762</span></span>
-<span><span class="co">#&gt;   y</span></span>
-<span><span class="co">#&gt; 1 1</span></span>
-<span><span class="co">#&gt; 2 1</span></span>
-<span><span class="co">#&gt; 3 0</span></span>
 <span><span class="va">dat</span> <span class="op">=</span> <span class="va">dat</span><span class="op">$</span><span class="va">data</span></span>
 <span></span>
 <span><span class="va">A</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">z1</span>, <span class="va">dat</span><span class="op">$</span><span class="va">z2</span>, <span class="va">dat</span><span class="op">$</span><span class="va">z3</span><span class="op">)</span></span>
@@ -312,96 +253,6 @@ sample size is 50 and there are 3 covariates.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
 <span><span class="va">fit.y.TE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/bkmr/man/kmbayes.html" class="external-link">kmbayes</a></span><span class="op">(</span>y<span class="op">=</span><span class="va">y</span>, Z<span class="op">=</span><span class="va">Z.Y</span>, X<span class="op">=</span><span class="va">X</span>, iter<span class="op">=</span><span class="fl">10000</span>, verbose<span class="op">=</span><span class="cn">TRUE</span>, varsel<span class="op">=</span><span class="cn">FALSE</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; Iteration: 1000 (10% completed; 4.48869 secs elapsed)</span></span>
-<span><span class="co">#&gt; Acceptance rates for Metropolis-Hastings algorithm:</span></span>
-<span><span class="co">#&gt;    param      rate</span></span>
-<span><span class="co">#&gt; 1 lambda 0.1671672</span></span>
-<span><span class="co">#&gt; 2     r1 0.3463463</span></span>
-<span><span class="co">#&gt; 3     r2 0.1431431</span></span>
-<span><span class="co">#&gt; 4     r3 0.1691692</span></span>
-<span><span class="co">#&gt; 5     r4 0.2572573</span></span>
-<span><span class="co">#&gt; 6     r5 0.2342342</span></span>
-<span><span class="co">#&gt; Iteration: 2000 (20% completed; 8.36653 secs elapsed)</span></span>
-<span><span class="co">#&gt; Acceptance rates for Metropolis-Hastings algorithm:</span></span>
-<span><span class="co">#&gt;    param      rate</span></span>
-<span><span class="co">#&gt; 1 lambda 0.2061031</span></span>
-<span><span class="co">#&gt; 2     r1 0.2936468</span></span>
-<span><span class="co">#&gt; 3     r2 0.1310655</span></span>
-<span><span class="co">#&gt; 4     r3 0.1820910</span></span>
-<span><span class="co">#&gt; 5     r4 0.2026013</span></span>
-<span><span class="co">#&gt; 6     r5 0.1965983</span></span>
-<span><span class="co">#&gt; Iteration: 3000 (30% completed; 12.55234 secs elapsed)</span></span>
-<span><span class="co">#&gt; Acceptance rates for Metropolis-Hastings algorithm:</span></span>
-<span><span class="co">#&gt;    param      rate</span></span>
-<span><span class="co">#&gt; 1 lambda 0.2227409</span></span>
-<span><span class="co">#&gt; 2     r1 0.2830944</span></span>
-<span><span class="co">#&gt; 3     r2 0.1240413</span></span>
-<span><span class="co">#&gt; 4     r3 0.1700567</span></span>
-<span><span class="co">#&gt; 5     r4 0.1867289</span></span>
-<span><span class="co">#&gt; 6     r5 0.1740580</span></span>
-<span><span class="co">#&gt; Iteration: 4000 (40% completed; 16.88251 secs elapsed)</span></span>
-<span><span class="co">#&gt; Acceptance rates for Metropolis-Hastings algorithm:</span></span>
-<span><span class="co">#&gt;    param      rate</span></span>
-<span><span class="co">#&gt; 1 lambda 0.2290573</span></span>
-<span><span class="co">#&gt; 2     r1 0.2713178</span></span>
-<span><span class="co">#&gt; 3     r2 0.1245311</span></span>
-<span><span class="co">#&gt; 4     r3 0.1592898</span></span>
-<span><span class="co">#&gt; 5     r4 0.1915479</span></span>
-<span><span class="co">#&gt; 6     r5 0.1822956</span></span>
-<span><span class="co">#&gt; Iteration: 5000 (50% completed; 21.01054 secs elapsed)</span></span>
-<span><span class="co">#&gt; Acceptance rates for Metropolis-Hastings algorithm:</span></span>
-<span><span class="co">#&gt;    param      rate</span></span>
-<span><span class="co">#&gt; 1 lambda 0.2230446</span></span>
-<span><span class="co">#&gt; 2     r1 0.2774555</span></span>
-<span><span class="co">#&gt; 3     r2 0.1198240</span></span>
-<span><span class="co">#&gt; 4     r3 0.1620324</span></span>
-<span><span class="co">#&gt; 5     r4 0.1900380</span></span>
-<span><span class="co">#&gt; 6     r5 0.1830366</span></span>
-<span><span class="co">#&gt; Iteration: 6000 (60% completed; 24.92427 secs elapsed)</span></span>
-<span><span class="co">#&gt; Acceptance rates for Metropolis-Hastings algorithm:</span></span>
-<span><span class="co">#&gt;    param      rate</span></span>
-<span><span class="co">#&gt; 1 lambda 0.2235373</span></span>
-<span><span class="co">#&gt; 2     r1 0.2735456</span></span>
-<span><span class="co">#&gt; 3     r2 0.1228538</span></span>
-<span><span class="co">#&gt; 4     r3 0.1633606</span></span>
-<span><span class="co">#&gt; 5     r4 0.1865311</span></span>
-<span><span class="co">#&gt; 6     r5 0.1838640</span></span>
-<span><span class="co">#&gt; Iteration: 7000 (70% completed; 29.04691 secs elapsed)</span></span>
-<span><span class="co">#&gt; Acceptance rates for Metropolis-Hastings algorithm:</span></span>
-<span><span class="co">#&gt;    param      rate</span></span>
-<span><span class="co">#&gt; 1 lambda 0.2166024</span></span>
-<span><span class="co">#&gt; 2     r1 0.2788970</span></span>
-<span><span class="co">#&gt; 3     r2 0.1207315</span></span>
-<span><span class="co">#&gt; 4     r3 0.1647378</span></span>
-<span><span class="co">#&gt; 5     r4 0.1848836</span></span>
-<span><span class="co">#&gt; 6     r5 0.1791685</span></span>
-<span><span class="co">#&gt; Iteration: 8000 (80% completed; 33.40792 secs elapsed)</span></span>
-<span><span class="co">#&gt; Acceptance rates for Metropolis-Hastings algorithm:</span></span>
-<span><span class="co">#&gt;    param      rate</span></span>
-<span><span class="co">#&gt; 1 lambda 0.2171521</span></span>
-<span><span class="co">#&gt; 2     r1 0.2745343</span></span>
-<span><span class="co">#&gt; 3     r2 0.1226403</span></span>
-<span><span class="co">#&gt; 4     r3 0.1702713</span></span>
-<span><span class="co">#&gt; 5     r4 0.1865233</span></span>
-<span><span class="co">#&gt; 6     r5 0.1788974</span></span>
-<span><span class="co">#&gt; Iteration: 9000 (90% completed; 37.63797 secs elapsed)</span></span>
-<span><span class="co">#&gt; Acceptance rates for Metropolis-Hastings algorithm:</span></span>
-<span><span class="co">#&gt;    param      rate</span></span>
-<span><span class="co">#&gt; 1 lambda 0.2162462</span></span>
-<span><span class="co">#&gt; 2     r1 0.2720302</span></span>
-<span><span class="co">#&gt; 3     r2 0.1229025</span></span>
-<span><span class="co">#&gt; 4     r3 0.1722414</span></span>
-<span><span class="co">#&gt; 5     r4 0.1864652</span></span>
-<span><span class="co">#&gt; 6     r5 0.1757973</span></span>
-<span><span class="co">#&gt; Iteration: 10000 (100% completed; 41.46133 secs elapsed)</span></span>
-<span><span class="co">#&gt; Acceptance rates for Metropolis-Hastings algorithm:</span></span>
-<span><span class="co">#&gt;    param      rate</span></span>
-<span><span class="co">#&gt; 1 lambda 0.2207221</span></span>
-<span><span class="co">#&gt; 2     r1 0.2639264</span></span>
-<span><span class="co">#&gt; 3     r2 0.1230123</span></span>
-<span><span class="co">#&gt; 4     r3 0.1679168</span></span>
-<span><span class="co">#&gt; 5     r4 0.1821182</span></span>
-<span><span class="co">#&gt; 6     r5 0.1801180</span></span>
 <span><span class="co">#save(fit.y.TE,file="bkmr_y_TE.RData")</span></span>
 <span></span>
 <span><span class="va">X.predict</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colSums.html" class="external-link">colMeans</a></span><span class="op">(</span><span class="va">X</span><span class="op">)</span>,nrow<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
@@ -414,49 +265,21 @@ sample size is 50 and there are 3 covariates.</p>
 <h3 id="overall-risk-summaries-for-a-list-of-fixed-percentiles-of-the-effect-modifiers">Overall Risk Summaries for a list of fixed percentiles of the Effect
 modifiers<a class="anchor" aria-label="anchor" href="#overall-risk-summaries-for-a-list-of-fixed-percentiles-of-the-effect-modifiers"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<p>By using the <code>OverallRiskSummaries.fixEY</code> function, we can
+specify what is the set of effect modifiers, and what percentiles we
+want them to be fixed at. For the following example, <code>x1</code> and
+<code>x2</code> are specified as the effect modifiers, and the following
+code estimates the joint effect of the set of exposures
+(i.e. <code>z1</code>, <code>z2</code>, and <code>z3</code>), while the
+set of effect modifiers are fixed at (i) 15th percentile, or (ii) 85th
+percentile.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ListofResTables</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/OverallRiskSummaries.fixEY.html">OverallRiskSummaries.fixEY</a></span><span class="op">(</span><span class="va">list.fit.y.TE</span>, qs <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.9</span>, by <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>, </span>
 <span>                           q.fixed <span class="op">=</span> <span class="fl">0.5</span>, q.alwaysfixed <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.85</span><span class="op">)</span>, </span>
-<span>                           EY.alwaysfixed.name <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="st">"x2"</span><span class="op">)</span>, sel <span class="op">=</span> <span class="va">sel</span>, method<span class="op">=</span><span class="st">"approx"</span><span class="op">)</span>  </span>
-<span><span class="co">#&gt; [1] "approx method"</span></span>
-<span><span class="co">#&gt; [1] "1 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "2 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "4 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "5 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "6 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "7 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "8 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "9 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "10 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "11 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "12 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "13 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "14 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "15 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "16 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "17 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "approx method"</span></span>
-<span><span class="co">#&gt; [1] "1 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "2 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "4 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "5 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "6 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "7 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "8 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "9 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "10 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "11 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "12 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "13 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "14 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "15 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "16 out of 17 complete:  0 min run time"</span></span>
-<span><span class="co">#&gt; [1] "17 out of 17 complete:  0 min run time"</span></span>
-<span></span>
-<span><span class="co">#ListofResTables[[1]]</span></span>
-<span><span class="co">#ListofResTables[[2]]</span></span>
+<span>                           EY.alwaysfixed.name <span class="op">=</span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x1"</span>, <span class="st">"x2"</span><span class="op">)</span>, sel <span class="op">=</span> <span class="va">sel</span>, method<span class="op">=</span><span class="st">"approx"</span><span class="op">)</span>  </span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#ListofResTables[[1]] # This is the summary of the joint effect of the exposures when the set of effect modifiers are fixed at 15th percentile (in this example) </span></span>
+<span><span class="co">#ListofResTables[[2]] # This is the summary of the joint effect of the exposures when the set of effect modifiers are fixed at 85th percentile (in this example) </span></span>
 <span></span>
 <span><span class="va">pE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">ListofResTables</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">quantile</span>, <span class="va">est</span>, ymin <span class="op">=</span> <span class="va">est</span> <span class="op">-</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span>, ymax <span class="op">=</span> <span class="va">est</span> <span class="op">+</span> <span class="fl">1.96</span><span class="op">*</span><span class="va">sd</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">00</span>, linetype<span class="op">=</span><span class="st">"dashed"</span>, color<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span><span class="op">+</span> </span>
@@ -465,13 +288,21 @@ modifiers<a class="anchor" aria-label="anchor" href="#overall-risk-summaries-for
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline</a></span><span class="op">(</span>yintercept<span class="op">=</span><span class="fl">00</span>, linetype<span class="op">=</span><span class="st">"dashed"</span>, color<span class="op">=</span><span class="st">"gray"</span><span class="op">)</span><span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"F"</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"estimate"</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span>, <span class="fl">1.5</span><span class="op">)</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html" class="external-link">ggarrange</a></span><span class="op">(</span><span class="va">pE</span> , <span class="va">pF</span> , ncol<span class="op">=</span><span class="fl">2</span>, nrow <span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_Effectof_singleZ_files/figure-html/unnamed-chunk-6-1.png" width="2187.5"></p>
+<p><img src="BKMRCMA_Effectof_singleZ_files/figure-html/unnamed-chunk-9-1.png" width="2187.5"></p>
 </div>
 <div class="section level3">
 <h3 id="single-variable-risk-summaries-for-a-list-of-fixed-percentiles-of-the-effect-modifiers">Single Variable Risk Summaries for a list of fixed percentiles of
 the Effect modifiers<a class="anchor" aria-label="anchor" href="#single-variable-risk-summaries-for-a-list-of-fixed-percentiles-of-the-effect-modifiers"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<p>By using the <code>OverallRiskSummaries.fixEY</code> function, we can
+specify what is the set of effect modifiers, and what percentiles we
+want them to be fixed at. For the following example, <code>x1</code> and
+<code>x2</code> are specified as the effect modifiers, and the following
+code compares the outcome when a single exposure is at the 75th vs. 25th
+percentile, when all the other exposures are fixed at either the 25th,
+50th, or 75th percentile, while the set of effect modifiers are fixed at
+(i) 15th percentile, or (ii) 85th percentile.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ListofResTablesSingvar</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/SingVarRiskSummaries.fixEY.html">SingVarRiskSummaries.fixEY</a></span><span class="op">(</span><span class="va">list.fit.y.TE</span>, which.z <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>, qs.diff <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.75</span><span class="op">)</span>, </span>
 <span>                                                     q.fixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.25</span>, <span class="fl">0.50</span>, <span class="fl">0.75</span><span class="op">)</span>, </span>
 <span>                                                     q.alwaysfixed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.15</span>, <span class="fl">0.85</span><span class="op">)</span>, z.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"z1"</span>, <span class="st">"z2"</span>, <span class="st">"z3"</span><span class="op">)</span>, </span>
@@ -494,7 +325,7 @@ the Effect modifiers<a class="anchor" aria-label="anchor" href="#single-variable
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_linerange.html" class="external-link">geom_pointrange</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html" class="external-link">position_dodge</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.75</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">""</span><span class="op">)</span><span class="op">+</span> </span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_discrete.html" class="external-link">scale_x_discrete</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">""</span><span class="op">)</span><span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"estimate"</span><span class="op">)</span>  <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"H"</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rpkgs.datanovia.com/ggpubr/reference/ggarrange.html" class="external-link">ggarrange</a></span><span class="op">(</span><span class="va">pG</span> , <span class="va">pH</span> , ncol<span class="op">=</span><span class="fl">2</span>, nrow <span class="op">=</span><span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="BKMRCMA_Effectof_singleZ_files/figure-html/unnamed-chunk-7-1.png" width="2187.5"></p>
+<p><img src="BKMRCMA_Effectof_singleZ_files/figure-html/unnamed-chunk-10-1.png" width="2187.5"></p>
 </div>
   </div>
 
