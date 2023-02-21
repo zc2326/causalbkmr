@@ -73,6 +73,9 @@
     <loc>https://zc2326.github.io/causalbkmr/reference/OverallRiskSummaries.MI.html</loc>
   </url>
   <url>
+    <loc>https://zc2326.github.io/causalbkmr/reference/OverallRiskSummaries.fixEY.html</loc>
+  </url>
+  <url>
     <loc>https://zc2326.github.io/causalbkmr/reference/PredictorResponseBivar.MI.html</loc>
   </url>
   <url>
@@ -89,6 +92,9 @@
   </url>
   <url>
     <loc>https://zc2326.github.io/causalbkmr/reference/SingVarRiskSummaries.MI.html</loc>
+  </url>
+  <url>
+    <loc>https://zc2326.github.io/causalbkmr/reference/SingVarRiskSummaries.fixEY.html</loc>
   </url>
   <url>
     <loc>https://zc2326.github.io/causalbkmr/reference/TE.bkmr.MI.html</loc>
