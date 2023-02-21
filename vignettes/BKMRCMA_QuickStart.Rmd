@@ -148,8 +148,7 @@ CDE.ey90$est
 
 Plotting:
 
-```{r } 
-knitr::opts_chunk$set(out.width = "25%")
+```{r  out.width = "50%"}  
 plotdf <- as.data.frame(CDE.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -190,7 +189,7 @@ ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  +
 
 ### Risk Summary For Totel Effect
 
-```{r TERisk, warning=FALSE, out.width = "100%"}
+```{r TERisk, warning=FALSE, out.width = "70%"}
 riskSummary10 = TERiskSummaries.CMA(fit.TE = fit.y.TE, e.y=e.y10, e.y.name = "E.Y", sel=sel)
 
 p_riskSummary10 <-ggplot(riskSummary10,

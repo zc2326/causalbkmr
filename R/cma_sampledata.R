@@ -99,7 +99,7 @@ cma_sampledata <- function(N, L, P, scenario, seed) {
   }else if(scenario==5){
     hfunM <- function(z, ind1 = 1, ind2 = 2, ind3 = 4) 1/4*z[ind1] + 1/4*z[ind3] + 1/4*z[ind1]*z[ind2]
     hfunY <- function(z, ind1 = 1, ind2 = 4, ind3 = 5, ind4 = 6) rbinom(n = 1, size = 1,
-                                                                        p = plogis(1/6*((z[ind1]+3) + (z[ind3]+3) + 1/3*(z[ind1]+3)*(z[ind3]+3) + + 1/3*(z[ind2]+3)*(z[ind4]+3)), 2, 0.2))
+                                                                        p = plogis(1/3*((z[ind1]+3) + (z[ind3]+3) + 1/2*(z[ind1]+3)*(z[ind3]+3) +  1*(z[ind1]+3)*(z[ind4]+3)), 2, 0.2))
 
 
     sig.trueM <- 0.4095/signoiseM
