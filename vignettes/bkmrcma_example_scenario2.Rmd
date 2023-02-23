@@ -115,7 +115,7 @@ TE.ey90 <- TE.bkmr(a=a, astar=astar, e.y = e.y90, fit.y.TE=fit.y.TE, X.predict=X
 
 Look at the posterior mean, median, and 95% CI for TE:
 
-```{r dpi = 300}
+```{r dpi = 300, fig.width=4}
 TE.ey10$est
 TE.ey90$est
 
@@ -148,7 +148,7 @@ CDE.ey90$est
 
 Plotting:
 
-```{r warning=FALSE,dpi = 300} 
+```{r warning=FALSE,dpi = 300, fig.width=4} 
 plotdf <- as.data.frame(CDE.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -178,7 +178,7 @@ mediationeffects.ey90$est
 
 Plotting
 
-```{r}
+```{r dpi=300, fig.width=6}
 plotdf <- as.data.frame(mediationeffects.ey10$est)
 plotdf["Effect"] <- rownames(plotdf)
 ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  + 
@@ -239,57 +239,48 @@ Since there's no effect modification, the two above figures are similar.
 ## Single-predictor health risks
 
 ### Total Effect
-```{r warning=FALSE, message=FALSE}
- 
-risks.singvar10 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
+```{r warning=FALSE, message=FALSE, dpi=300}
+ risks.singvar10 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
                                            e.y=e.y10, e.y.names="E.Y",
                                            sel=sel)
-ggplot(risks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
-                            ymax = est + 1.96*sd, col = q.fixed)) +
-  geom_pointrange(position = position_dodge(width = 0.75)) +
+
+plot_singvar10 <- ggplot(risks.singvar10, aes(variable, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd, col = q.fixed)) + theme(legend.position="none")+
+  geom_pointrange(position = position_dodge(width = 0.5)) +
   coord_flip()
-
-
+ 
 risks.singvar90 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
                                            e.y=e.y90, e.y.names="E.Y",
                                            sel=sel)
-ggplot(risks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
-                            ymax = est + 1.96*sd, col = q.fixed)) +
-  geom_pointrange(position = position_dodge(width = 0.75)) +
+
+plot_singvar90 <- ggplot(risks.singvar90, aes(variable, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd, col = q.fixed)) +
+  geom_pointrange(position = position_dodge(width = 0.5)) +
   coord_flip()
+
+ggarrange(plot_singvar10, plot_singvar90, ncol=2, nrow=1)
 ```
 
 Since there's no effect modification, the two above figures are similar. 
 
 ### Controlled Direct Effect 
 
-```{r CDERisksingvar10, warning=FALSE, message=FALSE, results='hide'} 
-# single variable controlled direct effects
+```{r CDERisksingvar10, warning=FALSE, message=FALSE, results='hide', dpi = 300} 
 CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                            e.y=e.y10, e.y.names="E.Y", m.name = "m",
-                                           sel=sel)
-```
-
-
-```{r dpi = 300}
-ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
+                                           sel=sel) 
+plotCDE10 <- ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
                             ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
-  geom_pointrange(position = position_dodge(width = 0.75)) +
-  coord_flip()
-```
+  geom_pointrange(position = position_dodge(width = 0.5)) +theme(legend.position="none")+
+  coord_flip() 
 
-```{r CDERisksingvaar, warning=FALSE, message=FALSE, results='hide'} 
 CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                                  e.y=e.y90, e.y.names="E.Y", m.name = "m",
-                                                 sel=sel)
-```
+                                                 sel=sel) 
 
-```{r dpi = 300}
-ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
+plotCDE90 <- ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
                                ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
-  geom_pointrange(position = position_dodge(width = 0.75)) +
+  geom_pointrange(position = position_dodge(width = 0.5)) +
   coord_flip()
-
+ggarrange(plotCDE10, plotCDE90, ncol=2, nrow =1)
 ```
 
 Since there's no effect modification, the two above figures are similar. 
