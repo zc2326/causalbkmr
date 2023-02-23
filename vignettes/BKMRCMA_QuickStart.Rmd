@@ -231,7 +231,7 @@ ggarrange(plot_CDErisk10, plot_CDErisk90, ncol=2, nrow =1)
 ## Single-predictor health risks
 
 ### Total Effect
-```{r TEsingvar, warning=FALSE, message=FALSE, results='hide'}
+```{r TEsingvar, warning=FALSE, message=FALSE, results='hide', fig.dim=c(6, 4)}
 risks.singvar10 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
                                            e.y=e.y10, e.y.names="E.Y",
                                            sel=sel)
@@ -254,7 +254,7 @@ ggarrange(plot_singvar10, plot_singvar90, ncol=2, nrow=1)
 
 ### Controlled Direct Effect 
 
-```{r CDERisksingvar10, warning=FALSE, message=FALSE, results='hide', fig.dim=c(8, 5)} 
+```{r CDERisksingvar10, warning=FALSE, message=FALSE, results='hide', fig.dim=c(6, 4)} 
 # single variable controlled direct effects
 CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                            e.y=e.y10, e.y.names="E.Y", m.name = "m",
@@ -271,8 +271,8 @@ CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
 plotCDE90 <- ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
                                ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(size = 0.5, position = position_dodge(width = 0.2)) +
-  theme(legend.key.height= unit(2.4, 'cm'),
-        legend.key.width= unit(1, 'cm'), legend.title = element_text(size=6))
+  theme(legend.key.height= unit(1, 'cm'),
+        legend.key.width= unit(.5, 'cm'), legend.title = element_text(size=1))
   coord_flip()
 ggarrange(plotCDE10, plotCDE90, ncol=2, nrow =1)
 ```
