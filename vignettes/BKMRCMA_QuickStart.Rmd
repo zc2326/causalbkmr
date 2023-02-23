@@ -214,7 +214,7 @@ ggarrange(p_riskSummary10, p_riskSummary90, ncol=2, nrow =1)
 
 ### Risk Summary For Controlled Direct Effect
 
-```{r CDERisk, warning=FALSE, message=FALSE, results='hide',dpi = 300} 
+```{r CDERisk, warning=FALSE, message=FALSE, results='hide', out.width = "100%"} 
 # CDE 
 CDEriskSummary10 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y10, e.y.name = "E.Y", m.name = "m", sel = sel)
  
@@ -232,7 +232,7 @@ ggarrange(plot_CDErisk10, plot_CDErisk90, ncol=2, nrow =1)
 ## Single-predictor health risks
 
 ### Total Effect
-```{r TEsingvar, warning=FALSE, message=FALSE, results='hide'}
+```{r TEsingvar, warning=FALSE, message=FALSE, results='hide', out.width = "100%"}
 risks.singvar10 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
                                            e.y=e.y10, e.y.names="E.Y",
                                            sel=sel)
@@ -255,7 +255,7 @@ ggarrange(plot_singvar10, plot_singvar90, ncol=2, nrow=1)
 
 ### Controlled Direct Effect 
 
-```{r CDERisksingvar10, warning=FALSE, message=FALSE, results='hide'} 
+```{r CDERisksingvar10, warning=FALSE, message=FALSE, results='hide', out.width = "100%"} 
 # single variable controlled direct effects
 CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                            e.y=e.y10, e.y.names="E.Y", m.name = "m",
