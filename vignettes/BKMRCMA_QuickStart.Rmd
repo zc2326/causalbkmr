@@ -189,7 +189,7 @@ ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper ))  +
 
 ### Risk Summary For Totel Effect
 
-```{r TERisk, warning=FALSE, out.width = "70%"}
+```{r TERisk, warning=FALSE, out.width = "90%"}
 riskSummary10 = TERiskSummaries.CMA(fit.TE = fit.y.TE, e.y=e.y10, e.y.name = "E.Y", sel=sel)
 
 p_riskSummary10 <-ggplot(riskSummary10,
@@ -214,7 +214,7 @@ ggarrange(p_riskSummary10, p_riskSummary90, ncol=2, nrow =1)
 
 ### Risk Summary For Controlled Direct Effect
 
-```{r CDERisk, warning=FALSE, message=FALSE, results='hide'} 
+```{r CDERisk, warning=FALSE, message=FALSE, results='hide', fig.dim=c(8, 6)} 
 # CDE 
 CDEriskSummary10 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y10, e.y.name = "E.Y", m.name = "m", sel = sel)
  
