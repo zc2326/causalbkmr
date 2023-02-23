@@ -271,6 +271,8 @@ CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
 plotCDE90 <- ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
                                ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
   geom_pointrange(size = 0.5, position = position_dodge(width = 0.2)) +
+  theme(legend.key.height= unit(2.4, 'cm'),
+        legend.key.width= unit(1, 'cm'), legend.title = element_text(size=6))
   coord_flip()
 ggarrange(plotCDE10, plotCDE90, ncol=2, nrow =1)
 ```
