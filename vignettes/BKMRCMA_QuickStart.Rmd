@@ -219,13 +219,13 @@ ggarrange(p_riskSummary10, p_riskSummary90, ncol=2, nrow =1)
 CDEriskSummary10 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y10, e.y.name = "E.Y", m.name = "m", sel = sel)
  
 plot_CDErisk10 <- ggplot(CDEriskSummary10, aes(quantile, est, ymin = est - 1.96*sd, 
-                             ymax = est + 1.96*sd, col = m)) + theme(legend.position="none") + geom_pointrange(position = position_dodge(width = 0.75))   
+                             ymax = est + 1.96*sd, col = m)) + theme(legend.position="none") + geom_pointrange(position = position_dodge(width = 0.5))   
 
 CDEriskSummary90 = CDERiskSummaries.CMA(fit.y = fit.y, e.y = e.y90, e.y.name = "E.Y", m.name = "m", sel = sel)
 
 plot_CDErisk90 <- ggplot(CDEriskSummary90, aes(quantile, est, ymin = est - 1.96*sd, 
                              ymax = est + 1.96*sd, col = m)) + 
-  geom_pointrange(position = position_dodge(width = 0.75))
+  geom_pointrange(position = position_dodge(width = 0.5))
 ggarrange(plot_CDErisk10, plot_CDErisk90, ncol=2, nrow =1)
 ```
 
@@ -238,7 +238,7 @@ risks.singvar10 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
                                            sel=sel)
 
 plot_singvar10 <- ggplot(risks.singvar10, aes(variable, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd, col = q.fixed)) + theme(legend.position="none")+
-  geom_pointrange(position = position_dodge(width = 0.75)) +
+  geom_pointrange(position = position_dodge(width = 0.5)) +
   coord_flip()
  
 risks.singvar90 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
@@ -246,7 +246,7 @@ risks.singvar90 = SingVarRiskSummaries.CMA(BKMRfits = fit.y.TE, which.z = 1:3,
                                            sel=sel)
 
 plot_singvar90 <- ggplot(risks.singvar90, aes(variable, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd, col = q.fixed)) +
-  geom_pointrange(position = position_dodge(width = 0.75)) +
+  geom_pointrange(position = position_dodge(width = 0.5)) +
   coord_flip()
 
 ggarrange(plot_singvar10, plot_singvar90, ncol=2, nrow=1)
@@ -262,7 +262,7 @@ CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                            sel=sel) 
 plotCDE10 <- ggplot(CDErisks.singvar10, aes(variable, est, ymin = est - 1.96*sd,
                             ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
-  geom_pointrange(position = position_dodge(width = 0.75)) +theme(legend.position="none")+
+  geom_pointrange(position = position_dodge(width = 0.5)) +theme(legend.position="none")+
   coord_flip() 
 
 CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
@@ -271,7 +271,7 @@ CDErisks.singvar90 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
 
 plotCDE90 <- ggplot(CDErisks.singvar90, aes(variable, est, ymin = est - 1.96*sd,
                                ymax = est + 1.96*sd, col = q.fixed, linetype = m.fixed)) +
-  geom_pointrange(position = position_dodge(width = 0.75)) +
+  geom_pointrange(position = position_dodge(width = 0.5)) +
   coord_flip()
 ggarrange(plotCDE10, plotCDE90, ncol=2, nrow =1)
 ```
