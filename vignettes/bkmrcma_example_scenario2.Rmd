@@ -20,6 +20,7 @@ library(bkmr)
 library(mixtools)
 library(causalbkmr)
 library(ggplot2)
+library(ggpubr)
 ```
 
 In this scenario, we have a binary mediator $M$, a binary outcome $Y$, and no effect modification. The sample size is 50 and there are 3 covariates. 
