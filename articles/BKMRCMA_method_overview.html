@@ -308,18 +308,18 @@ M_i=h_M\left(\mathbf{Z}_{M i}\right)+\mathbf{C}_i^T
 \boldsymbol{\beta}+\epsilon_{M i},
 \]</span></p>
 <p>where <span class="math inline">\(\epsilon_{M i} \stackrel{u d}{\sim}
-N\left(0, \sigma_M^2\right)\)</span>. Since accounting for
-exposure-mediator interactions is important to obtain unbiased effect
-estimates, we include the mediator variable along with <span class="math inline">\(\mathbf{Z}_Y\)</span> in the kernel function when
-modeling the health outcome in : <span class="math display">\[
+N\left(0, \sigma_M^2\right)\)</span>.</p>
+<p>Since accounting for exposure-mediator interactions is important to
+obtain unbiased effect estimates, we include the mediator variable along
+with <span class="math inline">\(\mathbf{Z}_Y\)</span> in the kernel
+function when modeling the health outcome in : <span class="math display">\[
 Y_i=h_Y\left(\mathbf{Z}_{Y i}, M_i\right)+\mathbf{C}_i^T
 \boldsymbol{\theta}+\epsilon_{Y i},
 \]</span> where <span class="math inline">\(\epsilon_{Y i} \stackrel{i i
-d}{\sim} N\left(0, \sigma_Y^2\right)\)</span>. By fitting the models
-separately, we assume <span class="math inline">\(\epsilon_{M
-i}\)</span> and <span class="math inline">\(\epsilon_{Y i}\)</span> are
-independent. To model the TE of the exposure mixture on the outcome, we
-consider BKMR model : <span class="math display">\[
+d}{\sim} N\left(0, \sigma_Y^2\right)\)</span>.</p>
+<p>By fitting the models separately, we assume <span class="math inline">\(\epsilon_{M i}\)</span> and <span class="math inline">\(\epsilon_{Y i}\)</span> are independent. To model
+the TE of the exposure mixture on the outcome, we consider BKMR model :
+<span class="math display">\[
 Y_i=h_{T E}\left(\mathbf{Z}_{Y i}\right)+\mathbf{C}_i^T
 \gamma+\epsilon_{T E i},
 \]</span> where <span class="math inline">\(\epsilon_{T E i} \stackrel{i
