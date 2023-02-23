@@ -254,7 +254,7 @@ ggarrange(plot_singvar10, plot_singvar90, ncol=2, nrow=1)
 
 ### Controlled Direct Effect 
 
-```{r CDERisksingvar10, warning=FALSE, message=FALSE, results='hide'} 
+```{r CDERisksingvar10, warning=FALSE, message=FALSE, results='hide', fig.dim=c(8, 5)} 
 # single variable controlled direct effects
 CDErisks.singvar10 = CDESingVarRiskSummaries.CMA(BKMRfits = fit.y,
                                            e.y=e.y10, e.y.names="E.Y", m.name = "m",
