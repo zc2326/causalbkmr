@@ -184,10 +184,10 @@ ListofResTables <- OverallRiskSummaries.fixEY(list.fit.y.TE, qs = seq(0.1, 0.9, 
 
 pE <- ggplot(ListofResTables[[1]], aes(quantile, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd)) +  
   geom_hline(yintercept=00, linetype="dashed", color="gray")+ 
-  geom_pointrange()+ ggtitle("E")+ scale_y_continuous(name="estimate", limits = c(-1, 1.5))  
+  geom_pointrange()+ ggtitle("E")+ scale_y_continuous(name="estimate" )  
 pF <- ggplot(ListofResTables[[2]], aes(quantile, est, ymin = est - 1.96*sd, ymax = est + 1.96*sd)) +  
   geom_hline(yintercept=00, linetype="dashed", color="gray")+ 
-  geom_pointrange()+ ggtitle("F")+ scale_y_continuous(name="estimate", limits = c(-1, 1.5)) 
+  geom_pointrange()+ ggtitle("F")+ scale_y_continuous(name="estimate") 
 ggarrange(pE , pF , ncol=2, nrow =1)
 ```
 
