@@ -133,14 +133,12 @@ ggplot(plotdf, aes(Effect, mean, ymin = lower, ymax = upper))  +
 Estimate the CDE for a change in the exposures from $a^*$ to $a$, fixing the mediator at its 10th, 50th, and 75th percentile and the effect modifier at testing at its 10th percentile:
 
 ```{r CDE, warning=FALSE} 
-CDE.ey10 <- CDE.bkmr(a=a, astar=astar, e.y = e.y10, m.quant=c(0.1,0.5,0.75), fit.y=fit.y, alpha=0.05, sel=sel, seed=777)
+CDE.ey10 <- CDE.bkmr(a=a, astar=astar, e.y = e.y10, m.quant=c(0.1,.25, 0.5,0.75), fit.y=fit.y, alpha=0.05, sel=sel, seed=777)
 
-CDE.ey90 <- CDE.bkmr(a=a, astar=astar, e.y = e.y90, m.quant=c(0.1,0.5,0.75), fit.y=fit.y, alpha=0.05, sel=sel, seed=777)
+CDE.ey90 <- CDE.bkmr(a=a, astar=astar, e.y = e.y90, m.quant=c(0.1,.25, 0.5,0.75), fit.y=fit.y, alpha=0.05, sel=sel, seed=777)
 ```
 
-Look at the posterior mean, median, and 95% CI for the CDEs:
-
-
+Look at the posterior mean, median, and 95% CI for the CDEs: 
 
 ```{r warning=FALSE} 
 CDE.ey10$est
