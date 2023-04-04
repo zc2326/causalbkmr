@@ -263,27 +263,31 @@ its 10th percentile or 90th percentile:</p>
 and 75th percentile and the effect modifier at testing at its 10th
 percentile:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">CDE.ey10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CDE.bkmr.html">CDE.bkmr</a></span><span class="op">(</span>a<span class="op">=</span><span class="va">a</span>, astar<span class="op">=</span><span class="va">astar</span>, e.y <span class="op">=</span> <span class="va">e.y10</span>, m.quant<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span><span class="op">)</span>, fit.y<span class="op">=</span><span class="va">fit.y</span>, alpha<span class="op">=</span><span class="fl">0.05</span>, sel<span class="op">=</span><span class="va">sel</span>, seed<span class="op">=</span><span class="fl">777</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Running 3 mediator values for CDE:"</span></span>
-<span><span class="co">#&gt; [1] "1 out of 3"</span></span>
-<span><span class="co">#&gt; [1] "2 out of 3"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 3"</span></span>
+<code class="sourceCode R"><span><span class="va">CDE.ey10</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CDE.bkmr.html">CDE.bkmr</a></span><span class="op">(</span>a<span class="op">=</span><span class="va">a</span>, astar<span class="op">=</span><span class="va">astar</span>, e.y <span class="op">=</span> <span class="va">e.y10</span>, m.quant<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">.25</span>, <span class="fl">0.5</span>,<span class="fl">0.75</span><span class="op">)</span>, fit.y<span class="op">=</span><span class="va">fit.y</span>, alpha<span class="op">=</span><span class="fl">0.05</span>, sel<span class="op">=</span><span class="va">sel</span>, seed<span class="op">=</span><span class="fl">777</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Running 4 mediator values for CDE:"</span></span>
+<span><span class="co">#&gt; [1] "1 out of 4"</span></span>
+<span><span class="co">#&gt; [1] "2 out of 4"</span></span>
+<span><span class="co">#&gt; [1] "3 out of 4"</span></span>
+<span><span class="co">#&gt; [1] "4 out of 4"</span></span>
 <span></span>
-<span><span class="va">CDE.ey90</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CDE.bkmr.html">CDE.bkmr</a></span><span class="op">(</span>a<span class="op">=</span><span class="va">a</span>, astar<span class="op">=</span><span class="va">astar</span>, e.y <span class="op">=</span> <span class="va">e.y90</span>, m.quant<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">0.5</span>,<span class="fl">0.75</span><span class="op">)</span>, fit.y<span class="op">=</span><span class="va">fit.y</span>, alpha<span class="op">=</span><span class="fl">0.05</span>, sel<span class="op">=</span><span class="va">sel</span>, seed<span class="op">=</span><span class="fl">777</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "Running 3 mediator values for CDE:"</span></span>
-<span><span class="co">#&gt; [1] "1 out of 3"</span></span>
-<span><span class="co">#&gt; [1] "2 out of 3"</span></span>
-<span><span class="co">#&gt; [1] "3 out of 3"</span></span></code></pre></div>
+<span><span class="va">CDE.ey90</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CDE.bkmr.html">CDE.bkmr</a></span><span class="op">(</span>a<span class="op">=</span><span class="va">a</span>, astar<span class="op">=</span><span class="va">astar</span>, e.y <span class="op">=</span> <span class="va">e.y90</span>, m.quant<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.1</span>,<span class="fl">.25</span>, <span class="fl">0.5</span>,<span class="fl">0.75</span><span class="op">)</span>, fit.y<span class="op">=</span><span class="va">fit.y</span>, alpha<span class="op">=</span><span class="fl">0.05</span>, sel<span class="op">=</span><span class="va">sel</span>, seed<span class="op">=</span><span class="fl">777</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "Running 4 mediator values for CDE:"</span></span>
+<span><span class="co">#&gt; [1] "1 out of 4"</span></span>
+<span><span class="co">#&gt; [1] "2 out of 4"</span></span>
+<span><span class="co">#&gt; [1] "3 out of 4"</span></span>
+<span><span class="co">#&gt; [1] "4 out of 4"</span></span></code></pre></div>
 <p>Look at the posterior mean, median, and 95% CI for the CDEs:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">CDE.ey10</span><span class="op">$</span><span class="va">est</span></span>
 <span><span class="co">#&gt;             mean    median     lower     upper         sd</span></span>
 <span><span class="co">#&gt; CDE10% 0.3260377 0.3276014 0.1254467 0.5072569 0.10005344</span></span>
+<span><span class="co">#&gt; CDE25% 0.3348604 0.3367549 0.1432337 0.5117030 0.09675477</span></span>
 <span><span class="co">#&gt; CDE50% 0.3478852 0.3488510 0.1461287 0.5280398 0.09656925</span></span>
 <span><span class="co">#&gt; CDE75% 0.3581060 0.3617068 0.1598766 0.5443135 0.10011163</span></span>
 <span><span class="va">CDE.ey90</span><span class="op">$</span><span class="va">est</span></span>
 <span><span class="co">#&gt;            mean   median     lower    upper         sd</span></span>
 <span><span class="co">#&gt; CDE10% 1.215059 1.220603 0.9850737 1.413276 0.10774925</span></span>
+<span><span class="co">#&gt; CDE25% 1.224232 1.229147 1.0106920 1.412224 0.10019732</span></span>
 <span><span class="co">#&gt; CDE50% 1.233969 1.237500 1.0434691 1.410319 0.09388749</span></span>
 <span><span class="co">#&gt; CDE75% 1.238180 1.244269 1.0387424 1.408041 0.09410765</span></span></code></pre></div>
 <p>Plotting:</p>
